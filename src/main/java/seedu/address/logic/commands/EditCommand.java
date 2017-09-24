@@ -94,7 +94,7 @@ public class EditCommand extends UndoableCommand {
      * @return
      * @throws CommandException
      */
-    public CommandResult executeButtonUndoableCommand(Model model) throws CommandException {
+    public void executeButtonUndoableCommand(Model model) throws CommandException {
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -112,7 +112,6 @@ public class EditCommand extends UndoableCommand {
             throw new AssertionError("The target person cannot be missing");
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**

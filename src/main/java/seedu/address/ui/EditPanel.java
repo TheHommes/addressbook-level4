@@ -83,6 +83,7 @@ public class EditPanel extends UiPart<Region> {
         for (Tag tags : personToEdit.getTags()) {
             build.append(tags.toEditString()).append(",");
         }
+        build.deleteCharAt(build.length() - 1);
         String tagList = build.toString();
         personToEdit.getTags().forEach(tag -> tagFlow.getChildren().add(new Label(tag.tagName)));
         tagField.setText(tagList);
@@ -101,6 +102,7 @@ public class EditPanel extends UiPart<Region> {
             newIndex = ParserUtil.parseIndex(index);
             EditCommand command = new EditCommand(newIndex, editPerson);
             command.executeButtonUndoableCommand(model);
+            successfulAddDialog(editPerson);
             dialogStage.close();
         } catch (IllegalValueException e) {
             if (nameField.getText().equals("") || !nameField.getText().matches("[a-zA-z0-9\\s]+")) {
@@ -137,6 +139,34 @@ public class EditPanel extends UiPart<Region> {
             }
 
         }
+    }
+
+    /**
+     * Displays successful dialog for edit.
+     *
+     * @param editPerson
+     */
+    private void successfulAddDialog(EditPersonDescriptor editPerson) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initOwner(dialogStage);
+        alert.setTitle(String.format("Successful edit"));
+        alert.setHeaderText("Person has been successfully edited");
+        alert.setContentText(editPersonToString());
+        alert.getDialogPane().setMinHeight(250);
+        alert.getDialogPane().setMinWidth(450);
+        alert.showAndWait();
+    }
+
+    /**
+     * @return edited person to string for use in dialog.
+     */
+    private String editPersonToString() {
+        String name = "Name: " + nameField.getText();
+        String phone = "Phone: " + phoneField.getText();
+        String email = "Email: " + emailField.getText();
+        String address = "Address: " + addressField.getText();
+        String tags = "Tags: " + tagField.getText();
+        return name + "\n" + phone + "\n" + email + "\n" + address + "\n" + tags + "\n";
     }
 
     /**
