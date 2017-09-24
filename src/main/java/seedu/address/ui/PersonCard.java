@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -29,6 +30,7 @@ public class PersonCard extends UiPart<Region> {
 
     public final ReadOnlyPerson person;
     private Logic logic;
+    private Model model;
 
     @FXML
     private HBox cardPane;
@@ -47,13 +49,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public PersonCard(ReadOnlyPerson person, int displayedIndex, Logic logic) {
+    public PersonCard(ReadOnlyPerson person, int displayedIndex, Logic logic, Model model) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         initTags(person);
         bindListeners(person);
         this.logic = logic;
+        this.model = model;
     }
 
     /**
@@ -79,6 +82,13 @@ public class PersonCard extends UiPart<Region> {
     private void deletePerson() throws CommandException, ParseException {
         String index = id.getText().split("\\.")[0];
         logic.execute("delete " + index);
+    }
+
+    @FXML
+    private void editPerson() {
+        String index = id.getText().split("\\.")[0];
+        EditPanel editPanel = new EditPanel(model, index);
+        editPanel.show();
     }
 
     @Override

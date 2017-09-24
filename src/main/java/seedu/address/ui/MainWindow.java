@@ -25,6 +25,7 @@ import seedu.address.commons.events.ui.ExitAppRequestEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.commons.util.FxViewUtil;
 import seedu.address.logic.Logic;
+import seedu.address.model.Model;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -43,7 +44,7 @@ public class MainWindow extends UiPart<Region> {
     private MainApp mainApp;
     private Stage primaryStage;
     private Logic logic;
-
+    private Model model;
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
     private PersonListPanel personListPanel;
@@ -68,7 +69,7 @@ public class MainWindow extends UiPart<Region> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic, MainApp mainApp) {
+    public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic, MainApp mainApp, Model model) {
         super(FXML);
 
         // Set dependencies
@@ -77,6 +78,7 @@ public class MainWindow extends UiPart<Region> {
         this.config = config;
         this.prefs = prefs;
         this.mainApp = mainApp;
+        this.model = model;
 
         // Configure the UI
         setTitle(config.getAppTitle());
@@ -136,7 +138,7 @@ public class MainWindow extends UiPart<Region> {
         browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic);
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic, model);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
