@@ -87,7 +87,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private void editPerson() {
         String index = id.getText().split("\\.")[0];
-        EditPanel editPanel = new EditPanel(model, index);
+        EditPanel editPanel = new EditPanel(model, index, person);
         editPanel.show();
     }
 

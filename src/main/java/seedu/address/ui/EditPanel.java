@@ -23,6 +23,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,13 +32,13 @@ import seedu.address.model.tag.Tag;
 public class EditPanel extends UiPart<Region> {
 
     private static final Logger logger = LogsCenter.getLogger(EditPanel.class);
-    private static final String ICON = "/images/help_icon.png";
+    private static final String ICON = "/images/address_book_32.png";
     private static final String FXML = "EditPanel.fxml";
     private static final String TITLE = "Edit";
     private String index;
     private Index newIndex;
     private Model model;
-
+    private ReadOnlyPerson personToEdit;
     @FXML
     private TextField nameField;
     @FXML
@@ -51,7 +52,7 @@ public class EditPanel extends UiPart<Region> {
 
     private final Stage dialogStage;
 
-    public EditPanel(Model model, String index) {
+    public EditPanel(Model model, String index, ReadOnlyPerson personToEdit) {
         super(FXML);
         Scene scene = new Scene(getRoot());
         //Null passed as the parent stage to make it non-modal.
@@ -59,6 +60,26 @@ public class EditPanel extends UiPart<Region> {
         FxViewUtil.setStageIcon(dialogStage, ICON);
         this.model = model;
         this.index = index;
+        this.personToEdit = personToEdit;
+        init(personToEdit);
+    }
+
+    /**
+     * Initializes the values in text fields.
+     *
+     * @param personToEdit
+     */
+    private void init(ReadOnlyPerson personToEdit) {
+        nameField.setText(personToEdit.getName().toString());
+        phoneField.setText(personToEdit.getPhone().toString());
+        emailField.setText(personToEdit.getEmail().toString());
+        addressField.setText(personToEdit.getAddress().toString());
+        StringBuilder build = new StringBuilder();
+        for (Tag tags : personToEdit.getTags()) {
+            build.append(tags.toEditString()).append(",");
+        }
+        String tagList = build.toString();
+        tagField.setText(tagList);
     }
 
     /**
@@ -102,12 +123,19 @@ public class EditPanel extends UiPart<Region> {
             } else {
                 addressField.setStyle("-fx-border-color: grey");
             }
+            if (!tagField.getText().matches("[\\S.]*")) {
+                tagField.setStyle("-fx-border-color: red");
+                displayInvalidAlert("tag");
+            } else {
+                tagField.setStyle("-fx-border-color: grey");
+            }
 
         }
     }
 
     /**
      * Displays alert for wrong inputs.
+     *
      * @param field
      */
     private void displayInvalidAlert(String field) {
@@ -127,6 +155,9 @@ public class EditPanel extends UiPart<Region> {
             break;
         case "address":
             alert.setContentText(Address.MESSAGE_ADDRESS_CONSTRAINTS);
+            break;
+        case "tag":
+            alert.setContentText(Tag.MESSAGE_EDIT_PANEL_CONSTRAINTS);
             break;
         default:
             break;
