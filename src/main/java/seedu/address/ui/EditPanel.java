@@ -7,7 +7,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -39,6 +41,7 @@ public class EditPanel extends UiPart<Region> {
     private Index newIndex;
     private Model model;
     private ReadOnlyPerson personToEdit;
+
     @FXML
     private TextField nameField;
     @FXML
@@ -49,6 +52,8 @@ public class EditPanel extends UiPart<Region> {
     private TextField addressField;
     @FXML
     private TextField tagField;
+    @FXML
+    private FlowPane tagFlow;
 
     private final Stage dialogStage;
 
@@ -79,6 +84,7 @@ public class EditPanel extends UiPart<Region> {
             build.append(tags.toEditString()).append(",");
         }
         String tagList = build.toString();
+        personToEdit.getTags().forEach(tag -> tagFlow.getChildren().add(new Label(tag.tagName)));
         tagField.setText(tagList);
     }
 
@@ -117,7 +123,7 @@ public class EditPanel extends UiPart<Region> {
                 emailField.setStyle("-fx-border-color: grey");
             }
 
-            if (addressField.getText().equals("") || !addressField.getText().matches("[a-zA-z0-9,\\s]+")) {
+            if (!addressField.getText().matches(".+")) {
                 addressField.setStyle("-fx-border-color: red");
                 displayInvalidAlert("address");
             } else {
