@@ -2,10 +2,14 @@ package seedu.address.ui;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -24,11 +28,14 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final ReadOnlyPerson person;
+    private Logic logic;
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label name;
+    @FXML
+    private ContextMenu contextMenu;
     @FXML
     private Label id;
     @FXML
@@ -40,12 +47,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public PersonCard(ReadOnlyPerson person, int displayedIndex) {
+    public PersonCard(ReadOnlyPerson person, int displayedIndex, Logic logic) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         initTags(person);
         bindListeners(person);
+        this.logic = logic;
     }
 
     /**
@@ -65,6 +73,12 @@ public class PersonCard extends UiPart<Region> {
 
     private void initTags(ReadOnlyPerson person) {
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @FXML
+    private void deletePerson() throws CommandException, ParseException {
+        String index = id.getText().split("\\.")[0];
+        logic.execute("delete " + index);
     }
 
     @Override

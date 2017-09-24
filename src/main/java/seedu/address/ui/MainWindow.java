@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -7,13 +8,16 @@ import com.google.common.eventbus.Subscribe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import seedu.address.MainApp;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -36,6 +40,7 @@ public class MainWindow extends UiPart<Region> {
 
     private final Logger logger = LogsCenter.getLogger(this.getClass());
 
+    private MainApp mainApp;
     private Stage primaryStage;
     private Logic logic;
 
@@ -63,7 +68,7 @@ public class MainWindow extends UiPart<Region> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
+    public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic, MainApp mainApp) {
         super(FXML);
 
         // Set dependencies
@@ -71,6 +76,7 @@ public class MainWindow extends UiPart<Region> {
         this.logic = logic;
         this.config = config;
         this.prefs = prefs;
+        this.mainApp = mainApp;
 
         // Configure the UI
         setTitle(config.getAppTitle());
@@ -94,6 +100,7 @@ public class MainWindow extends UiPart<Region> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -129,7 +136,7 @@ public class MainWindow extends UiPart<Region> {
         browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         ResultDisplay resultDisplay = new ResultDisplay();
@@ -152,6 +159,7 @@ public class MainWindow extends UiPart<Region> {
 
     /**
      * Sets the given image as the icon of the main window.
+     *
      * @param iconSource e.g. {@code "/images/help_icon.png"}
      */
     private void setIcon(String iconSource) {
@@ -203,6 +211,56 @@ public class MainWindow extends UiPart<Region> {
     private void handleExit() {
         raise(new ExitAppRequestEvent());
     }
+
+    /**
+     * Opens an addressbook.xml file
+     */
+    @FXML
+    private void handleOpen() throws Exception {
+        FileChooser fileChooser = new FileChooser();
+
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showOpenDialog(this.getPrimaryStage());
+        if (file != null) {
+            mainApp.openFile(file);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initOwner(primaryStage);
+            alert.setTitle("Restart the app");
+            alert.setHeaderText("Please restart the app");
+            alert.showAndWait();
+            mainApp.stop();
+        }
+    }
+
+    /**
+     * Opens a FileChooser to let the user select a file to save to.
+     */
+    @FXML
+    private void handleSaveAs() throws Exception {
+        FileChooser fileChooser = new FileChooser();
+
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show save file dialog
+        File file = fileChooser.showSaveDialog(primaryStage);
+
+        if (file != null) {
+            // Make sure it has the correct extension
+            if (!file.getPath().endsWith(".xml")) {
+                file = new File(file.getPath() + ".xml");
+            }
+            mainApp.saveAs(file);
+            mainApp.start(primaryStage);
+        }
+    }
+
 
     public PersonListPanel getPersonListPanel() {
         return this.personListPanel;

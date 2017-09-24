@@ -32,16 +32,18 @@ public class UiManager extends ComponentManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
+    private MainApp mainApp;
     private Logic logic;
     private Config config;
     private UserPrefs prefs;
     private MainWindow mainWindow;
 
-    public UiManager(Logic logic, Config config, UserPrefs prefs) {
+    public UiManager(Logic logic, Config config, UserPrefs prefs, MainApp mainApp) {
         super();
         this.logic = logic;
         this.config = config;
         this.prefs = prefs;
+        this.mainApp = mainApp;
     }
 
     @Override
@@ -53,7 +55,7 @@ public class UiManager extends ComponentManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, config, prefs, logic);
+            mainWindow = new MainWindow(primaryStage, config, prefs, logic, mainApp);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
