@@ -11,6 +11,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Tag {
 
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_EDIT_PANEL_CONSTRAINTS = "Tags name should be alphanumeric (no spaces) " + "and "
+            + "multiple tags are separated with a comma";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -53,6 +55,13 @@ public class Tag {
      */
     public String toString() {
         return '[' + tagName + ']';
+    }
+
+    /**
+     * Returns string to edit panel
+     */
+    public String toEditString() {
+        return tagName;
     }
 
 }
