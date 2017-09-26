@@ -84,6 +84,7 @@ public class PersonCard extends UiPart<Region> {
 
     /**
      * Deletes the person.
+     *
      * @throws CommandException
      * @throws ParseException
      */
@@ -95,7 +96,7 @@ public class PersonCard extends UiPart<Region> {
         alert.setContentText("Are you ok with this? You can undo by typing \"undo\" in the command box");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             String index = id.getText().split("\\.")[0];
             logic.execute("delete " + index);
         }
