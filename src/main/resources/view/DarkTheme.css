@@ -366,6 +366,7 @@
 #comboBox .list-view .list-cell {
     -fx-text-fill: white;
 }
+
 #comboBox .cell {
     -fx-background-color: dimgrey;
 }
