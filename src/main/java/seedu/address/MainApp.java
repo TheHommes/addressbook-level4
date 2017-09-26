@@ -1,5 +1,6 @@
 package seedu.address;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
@@ -43,14 +44,12 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 6, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
-
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
     protected UserPrefs userPrefs;
-
 
     @Override
     public void init() throws Exception {
@@ -63,16 +62,34 @@ public class MainApp extends Application {
         userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
-
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model);
 
-        ui = new UiManager(logic, config, userPrefs);
+        ui = new UiManager(logic, config, userPrefs, this, model);
 
         initEventsCenter();
+    }
+
+    /**
+     *
+     */
+    public void openFile(File file) throws Exception {
+        userPrefs.setAddressBookFilePath(file.getPath());
+        logger.info("Please restart the app");
+    }
+
+    /**
+     * @param file
+     */
+    public void saveAs(File file) throws Exception {
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook addressBook;
+        addressBookOptional = storage.readAddressBook();
+        addressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        storage.saveAsAddressBook(addressBook, file.getPath());
     }
 
     private String getApplicationParameter(String parameterName) {
@@ -176,6 +193,7 @@ public class MainApp extends Application {
 
         return initializedPrefs;
     }
+
 
     private void initEventsCenter() {
         EventsCenter.getInstance().registerHandler(this);

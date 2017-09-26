@@ -1,11 +1,20 @@
 package seedu.address.ui;
 
+import java.util.Optional;
+
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -24,11 +33,15 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final ReadOnlyPerson person;
+    private Logic logic;
+    private Model model;
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label name;
+    @FXML
+    private ContextMenu contextMenu;
     @FXML
     private Label id;
     @FXML
@@ -40,12 +53,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public PersonCard(ReadOnlyPerson person, int displayedIndex) {
+    public PersonCard(ReadOnlyPerson person, int displayedIndex, Logic logic, Model model) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         initTags(person);
         bindListeners(person);
+        this.logic = logic;
+        this.model = model;
     }
 
     /**
@@ -65,6 +80,33 @@ public class PersonCard extends UiPart<Region> {
 
     private void initTags(ReadOnlyPerson person) {
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Deletes the person.
+     *
+     * @throws CommandException
+     * @throws ParseException
+     */
+    @FXML
+    private void deletePerson() throws CommandException, ParseException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Deleting person: " + person.getName().fullName);
+        alert.setContentText("Are you ok with this? You can undo by typing \"undo\" in the command box");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            String index = id.getText().split("\\.")[0];
+            logic.execute("delete " + index);
+        }
+    }
+
+    @FXML
+    private void editPerson() {
+        String index = id.getText().split("\\.")[0];
+        EditPanel editPanel = new EditPanel(model, index, person);
+        editPanel.show();
     }
 
     @Override
