@@ -1,7 +1,11 @@
 package seedu.address.ui;
 
+import java.util.Optional;
+
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -78,10 +82,23 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    /**
+     * Deletes the person.
+     * @throws CommandException
+     * @throws ParseException
+     */
     @FXML
     private void deletePerson() throws CommandException, ParseException {
-        String index = id.getText().split("\\.")[0];
-        logic.execute("delete " + index);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Deleting person: " + person.getName().fullName);
+        alert.setContentText("Are you ok with this? You can undo by typing \"undo\" in the command box");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            String index = id.getText().split("\\.")[0];
+            logic.execute("delete " + index);
+        }
     }
 
     @FXML

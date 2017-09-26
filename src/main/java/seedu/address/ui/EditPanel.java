@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -60,8 +61,8 @@ public class EditPanel extends UiPart<Region> {
     public EditPanel(Model model, String index, ReadOnlyPerson personToEdit) {
         super(FXML);
         Scene scene = new Scene(getRoot());
-        //Null passed as the parent stage to make it non-modal.
         dialogStage = createDialogStage(TITLE, null, scene);
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
         FxViewUtil.setStageIcon(dialogStage, ICON);
         this.model = model;
         this.index = index;
