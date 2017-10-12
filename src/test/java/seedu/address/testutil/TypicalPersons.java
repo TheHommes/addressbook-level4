@@ -16,7 +16,15 @@ public class TypicalPersons {
     public static final Index INDEX_SECOND_PERSON = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
 
-    public static final ReadOnlyPerson ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA;
+    public static final ReadOnlyPerson ALICE;
+    public static final ReadOnlyPerson BENSON;
+    public static final ReadOnlyPerson CARL;
+    public static final ReadOnlyPerson DANIEL;
+    public static final ReadOnlyPerson ELLE;
+    public static final ReadOnlyPerson FIONA;
+    public static final ReadOnlyPerson GEORGE;
+    public static final ReadOnlyPerson HOON;
+    public static final ReadOnlyPerson IDA;
 
     static {
         try {

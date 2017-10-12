@@ -38,7 +38,7 @@ public class RemarkCommand extends UndoableCommand {
     private final Remark remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
+     * @param index  of the person in the filtered person list to edit the remark
      * @param remark of the person
      */
     public RemarkCommand(Index index, Remark remark) {
@@ -73,6 +73,12 @@ public class RemarkCommand extends UndoableCommand {
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
+    /**
+     * Generates a success message for adding & deleting a person
+     *
+     * @param personToEdit ReadOnlyPerson parameter needed to display which specific person
+     * @return
+     */
     private String generateSuccessMessage(ReadOnlyPerson personToEdit) {
         if (!remark.value.isEmpty()) {
             return String.format(MESSAGE_ADD_REMARK_SUCCESS, personToEdit);

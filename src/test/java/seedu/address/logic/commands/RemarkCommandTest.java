@@ -1,30 +1,30 @@
 package seedu.address.logic.commands;
 
-        import static org.junit.Assert.assertFalse;
-        import static org.junit.Assert.assertTrue;
-        import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-        import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-        import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-        import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-        import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
-        import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
-        import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
-        import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
+import static seedu.address.testutil.TypicalPersons.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-        import org.junit.Test;
+import org.junit.Test;
 
-        import seedu.address.commons.core.Messages;
-        import seedu.address.commons.core.index.Index;
-        import seedu.address.logic.CommandHistory;
-        import seedu.address.logic.UndoRedoStack;
-        import seedu.address.model.AddressBook;
-        import seedu.address.model.Model;
-        import seedu.address.model.ModelManager;
-        import seedu.address.model.UserPrefs;
-        import seedu.address.model.person.Person;
-        import seedu.address.model.person.ReadOnlyPerson;
-        import seedu.address.model.person.Remark;
-        import seedu.address.testutil.PersonBuilder;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
+import seedu.address.logic.UndoRedoStack;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.person.Remark;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
