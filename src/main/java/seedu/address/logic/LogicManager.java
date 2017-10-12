@@ -105,7 +105,7 @@ public class LogicManager extends ComponentManager implements Logic {
                     "Failed to remove alias token '%s' from parser");
         }
     }
-    
+
     private void registerAllDefaultCommandParsers() {
         parser.registerCommandParser(new AddCommandParser());
         parser.registerCommandParser(new DeleteCommandParser());

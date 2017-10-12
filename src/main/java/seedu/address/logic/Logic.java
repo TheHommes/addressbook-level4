@@ -30,7 +30,7 @@ public interface Logic {
      * Returns the filtered lists of alias token
      */
     ObservableList<AliasToken> getAliasTokenList();
-    
+
     boolean canParseHeader(String shortForm);
 
     /**

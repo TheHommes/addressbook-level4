@@ -26,12 +26,12 @@ public class AliasCommandParser implements Parser<AliasCommand> {
     public String getHeader() {
         return HEADER;
     }
-    
+
     @Override
     public String getFormat() {
         return FORMAT;
     }
-    
+
     @Override
     public boolean shouldPreprocess() {
         return false;

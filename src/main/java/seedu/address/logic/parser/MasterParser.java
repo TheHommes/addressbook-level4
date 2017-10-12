@@ -179,5 +179,3 @@ public class MasterParser {
         return aliasList;
     }
 }
-    
-    

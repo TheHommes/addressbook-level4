@@ -11,7 +11,6 @@ public interface Parser<T extends Command> {
     /**
      * Indicates whether parser would have preprocessed text. The default behaviour is to allow pre-processing.
      * Subclasses will override this method to return false if needed.
-     * 
      * @return true if pre-processing is requested, else false.
      */
     public default boolean shouldPreprocess() {
@@ -21,7 +20,6 @@ public interface Parser<T extends Command> {
     /**
      * Gets the header of this command parser.
      * The header is the first token of a command text
-     * 
      * @return the string command
      */
     public String getHeader();
