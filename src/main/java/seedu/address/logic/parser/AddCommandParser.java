@@ -25,6 +25,9 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+    private static final String HEADER = "add";
+    private static final String FORMAT = HEADER + " [n/NAME] + [p/PHONE] " +
+            "[e/EMAIL] [a/ADDRESS] [t/TAG]";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -61,5 +64,11 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
+    @Override
+    public String getHeader() { return HEADER; }
+
+    @Override
+    public String getFormat() { return FORMAT; }
 
 }

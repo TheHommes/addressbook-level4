@@ -12,10 +12,14 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    private static final String HEADER = "find";
+    private static final String FORMAT = HEADER + "KEYWORD [MORE_KEYWORDS]";
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns an FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
@@ -28,6 +32,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+    }
+
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
+
+    @Override
+    public String getFormat() {
+        return FORMAT;
     }
 
 }

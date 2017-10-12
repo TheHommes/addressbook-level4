@@ -1,6 +1,10 @@
 package seedu.address.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
+import seedu.address.model.alias.AliasToken;
+import seedu.address.model.alias.AliasTokenList;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
 
@@ -20,5 +24,16 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate tags.
      */
     ObservableList<Tag> getTagList();
+
+    /**
+     * Returns a copied alias symbol list.
+     */
+
+    AliasTokenList getAliasTokenList();
+
+    /**
+     * Returns an unmodifiable view of AliasTokens list
+     */
+    List<AliasToken> getReadOnlyListOfAliasTokens();
 
 }
