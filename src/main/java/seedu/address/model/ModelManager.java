@@ -12,6 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.commons.events.model.AliasTokenChangedEvent;
+import seedu.address.model.alias.AliasToken;
+import seedu.address.model.alias.exceptions.DuplicateTokenKeywordException;
+import seedu.address.model.alias.exceptions.TokenKeywordNotFoundException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -54,10 +58,21 @@ public class ModelManager extends ComponentManager implements Model {
         return addressBook;
     }
 
-    /** Raises an event to indicate the model has changed */
+    /**
+     * Raises an event to indicate the model has changed
+     */
     private void indicateAddressBookChanged() {
         raise(new AddressBookChangedEvent(addressBook));
     }
+
+    private void indicateAliasTokenAdded(AliasToken token) {
+        raise(new AliasTokenChangedEvent(token, AliasTokenChangedEvent.Action.Added));
+    }
+
+    private void indicateAliasTokenRemoved(AliasToken token) {
+        raise(new AliasTokenChangedEvent(token, AliasTokenChangedEvent.Action.Removed));
+    }
+
 
     @Override
     public synchronized void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException {
@@ -79,6 +94,25 @@ public class ModelManager extends ComponentManager implements Model {
 
         addressBook.updatePerson(target, editedPerson);
         indicateAddressBookChanged();
+    }
+
+    @Override
+    public synchronized void addAliasToken(AliasToken token) throws DuplicateTokenKeywordException {
+        addressBook.addAliasToken(token);
+        indicateAddressBookChanged();
+        indicateAliasTokenAdded(token);
+    }
+
+    @Override
+    public synchronized void removeAliasToken(AliasToken token) throws TokenKeywordNotFoundException {
+        addressBook.removeAliasToken(token);
+        indicateAddressBookChanged();
+        indicateAliasTokenRemoved(token);
+    }
+
+    @Override
+    public int getAliasTokenCount() {
+        return addressBook.getAliasTokenCount();
     }
 
     //=========== Filtered Person List Accessors =============================================================

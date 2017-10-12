@@ -11,10 +11,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new SelectCommand object
  */
 public class SelectCommandParser implements Parser<SelectCommand> {
+    private static final String HEADER = "select";
+    private static final String FORMAT = HEADER + " INDEX";
 
     /**
      * Parses the given {@code String} of arguments in the context of the SelectCommand
      * and returns an SelectCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public SelectCommand parse(String args) throws ParseException {
@@ -25,5 +28,15 @@ public class SelectCommandParser implements Parser<SelectCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
         }
+    }
+
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
+
+    @Override
+    public String getFormat() {
+        return FORMAT;
     }
 }

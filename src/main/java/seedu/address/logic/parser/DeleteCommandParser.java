@@ -11,6 +11,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new DeleteCommand object
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
+    private static final String HEADER = "delete";
+    private static final String FORMAT = HEADER + " INDEX [MORE_INDEX]";
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -26,5 +28,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
     }
+    
+    @Override
+    public String getHeader() { return HEADER; }
+    
+    @Override 
+    public String getFormat() { return FORMAT; }
+    
 
 }

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.events.ui.IncorrectCommandAttemptedEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.UndoRedoStack;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,6 +33,10 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute() throws CommandException;
+
+    protected void indicateAttemptToExecuteIncorrectCommand() {
+        EventsCenter.getInstance().post(new IncorrectCommandAttemptedEvent(this));
+    }
 
     /**
      * Provides any needed dependencies to the command.
