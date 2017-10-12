@@ -1720,12 +1720,6 @@ for <code>RemarkCommandParser</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">frequent user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">save contacts locally</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">don&#8217;t have to load files each time I exit and re-open the application</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">concerned user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">clear all my contacts</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">not have contacts save in the application if I decide to quit using it</p></td>
@@ -1781,7 +1775,7 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">travelling user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">load my contacts from file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">save and load my contacts from file</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">use the app on all my devices</p></td>
 </tr>
 <tr>
@@ -1879,7 +1873,7 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>BlueBird</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
 <h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
 <div class="paragraph">
@@ -1891,13 +1885,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to list persons</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
+<p>BlueBird shows a list of persons</p>
 </li>
 <li>
 <p>User requests to delete a specific person in the list</p>
 </li>
 <li>
-<p>AddressBook deletes the person</p>
+<p>BlueBird deletes the person</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1920,7 +1914,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>3a1. BlueBird shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -1932,7 +1926,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <h3 id="use-case-select-person" class="discrete">Use case: Select person</h3>
 <div class="paragraph">
-<p><strong>Precondition: Person in question should be saved with 'add' in addressbook</strong></p>
+<p><strong>Precondition: Person in question should be saved with 'add' in BlueBird</strong></p>
 </div>
 <div class="paragraph">
 <p><strong>Guarantees: Person in question will be displayed with all fields visible</strong></p>
@@ -1946,13 +1940,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to 'find' a specific person by name</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons with name entered</p>
+<p>BlueBird shows a list of persons with name entered</p>
 </li>
 <li>
 <p>User selects the index of specific person</p>
 </li>
 <li>
-<p>AddressBook shows full contact details of person</p>
+<p>BlueBird shows full contact details of person</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1969,7 +1963,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message</p>
+<p>3a1. BlueBird shows an error message</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -1992,7 +1986,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to see command history</p>
 </li>
 <li>
-<p>AddressBook lists the commands entered in reverse order</p>
+<p>BlueBird lists the commands entered in reverse order</p>
 </li>
 <li>
 <p>User views previous commands</p>
@@ -2028,10 +2022,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User enters 'help' command</p>
 </li>
 <li>
-<p>AddressBook shows the instructions of the command entered</p>
-</li>
-<li>
-<p>User views help window</p>
+<p>BlueBird displays the User Guide on a new window</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2071,10 +2062,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to find one or more person(s) in AddressBook</p>
+<p>User requests to find one or more person(s) in BlueBird</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons with the name(s) specified by user</p>
+<p>BlueBird shows a list of persons with the name(s) specified by user</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2087,7 +2078,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. 0 person found</p>
+<p>2a. BlueBird found 0 person with the name</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2104,10 +2095,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User input command to add person</p>
 </li>
 <li>
-<p>AddressBook adds the person</p>
-</li>
-<li>
-<p>AddressBook displays message for successfully adding a person along with the person&#8217;s details</p>
+<p>BlueBird adds the person and displays message for successfully adding a person along with the person&#8217;s details</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2124,7 +2112,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. AddressBook shows an invalid format message and displays the right format to user</p>
+<p>1a1. BlueBird shows an invalid format message and displays the right format to user</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2133,11 +2121,11 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>1b. User added a person already present in AddressBook</p>
+<p>1b. User tries to add a person already present in BlueBird</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. AddressBook shows duplicate person error message</p>
+<p>1b1. BlueBird shows duplicate person error message</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2157,7 +2145,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests for a list of person(s) with a specified tag</p>
 </li>
 <li>
-<p>AddressBook shows a list of person(s) with the tag specified by user</p>
+<p>BlueBird shows a list of person(s) with the tag specified by user</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2170,36 +2158,30 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. 0 person with such tag</p>
+<p>2a. BlueBird found 0 person with specified tag</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-hide-selected-contacts" class="discrete">Use case: Hide Selected Contacts</h3>
+<h3 id="use-case-hide-selected-contact-s" class="discrete">Use case: Hide Selected Contact(s)</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to a contact with the command: hide</p>
+<p>User requests to hide a contact with the command: hide</p>
 </li>
 <li>
-<p>With hide, AddressBook does not show hidden contacts</p>
+<p>BlueBird displays message for successfully hiding contact(s) from view</p>
 </li>
 <li>
-<p>Hidden contacts will not show even when search command is invoked</p>
+<p>User requests to display list of hidden contact(s) with command: hiddenList</p>
 </li>
 <li>
-<p>User can check what he has hidden with: check hidden</p>
-</li>
-<li>
-<p>User can undo hidden contacts with command: unhide</p>
-</li>
-<li>
-<p>AddressBook displays message for successfully hiding contact(s) from view.</p>
+<p>BlueBird shows the list of hidden contact(s)</p>
 <div class="paragraph">
 <p>Use Case ends.</p>
 </div>
@@ -2249,17 +2231,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. AddressBook will show contacts that user has hidden in chronological order (reverse from present)</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>4a. User can undo hiding, similar to extension steps 1a, 1b, 1c, with command: unhide</p>
+<p>1d. User can undo hiding, similar to extension steps 1a, 1b, 1c, with command: unhide</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2268,7 +2240,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <h3 id="use-case-sort-contacts-by-tag" class="discrete">Use case: Sort Contacts by Tag</h3>
 <div class="paragraph">
-<p><strong>Precondition: Some contacts in user&#8217;s AddressBook memory has to already have tags under their contact details.</strong></p>
+<p><strong>Precondition: Some contacts in user&#8217;s BlueBird memory has to already have tags under their contact details.</strong></p>
 </div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2279,7 +2251,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User requests to sort contacts by command: sort exampleOfTag1 exampleOfTag2</p>
 </li>
 <li>
-<p>AddressBook displays contacts that have the respective tag(s) under contact details as initially edited by user</p>
+<p>BlueBird displays contacts that have the respective tag(s) under contact details as initially edited by user</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2293,16 +2265,16 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to delete multiple contacts with command: del &gt;1</p>
+<p>User requests to delete multiple contacts with command: delete &gt;1</p>
 </li>
 <li>
-<p>AddressBook prompts user to enter multiple names to delete: del name1 name2 .. etc</p>
+<p>BlueBird prompts user to enter multiple names to delete: delete name1 name2 .. etc</p>
 </li>
 <li>
-<p>Or user can choose to select names from AddressBook GUI to delete</p>
+<p>User inputs command to delete multiple contacts</p>
 </li>
 <li>
-<p>AddressBook displays message for successfully removing contact(s) from memory</p>
+<p>BlueBird displays message for successfully removing contact(s) from memory</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2319,10 +2291,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. AddressBook will check which name is non-existent (due to incorrect spelling or actually non-existent)</p>
+<p>2a1. BlueBird will check which name is non-existent (due to incorrect spelling or actually non-existent)</p>
 </li>
 <li>
-<p>2a2. AddressBook will prompt user to check accuracy of that particular contact name and re-enter if necessary</p>
+<p>2a2. BlueBird will prompt user to check accuracy of that particular contact name and re-enter if necessary</p>
 </li>
 <li>
 <p>2a3. If not, enter null</p>
@@ -2342,25 +2314,25 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User starts AddressBook</p>
+<p>User starts BlueBird</p>
 </li>
 <li>
 <p>User request to deletes the wrong person from List</p>
 </li>
 <li>
-<p>AddressBook removes person</p>
+<p>BlueBird removes person</p>
 </li>
 <li>
 <p>User request to undo his action</p>
 </li>
 <li>
-<p>AddressBook reverses the delete command</p>
+<p>BlueBird reverses the delete command</p>
 </li>
 <li>
 <p>User decides to delete person again, redo action</p>
 </li>
 <li>
-<p>AddressBook reapplies delete command</p>
+<p>BlueBird reapplies delete command</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2373,11 +2345,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. User requests person that is not inside the AddressBook</p>
+<p>2a. User requests person that is not inside the BlueBird</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. AddressBook displays error message</p>
+<p>2a1. BlueBird displays error message</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2394,22 +2366,22 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to add a person into AddressBook</p>
+<p>User requests to add a person into BlueBird</p>
 </li>
 <li>
-<p>AddressBook adds new person into List</p>
+<p>BlueBird adds new person into List</p>
 </li>
 <li>
 <p>User requests to edit a person</p>
 </li>
 <li>
-<p>User provides index of person to be edited to AddressBook</p>
+<p>User provides index of person to be edited to BlueBird</p>
 </li>
 <li>
-<p>AddressBook returns person&#8217;s details for user to edit</p>
+<p>BlueBird returns person&#8217;s details for user to edit</p>
 </li>
 <li>
-<p>AddressBook stores new details under person</p>
+<p>BlueBird stores new details under person</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2426,7 +2398,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. AddressBook shows an error message</p>
+<p>1a1. BlueBird shows an error message</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2435,11 +2407,11 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>1b. User added a person already present in AddressBook</p>
+<p>1b. User added a person already present in BlueBird</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. AddressBook shows duplicate person error message</p>
+<p>1b1. BlueBird shows duplicate person error message</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2452,7 +2424,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a1. AddressBook shows undoable command error message</p>
+<p>4a1. BlueBird shows undoable command error message</p>
 <div class="paragraph">
 <p>Use case resumes at step 4.</p>
 </div>
@@ -2469,19 +2441,19 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User has a file of contacts from AddressBook</p>
+<p>User has a file of contacts from BlueBird</p>
 </li>
 <li>
-<p>User opens AddressBook on a different device</p>
+<p>User opens BlueBird on a different device</p>
 </li>
 <li>
 <p>User loads file of contacts onto new device</p>
 </li>
 <li>
-<p>AddressBooks updates list</p>
+<p>BlueBird updates list</p>
 </li>
 <li>
-<p>User has a List of persons from previous AddressBook</p>
+<p>User has a List of persons from previous BlueBird</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2510,9 +2482,6 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 </li>
 <li>
 <p>System should be able to respond in 0.5s.</p>
-</li>
-<li>
-<p>Project V2.0 should be an incremental improvement of the given addressbook-level 4 application</p>
 </li>
 <li>
 <p>The software should work without requiring an installer.</p>
@@ -2717,7 +2686,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-12 11:35:24 +00:00
+Last updated 2017-10-12 12:39:03 +00:00
 </div>
 </div>
 </body>
