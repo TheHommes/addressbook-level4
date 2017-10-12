@@ -34,7 +34,7 @@
 <li><a href="#editing-a-person-code-edit-code">2.5. Editing a person : <code>edit</code></a></li>
 <li><a href="#locating-persons-by-name-code-find-code">2.6. Locating persons by name: <code>find</code></a></li>
 <li><a href="#hiding-a-person-code-hide-code">2.7. Hiding a person: <code>hide</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">2.8. Deleting a person : <code>delete</code></a></li>
+<li><a href="#deleting-person-s-code-delete-code">2.8. Deleting person(s) : <code>delete</code></a></li>
 <li><a href="#selecting-a-person-code-select-code">2.9. Selecting a person : <code>select</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">2.10. Listing entered commands : <code>history</code></a></li>
 <li><a href="#undoing-previous-command-code-undo-code">2.11. Undoing previous command : <code>undo</code></a></li>
@@ -341,13 +341,13 @@ Format: <code>hide INDEX</code></p>
 <ul>
 <li>
 <p><code>hide 2</code>
-Deletes the 2nd person in the address book.</p>
+Hides the 2nd person in the address book.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">2.8. Deleting a person : <code>delete</code></a></h3>
+<h3 id="deleting-person-s-code-delete-code"><a class="link" href="#deleting-person-s-code-delete-code">2.8. Deleting person(s) : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified person from the address book.<br>
 Format: <code>delete INDEX</code></p>
@@ -363,7 +363,10 @@ Format: <code>delete INDEX</code></p>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The index <strong>can be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The index <strong>can be multiple integers with a space in between</strong> 1 2 3 &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -376,8 +379,8 @@ Format: <code>delete INDEX</code></p>
 <ul>
 <li>
 <p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
+<code>delete 2 3 4</code><br>
+Deletes the 2nd, 3rd and 4th person in the address book.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
@@ -608,7 +611,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-12 07:15:47 +00:00
+Last updated 2017-10-12 07:51:05 +00:00
 </div>
 </div>
 </body>
