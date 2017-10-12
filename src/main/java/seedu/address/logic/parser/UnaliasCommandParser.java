@@ -18,7 +18,7 @@ public class UnaliasCommandParser implements Parser<UnaliasCommand> {
             Pattern.CASE_INSENSITIVE
 
     );
-    
+
     @Override
     public String getHeader() {
         return HEADER;

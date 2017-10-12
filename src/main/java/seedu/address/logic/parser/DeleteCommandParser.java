@@ -32,7 +32,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     @Override
     public String getHeader() { return HEADER; }
 
-    @Override 
+    @Override
     public String getFormat() { return FORMAT; }
 
 
