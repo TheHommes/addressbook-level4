@@ -40,7 +40,7 @@
   </StackPane>
    <StackPane prefHeight="42.0" prefWidth="690.0" styleClass="pane-with-border">
       <children>
-         <TextField fx:id="searchField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="188.0" promptText="Search person ..." style="-fx-background-color: dimgrey;" styleClass="pane-with-border" StackPane.alignment="CENTER_LEFT">
+         <TextField fx:id="searchField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="188.0" promptText="Search person ..." style="-fx-background-color: dimgrey;" styleClass="pane-with-border" StackPane.alignment="CENTER_LEFT">
             <StackPane.margin>
                <Insets left="130.0" />
             </StackPane.margin>
