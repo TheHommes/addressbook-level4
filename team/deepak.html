@@ -50,6 +50,32 @@ add shortcuts to words that they regularly.</p>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alias-unalias"><a class="link" href="#alias-unalias">Alias / Unalias</a></h3>
+<div class="paragraph">
+<p>The alias and unalias features are implemented by comparing creating a new AliasToken model which contains all created aliases,
+this model is checked against user input in the parser and converts any alias keywords to their representations before other
+commands are parsed. Each AliasToken consists of a keyword (the main alias) and representation (what it means) and they can
+be used for both commands or shortcuts. For example : alias k/disappear s/hide , this makes the hide command
+to work with AliasToken keyword disappear. Unaliasing the AliasToken keyword token simply removes the AliasToken.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Defining how accurate the alias command will be<br>
+<strong>Alternative 1 (current choice):</strong> Aliases are parsed based on their keywords which are stored in a UniqueAliasTokenList.
+ All user input will parse for aliases first before dispatching to command parser, including parsing of both the command
+ word as well as the command arguments.+
+<strong>Pros:</strong> If the alias keyword is valid, it can be used as both a command alias and a shortcut alias. The user has the choice
+to choose any word to alias if they desire to do so.<br>
+<strong>Cons:</strong> It may take longer to parse user input.<br>
+<strong>Alternative 2:</strong> The alias is only checked for commands words in the parser, without the implementation of a
+ model.<br>
+<strong>Pros:</strong> The parsing of user input is more straightforward and quicker.<br>
+<strong>Cons:</strong> The user is very restricted on what to alias and cannot have aliases for shortcut words.</p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -313,7 +339,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
@@ -392,7 +418,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-19 06:15:04 +00:00
+Last updated 2017-10-19 06:15:20 +00:00
 </div>
 </div>
 </body>
