@@ -17,11 +17,13 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HideCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListHiddenCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnhideCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -69,6 +71,9 @@ public class AddressBookParser {
         case HideCommand.COMMAND_WORD:
             return new HideCommandParser().parse(arguments);
 
+        case UnhideCommand.COMMAND_WORD:
+            return new UnhideCommandParser().parse(arguments);
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
@@ -77,6 +82,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListHiddenCommand.COMMAND_WORD:
+            return new ListHiddenCommand();
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);

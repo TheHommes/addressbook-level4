@@ -177,6 +177,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Unhides (@code toHide) from this {@code AddressBook}.
+     *
+     * @throws PersonNotFoundException if the {@code toHide} is not in this {@code AddressBook}.
+     */
+    public boolean unhidePerson(ReadOnlyPerson toUnhide) throws PersonNotFoundException {
+        if (persons.unhide(toUnhide)) {
+            return true;
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+
     //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
