@@ -49,6 +49,7 @@
 <li><a href="#configuration">3.3. Configuration</a></li>
 <li><a href="#enhanced-find">3.4. Enhanced find</a></li>
 <li><a href="#alias-unalias">3.5. Alias / Unalias</a></li>
+<li><a href="#enhanced-delete">3.6. Enhanced Delete</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -862,6 +863,27 @@ to choose any word to alias if they desire to do so.<br>
  model.<br>
 <strong>Pros:</strong> The parsing of user input is more straightforward and quicker.<br>
 <strong>Cons:</strong> The user is very restricted on what to alias and cannot have aliases for shortcut words.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">3.6. Enhanced Delete</a></h3>
+<div class="paragraph">
+<p>The enhanced delete feature allows for multiple indices to be accepted by the parser. This is done by splitting the inputs into multiple string tokens,
+each containing the index of the person to be deleted. A list is then used to store all the indices of the personsToDelete.
+This enhancement is then achieved by iterating through the list and deleting the desired persons using the ModelManager.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Defining how accurate the delete command will be<br>
+<strong>Alternative 1 (current choice):</strong> Indices are parsed into a list containing all the index of persons to be deleted.<br>
+A loop is then used to iterate through the list to delete the persons requested by the user.<br>
+<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong>Cons:</strong> The use of a loop will increase the time for the code to run.<br>
+<strong>Alternative 2:</strong> The indices are deleted one by one, without using a list.
+<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong>Cons:</strong> It has to display the result repeatedly after every every person is deleted successfully.<br></p>
 </div>
 </div>
 </div>
@@ -2741,7 +2763,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-19 12:44:18 +00:00
+Last updated 2017-10-19 13:57:53 +00:00
 </div>
 </div>
 </body>
