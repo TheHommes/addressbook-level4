@@ -56,7 +56,8 @@
 </li>
 <li><a href="#faq">4. FAQ</a></li>
 <li><a href="#command-summary">5. Command Summary</a></li>
-<li><a href="#coming-in-v2-0">6. Coming in v2.0</a></li>
+<li><a href="#since-v1-2">6. Since v1.2</a></li>
+<li><a href="#coming-in-v2-0">7. Coming in v2.0</a></li>
 </ul>
 </div>
 </div>
@@ -472,7 +473,7 @@ Creates an alias shortcut that translates ph into Public Holiday every time it i
 <h3 id="removes-an-alias-for-command-or-shortcut-code-unalias-code"><a class="link" href="#removes-an-alias-for-command-or-shortcut-code-unalias-code">3.9. Removes an alias for command or shortcut : <code>Unalias</code></a></h3>
 <div class="paragraph">
 <p>Removes an existing alias based on given keyword and representation<br>
-Format: <code>Unalias k/KEYWORD</code></p>
+Format: <code>unalias k/KEYWORD</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -494,11 +495,11 @@ Format: <code>Unalias k/KEYWORD</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Unalias k/disappear</code><br>
+<p><code>unalias k/disappear</code><br>
 Removes the alias command 'disappear'. Next instances of disappear will no longer be a hide command.</p>
 </li>
 <li>
-<p><code>Unalias k/ph</code><br>
+<p><code>unalias k/ph</code><br>
 Removes the alias shortcut 'ph'. Next instances of ph will no longer translate to Public Holiday.</p>
 </li>
 </ul>
@@ -507,8 +508,8 @@ Removes the alias shortcut 'ph'. Next instances of ph will no longer translate t
 <div class="sect2">
 <h3 id="deleting-person-s-code-delete-code"><a class="link" href="#deleting-person-s-code-delete-code">3.10. Deleting person(s) : <code>delete</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
+<p>Deletes the specified person(s) from the address book.<br>
+Format: <code>delete INDEX [MORE_INDEX]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -521,10 +522,10 @@ Format: <code>delete INDEX</code></p>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
 <li>
-<p>The index <strong>can be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>The index <strong>can be multiple integers with a space in between</strong> 1 2 3 &#8230;&#8203;</p>
+<p>The index <strong>can be multiple positive integers with a space in between</strong> 1 2 3 &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -737,7 +738,7 @@ e.g. <code>add</code> <code>n/James Ho</code> <code>p/22224444</code> <code>e/ja
 e.g. <code>delete</code> <code>3</code></p>
 </li>
 <li>
-<p><strong>Multi-Delete</strong> : <code>delete</code> <code>INDEX</code> <code>INDEX</code> ..<br>
+<p><strong>Multi-Delete</strong> : <code>delete</code> <code>INDEX</code> <code>[MORE_INDEX]</code><br>
 e.g. <code>delete</code> <code>4</code> <code>7</code></p>
 </li>
 <li>
@@ -779,19 +780,58 @@ e.g.<code>hide</code> <code>1</code></p>
 <p><strong>Alias</strong> : <code>alias k/KEYWORD s/REPRESENTATION</code></p>
 </li>
 <li>
-<p>*Unalias : <code>alias k/KEYWORD</code></p>
+<p><strong>Unalias</strong> : <code>alias k/KEYWORD</code></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="coming-in-v2-0"><a class="link" href="#coming-in-v2-0">6. Coming in v2.0</a></h2>
+<h2 id="since-v1-2"><a class="link" href="#since-v1-2">6. Since v1.2</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enhanced find to allow you to search using any of the person&#8217;s detail</p>
+</li>
+<li>
+<p>Hide feature to enable you to hide sensitive contacts from your child</p>
+</li>
+<li>
+<p>Multi-delete feature which helps you to delete multiple contacts effortlessly</p>
+</li>
+<li>
+<p>Alias and Unalias feature which allows you to set custom keywords for any commands</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="coming-in-v2-0"><a class="link" href="#coming-in-v2-0">7. Coming in v2.0</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Quickstart tutorial for first time users of Bluebird</p>
+</li>
+<li>
+<p>Birthday reminders of selected/all contacts</p>
+</li>
+<li>
+<p>Integration with social media for connecting with your contacts</p>
+</li>
+<li>
+<p>Calender to help you manage your schedule</p>
+</li>
+<li>
+<p>A to-do list which helps manage your tasks</p>
+</li>
+<li>
+<p>Child Mode to prevent your child from modifying vital information in Bluebird</p>
+</li>
+<li>
+<p>Parent Mode which will enable all commands for you</p>
 </li>
 </ol>
 </div>
@@ -800,7 +840,7 @@ e.g.<code>hide</code> <code>1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-19 07:14:32 +00:00
+Last updated 2017-10-19 12:44:18 +00:00
 </div>
 </div>
 </body>
