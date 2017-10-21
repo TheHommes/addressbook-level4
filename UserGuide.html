@@ -516,16 +516,26 @@ Format: <code>delete INDEX [MORE_INDEX]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
+<p>Deletes the person at the specified <code>INDEX</code> or the specified <code>INDEX RANGE</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Acceptable inputs:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The input <strong>can be a single positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>The index <strong>can be multiple positive integers with a space in between</strong> 1 2 3 &#8230;&#8203;</p>
+<p>The input <strong>can be multiple positive integers with a space in between</strong> 1 2 3 &#8230;&#8203;</p>
+</li>
+<li>
+<p>The input <strong>can be a range of positive integers, denoted by a "~" in between the minimum and maximum index (both inclusive)</strong> 1~4, 2~7, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -545,6 +555,11 @@ Deletes the 2nd, 3rd and 4th person in the address book.</p>
 <p><code>find Betsy</code><br>
 <code>delete 1</code><br>
 Deletes the 1st person in the results of the <code>find</code> command.</p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>delete 2~5</code>
+Deletes 2nd to 5th person (<strong>both inclusive</strong>) in the address book.</p>
 </li>
 </ul>
 </div>
@@ -840,7 +855,7 @@ e.g.<code>hide</code> <code>1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-21 16:07:41 +00:00
+Last updated 2017-10-21 16:36:56 +00:00
 </div>
 </div>
 </body>
