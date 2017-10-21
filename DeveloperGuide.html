@@ -844,7 +844,8 @@ or address. This will ensure that users type in the right <code>KEYWORD</code> t
 <h4 id="sorting-by-name"><a class="link" href="#sorting-by-name">3.5.1. Sorting by name</a></h4>
 <div class="paragraph">
 <p>Suppose a user wants to sort by name, the user will type <code>sort name</code> into the command box. This will then be processed by <code>LogicManager</code> which executes the command and <code>AddressBookParser</code> will
-parse the command accordingly. A <code>SortCommand</code> will be returned to the <code>LogicManager</code> which will then execute it. The sequence diagram for this scenario is shown in Figure 2 below.</p>
+parse the command accordingly. A <code>SortCommand</code> will be returned to the <code>LogicManager</code> which will then execute it. Finally, the result of the execution will be returned and displayed
+on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this scenario is shown in Figure 2 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -853,6 +854,33 @@ parse the command accordingly. A <code>SortCommand</code> will be returned to th
 </div>
 <div class="paragraph">
 <p>Figure 2: Sequence diagram for sorting by name</p>
+</div>
+<div class="paragraph">
+<p>When <code>SortCommand</code> executes,</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It will first call the sortList() method in <code>ModelManager</code></p>
+</li>
+<li>
+<p>Then, it will call the sortList() method in <code>AddressBook</code></p>
+</li>
+<li>
+<p>Finally, it will call the sort() method to sort the internal list in <code>UniquePersonList</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The sequence diagram for executeUndoableCommand() is given in Figure 3 below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sortExecuteSD.png" alt="sortExecuteSD" width="750">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 3: Sequence diagram for SortCommand executeUndoableCommand()</p>
 </div>
 </div>
 <div class="sect3">
@@ -2839,7 +2867,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-21 11:16:45 +00:00
+Last updated 2017-10-21 12:01:35 +00:00
 </div>
 </div>
 </body>
