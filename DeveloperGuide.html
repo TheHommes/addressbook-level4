@@ -54,6 +54,7 @@
 <li><a href="#enhanced-find">3.7. Enhanced find</a></li>
 <li><a href="#alias-unalias">3.8. Alias / Unalias</a></li>
 <li><a href="#enhanced-delete">3.9. Enhanced Delete</a></li>
+<li><a href="#hide">3.10. Hide</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1008,6 +1009,28 @@ A loop is then used to iterate through the list to delete the persons requested 
 <strong>Alternative 2:</strong> The indices are deleted one by one, without using a list.<br>
 <strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
 <strong>Cons:</strong> It has to display the result repeatedly after every every person is deleted successfully.<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hide"><a class="link" href="#hide">3.10. Hide</a></h3>
+<div class="paragraph">
+<p>The hide feature allows for multiple indices to be accepted by the parser. This is done similar to the enhanced delete
+feature, where inputs are split into multiple string tokens, each containing the index of the person to be hidden.
+A list, listhidden, is then used to store all the indices of the person(s) to be hidden. Unhide is then done to revert
+the previously hidden indices from the list storing all hidden persons.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.10.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: Defining how accurate the hide command will be<br>
+<strong> Alternative 1 (current choice):</strong> Indicse are parsed into a list containing all the index of person to be deleted.<br>
+<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong>Cons:</strong> The use of a loop will increase the time for the code to run.<br>
+<strong>Alternative 2</strong>: The indices are deleted one by one, without using a list.<br>
+<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong>Cons:</strong> User has to repeatedly type the command multiple times, and application has to display the result repeatedly
+after every person is hidden successfully.</p>
 </div>
 </div>
 </div>
@@ -2887,7 +2910,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 08:10:16 +00:00
+Last updated 2017-10-22 08:24:23 +00:00
 </div>
 </div>
 </body>
