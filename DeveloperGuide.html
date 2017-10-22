@@ -48,13 +48,11 @@
 <li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
 <li><a href="#logging">3.2. Logging</a></li>
 <li><a href="#configuration">3.3. Configuration</a></li>
-<li><a href="#since-v1-1">3.4. Since v1.1</a></li>
-<li><a href="#sorting-of-contacts">3.5. Sorting of contacts</a></li>
-<li><a href="#since-v1-2">3.6. Since v1.2</a></li>
-<li><a href="#enhanced-find">3.7. Enhanced find</a></li>
-<li><a href="#alias-unalias">3.8. Alias / Unalias</a></li>
-<li><a href="#enhanced-delete">3.9. Enhanced Delete</a></li>
-<li><a href="#hide">3.10. Hide</a></li>
+<li><a href="#sorting-of-contacts">3.4. Sorting of contacts</a></li>
+<li><a href="#enhanced-find">3.5. Enhanced find</a></li>
+<li><a href="#alias-unalias">3.6. Alias / Unalias</a></li>
+<li><a href="#enhanced-delete">3.7. Enhanced Delete</a></li>
+<li><a href="#hide">3.8. Hide</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -845,13 +843,10 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
+<h3 id="since-v1-1" class="discrete">Since v1.1</h3>
 </div>
 <div class="sect2">
-<h3 id="since-v1-1"><a class="link" href="#since-v1-1">3.4. Since v1.1</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="sorting-of-contacts"><a class="link" href="#sorting-of-contacts">3.5. Sorting of contacts</a></h3>
+<h3 id="sorting-of-contacts"><a class="link" href="#sorting-of-contacts">3.4. Sorting of contacts</a></h3>
 <div class="paragraph">
 <p>The sort command sorts the <code>People</code> in <code>AddressBook</code> based on their <code>Name</code>, <code>Phone</code>, <code>Email</code> or <code>Address</code>. The sort command is also an <code>UndoableCommand</code> and users can undo the sort if they wish to.
 <code>SortCommand</code> inherits from <code>UndoableCommand</code> which inherits from <code>Command</code> and the logic is
@@ -870,7 +865,7 @@ shown in figure 1 below.</p>
 or address. This will ensure that users type in the right <code>KEYWORD</code> to sort the list however they want.</p>
 </div>
 <div class="sect3">
-<h4 id="sorting-by-name"><a class="link" href="#sorting-by-name">3.5.1. Sorting by name</a></h4>
+<h4 id="sorting-by-name"><a class="link" href="#sorting-by-name">3.4.1. Sorting by name</a></h4>
 <div class="paragraph">
 <p>Suppose a user wants to sort by name, the user will type <code>sort name</code> into the command box. This will then be processed by <code>LogicManager</code> which executes the command and <code>AddressBookParser</code> will
 parse the command accordingly. A <code>SortCommand</code> will be returned to the <code>LogicManager</code> which will then execute it. Finally, the result of the execution will be returned and displayed
@@ -913,7 +908,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Which details to sort<br>
 <strong>Alternative 1 (current choice):</strong> List of contacts will be able to be sorted by name, phone, email or address<br>
@@ -932,21 +927,18 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 <strong>Pros:</strong> This gives users freedom to select how they want their list to be sorted<br>
 <strong>Cons:</strong> Forgetful users may not be able to find their contact if they forget to sort by name when they add a new contact<br></p>
 </div>
+<h3 id="since-v1-2" class="discrete">Since v1.2</h3>
 </div>
 </div>
 <div class="sect2">
-<h3 id="since-v1-2"><a class="link" href="#since-v1-2">3.6. Since v1.2</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="enhanced-find"><a class="link" href="#enhanced-find">3.7. Enhanced find</a></h3>
+<h3 id="enhanced-find"><a class="link" href="#enhanced-find">3.5. Enhanced find</a></h3>
 <div class="paragraph">
 <p>The enhanced find feature is implemented by comparing every <code>Person</code> 's <code>Name</code>, <code>Phone</code>, <code>Email</code>,
 <code>Address</code>, and <code>Tag</code> with the keyword provided by the user. The user need not have to type the keywords
 in full and partial keywords will still be able to find the person (e.g find jos will return Josephine).</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.7.1. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the find command will be<br>
 <strong>Alternative 1 (current choice):</strong> The person will be found if their names, phone, email or tags start with the
@@ -966,7 +958,7 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="alias-unalias"><a class="link" href="#alias-unalias">3.8. Alias / Unalias</a></h3>
+<h3 id="alias-unalias"><a class="link" href="#alias-unalias">3.6. Alias / Unalias</a></h3>
 <div class="paragraph">
 <p>The alias and unalias features are implemented by comparing creating a new AliasToken model which contains all created aliases,
 this model is checked against user input in the parser and converts any alias keywords to their representations before other
@@ -975,7 +967,7 @@ be used for both commands or shortcuts. For example : alias k/disappear s/hide ,
 to work with AliasToken keyword disappear. Unaliasing the AliasToken keyword token simply removes the AliasToken.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.8.1. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the alias command will be<br>
 <strong>Alternative 1 (current choice):</strong> Aliases are parsed based on their keywords which are stored in a UniqueAliasTokenList.
@@ -992,14 +984,14 @@ to choose any word to alias if they desire to do so.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">3.9. Enhanced Delete</a></h3>
+<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">3.7. Enhanced Delete</a></h3>
 <div class="paragraph">
 <p>The enhanced delete feature allows for multiple indices to be accepted by the parser. This is done by splitting the inputs into multiple string tokens,
 each containing the index of the person to be deleted. A list is then used to store all the indices of the personsToDelete.
 This enhancement is then achieved by iterating through the list and deleting the desired persons using the ModelManager.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.9.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.7.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the delete command will be<br>
 <strong>Alternative 1 (current choice):</strong> Indices are parsed into a list containing all the index of persons to be deleted.<br>
@@ -1013,7 +1005,7 @@ A loop is then used to iterate through the list to delete the persons requested 
 </div>
 </div>
 <div class="sect2">
-<h3 id="hide"><a class="link" href="#hide">3.10. Hide</a></h3>
+<h3 id="hide"><a class="link" href="#hide">3.8. Hide</a></h3>
 <div class="paragraph">
 <p>The hide feature allows for multiple indices to be accepted by the parser. This is done similar to the enhanced delete
 feature, where inputs are split into multiple string tokens, each containing the index of the person to be hidden.
@@ -1021,7 +1013,7 @@ A list, listhidden, is then used to store all the indices of the person(s) to be
 the previously hidden indices from the list storing all hidden persons.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.10.1. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.8.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect</strong>: Defining how accurate the hide command will be<br>
 <strong> Alternative 1 (current choice):</strong> Indicse are parsed into a list containing all the index of person to be deleted.<br>
@@ -2910,7 +2902,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 08:24:23 +00:00
+Last updated 2017-10-22 08:48:40 +00:00
 </div>
 </div>
 </body>
