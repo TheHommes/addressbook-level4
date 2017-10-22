@@ -598,7 +598,21 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="sect3">
 <h4 id="open-closed-principle-ocp"><a class="link" href="#open-closed-principle-ocp">3.7.2. Open-Closed Principle (OCP)</a></h4>
-
+<div class="literalblock">
+<div class="content">
+<pre>Open-Closed Principle (OCP): A module should be open for extension but closed for modification. That is, modules should be written so that they can be extended, without requiring them to be modified.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When different classes interact with one another, coupling is inevitable and and interaction will naturally lead to increased coupling. Bluebird applies OCP in order to reduce coupling and increase cohesion.<br>
+As shown in Figure 2.7.2.1, if a new command is added to Bluebird, there is no need to modify the <code>Command</code> class, the new command can simply just inherit from
+<code>Command</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/OCPLogic.png" alt="OCPLogic" width="800">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="liskov-substitution-principle-lsp"><a class="link" href="#liskov-substitution-principle-lsp">3.7.3. Liskov Substitution Principle (LSP)</a></h4>
@@ -863,7 +877,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="paragraph">
 <p>The sort command sorts the <code>People</code> in <code>AddressBook</code> based on their <code>Name</code>, <code>Phone</code>, <code>Email</code> or <code>Address</code>. The sort command is also an <code>UndoableCommand</code> and users can undo the sort if they wish to.
 <code>SortCommand</code> inherits from <code>UndoableCommand</code> which inherits from <code>Command</code> and the logic is
-shown in figure 1 below.</p>
+shown in Figure 3.4.1 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -871,7 +885,7 @@ shown in figure 1 below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 1: Logic of SortCommand</p>
+<p>Figure 3.4.1: Logic of SortCommand</p>
 </div>
 <div class="paragraph">
 <p>There will be a <code>SortCommandParser</code> as well to parse out the <code>KEYWORD</code> which is either name, phone, email
@@ -882,7 +896,7 @@ or address. This will ensure that users type in the right <code>KEYWORD</code> t
 <div class="paragraph">
 <p>Suppose a user wants to sort by name, the user will type <code>sort name</code> into the command box. This will then be processed by <code>LogicManager</code> which executes the command and <code>AddressBookParser</code> will
 parse the command accordingly. A <code>SortCommand</code> will be returned to the <code>LogicManager</code> which will then execute it. Finally, the result of the execution will be returned and displayed
-on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this scenario is shown in Figure 2 below.</p>
+on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this scenario is shown in Figure 3.4.2 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -890,7 +904,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 2: Sequence diagram for sorting by name</p>
+<p>Figure 3.4.2: Sequence diagram for sorting by name</p>
 </div>
 <div class="paragraph">
 <p>When <code>SortCommand</code> executes,</p>
@@ -909,7 +923,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </ol>
 </div>
 <div class="paragraph">
-<p>The sequence diagram for executeUndoableCommand() is given in Figure 3 below.</p>
+<p>The sequence diagram for executeUndoableCommand() is given in Figure 3.4.3 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -917,7 +931,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3: Sequence diagram for SortCommand executeUndoableCommand()</p>
+<p>Figure 3.4.3: Sequence diagram for SortCommand executeUndoableCommand()</p>
 </div>
 </div>
 <div class="sect3">
@@ -2915,7 +2929,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 10:19:52 +00:00
+Last updated 2017-10-22 14:13:31 +00:00
 </div>
 </div>
 </body>
