@@ -38,7 +38,7 @@
 <h3 id="sorts-the-list-code-sort-code"><a class="link" href="#sorts-the-list-code-sort-code">Sorts the list : <code>sort</code></a></h3>
 <div class="paragraph">
 <p>Sorts the list based on given keyword<br>
-Format: <code>sort KEYWORD</code></p>
+Format: <code>sort</code> <code>KEYWORD</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -60,11 +60,11 @@ Format: <code>sort KEYWORD</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>sort name</code><br>
+<p><code>sort</code> <code>name</code><br>
 Sorts the list in alphabetical order of their name.</p>
 </li>
 <li>
-<p><code>sort phone</code><br>
+<p><code>sort</code> <code>phone</code><br>
 Sorts the list in numerical order of their phone.</p>
 </li>
 </ul>
@@ -190,14 +190,14 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 <h3 id="locating-persons-by-the-person-s-details-code-find-code"><a class="link" href="#locating-persons-by-the-person-s-details-code-find-code">Locating persons by the person&#8217;s details: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds persons whose details contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+Format: <code>find</code> <code>KEYWORD</code> <code>[MORE_KEYWORDS]</code> <code>&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code>.</p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
@@ -206,10 +206,11 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <p>The person&#8217;s name, phone, email, address and tags will be searched.</p>
 </li>
 <li>
-<p>Partial words will be matched e.g. <code>Ha</code> will match <code>Hans</code></p>
+<p>Partial words will be matched e.g. <code>Ha</code> will match <code>Hans</code>.</p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>,
+<code>Bo Yang</code>.</p>
 </li>
 </ul>
 </div>
@@ -221,16 +222,16 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
+<p><code>find</code> <code>John</code><br>
+Returns <code>john</code> and <code>John Doe</code>.</p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>find</code> <code>Betsy</code> <code>Tim</code> <code>John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code>.</p>
 </li>
 <li>
-<p><code>find friend</code><br>
-Returns any person having the tag <code>friend</code></p>
+<p><code>find</code> <code>friend</code><br>
+Returns any person having the tag <code>friend</code>.</p>
 </li>
 </ul>
 </div>
@@ -309,7 +310,7 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 17:11:38 +00:00
+Last updated 2017-10-24 15:41:05 +00:00
 </div>
 </div>
 </body>

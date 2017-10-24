@@ -38,7 +38,7 @@
 <h3 id="creates-an-alias-for-command-or-shortcut-code-alias-code"><a class="link" href="#creates-an-alias-for-command-or-shortcut-code-alias-code">Creates an alias for command or shortcut : <code>alias</code></a></h3>
 <div class="paragraph">
 <p>Creates an alias based on given keyword and representation<br>
-Format: <code>alias k/KEYWORD s/REPRESENTATION</code></p>
+Format: <code>alias</code> <code>k/KEYWORD</code> <code>s/REPRESENTATION</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -60,11 +60,11 @@ Format: <code>alias k/KEYWORD s/REPRESENTATION</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>alias k/disappear s/hide</code><br>
+<p><code>alias</code> <code>k/disappear</code> <code>s/hide</code><br>
 Creates an alias command 'disappear' that is understood as the 'hide' command word.</p>
 </li>
 <li>
-<p><code>alias k/ph s/Public Holiday</code><br>
+<p><code>alias</code> <code>k/ph</code> <code>s/Public Holiday</code><br>
 Creates an alias shortcut that translates ph into Public Holiday every time it is entered by user.</p>
 </li>
 </ul>
@@ -185,21 +185,21 @@ Format: <code>redo</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
+<p><code>delete</code> <code>1</code><br>
 <code>undo</code> (reverses the <code>delete 1</code> command)<br>
 <code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
 </li>
 <li>
-<p><code>delete 1</code><br>
+<p><code>delete</code> <code>1</code><br>
 <code>redo</code><br>
 The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
 </li>
 <li>
-<p><code>delete 1</code><br>
+<p><code>delete</code> <code>1</code><br>
 <code>clear</code><br>
 <code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
+<code>undo</code> (reverses the <code>delete</code> <code>1</code> command)<br>
+<code>redo</code> (reapplies the <code>delete</code> <code>1</code> command)<br>
 <code>redo</code> (reapplies the <code>clear</code> command)<br></p>
 </li>
 </ul>
@@ -454,7 +454,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-22 17:11:38 +00:00
+Last updated 2017-10-24 15:41:05 +00:00
 </div>
 </div>
 </body>
