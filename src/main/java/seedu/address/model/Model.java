@@ -24,7 +24,7 @@ public interface Model {
     Predicate<ReadOnlyPerson> PREDICATE_SHOW_NOT_HIDDEN = person -> !person.isPrivate();
 
     Predicate<ReadOnlyPerson> PREDICATE_SHOW_ONLY_HIDDEN = ReadOnlyPerson::isPrivate;
-  
+
     /**
      * Clears existing backing model and replaces with the provided new data.
      */
@@ -50,7 +50,9 @@ public interface Model {
      */
     void hidePerson(ReadOnlyPerson target) throws PersonNotFoundException;
 
-    /** Unhides the given person. */
+    /**
+     * Unhides the given person.
+     */
     void unhidePerson(ReadOnlyPerson target) throws PersonNotFoundException;
 
     /**
