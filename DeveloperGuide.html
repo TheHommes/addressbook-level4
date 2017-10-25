@@ -618,7 +618,23 @@ As shown in Figure 2.7.2.1, if a new command is added to Bluebird, there is no n
 </div>
 <div class="sect3">
 <h4 id="liskov-substitution-principle-lsp"><a class="link" href="#liskov-substitution-principle-lsp">3.7.3. Liskov Substitution Principle (LSP)</a></h4>
-
+<div class="literalblock">
+<div class="content">
+<pre>Liskov Substitution Principle (LSP): Derived classes must be substitutable for their base classes.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bluebird applies the Liskov Substitution Principle to avoid breaking the functionality of the code.
+An example of this can be seen below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LSP-CommandClass.png" alt="LSP CommandClass" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>UndoableCommand</code> class follows the Liskov Substitution Principle.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="dependency-inversion-principle-dip"><a class="link" href="#dependency-inversion-principle-dip">3.7.4. Dependency Inversion Principle (DIP)</a></h4>
@@ -2931,7 +2947,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-25 14:44:49 +00:00
+Last updated 2017-10-25 16:40:58 +00:00
 </div>
 </div>
 </body>
