@@ -134,7 +134,8 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
         return personFoundAndHidden;
-      
+    }
+
     /**
      * Pins the equivalent person in the list.
      *

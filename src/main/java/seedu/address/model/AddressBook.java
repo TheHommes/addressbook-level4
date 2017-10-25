@@ -195,6 +195,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean unhidePerson(ReadOnlyPerson toUnhide) throws PersonNotFoundException {
         if (persons.unhide(toUnhide)) {
+            return true;
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
 
     /**
      * Pins (@code toPin) in this {@code AddressBook}.

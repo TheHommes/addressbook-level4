@@ -26,4 +26,9 @@ public class UnhideCommandParser implements Parser<UnhideCommand>  {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhideCommand.MESSAGE_USAGE));
         }
     }
+
+    @Override
+    public String getCommandWord() {
+        return UnhideCommand.COMMAND_WORD;
+    }
 }
