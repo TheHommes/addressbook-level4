@@ -42,7 +42,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -53,6 +53,7 @@ public class MainApp extends Application {
     protected Config config;
     protected UserPrefs userPrefs;
 
+    private final String sortByName = "name";
 
     @Override
     public void init() throws Exception {
@@ -69,6 +70,7 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+        model.sortList(sortByName);
         model.updateFilteredPersonList(PREDICATE_SHOW_NOT_HIDDEN);
 
         logic = new LogicManager(model);
