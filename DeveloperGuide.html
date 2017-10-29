@@ -47,14 +47,19 @@
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
-<li><a href="#tutorial">4.2. Tutorial</a></li>
-<li><a href="#logging">4.3. Logging</a></li>
-<li><a href="#configuration">4.4. Configuration</a></li>
+<li><a href="#logging">4.2. Logging</a></li>
+<li><a href="#configuration">4.3. Configuration</a></li>
+<li><a href="#since-v1-1">4.4. Since v1.1</a></li>
 <li><a href="#sorting-of-contacts">4.5. Sorting of contacts</a></li>
-<li><a href="#enhanced-find">4.6. Enhanced find</a></li>
-<li><a href="#alias-unalias">4.7. Alias / Unalias</a></li>
-<li><a href="#enhanced-delete">4.8. Enhanced Delete</a></li>
-<li><a href="#hide">4.9. Hide</a></li>
+<li><a href="#since-v1-2">4.6. Since v1.2</a></li>
+<li><a href="#enhanced-find">4.7. Enhanced find</a></li>
+<li><a href="#alias-unalias">4.8. Alias / Unalias</a></li>
+<li><a href="#enhanced-delete">4.9. Enhanced Delete</a></li>
+<li><a href="#hide">4.10. Hide</a></li>
+<li><a href="#since-v1-3">4.11. Since v1.3</a></li>
+<li><a href="#pin-unpin">4.12. Pin / Unpin</a></li>
+<li><a href="#since-v1-4">4.13. Since v1.4</a></li>
+<li><a href="#first-time-tutorial">4.14. First time tutorial</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -847,15 +852,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="tutorial"><a class="link" href="#tutorial">4.2. Tutorial</a></h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/tutorialImplementationSequenceDiagram.png" alt="tutorialImplementationSequenceDiagram" width="800">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.2. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -893,11 +890,14 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.4. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.3. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
-<h3 id="since-v1-1" class="discrete">Since v1.1</h3>
+</div>
+<div class="sect2">
+<h3 id="since-v1-1"><a class="link" href="#since-v1-1">4.4. Since v1.1</a></h3>
+
 </div>
 <div class="sect2">
 <h3 id="sorting-of-contacts"><a class="link" href="#sorting-of-contacts">4.5. Sorting of contacts</a></h3>
@@ -912,7 +912,7 @@ shown in Figure 3.4.1 below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.4.1: Logic of SortCommand</p>
+<p>Figure 4.4.1: Logic of SortCommand</p>
 </div>
 <div class="paragraph">
 <p>There will be a <code>SortCommandParser</code> as well to parse out the <code>KEYWORD</code> which is either name, phone, email
@@ -931,7 +931,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.4.2: Sequence diagram for sorting by name</p>
+<p>Figure 4.4.2: Sequence diagram for sorting by name</p>
 </div>
 <div class="paragraph">
 <p>When <code>SortCommand</code> executes,</p>
@@ -958,7 +958,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.4.3: Sequence diagram for SortCommand executeUndoableCommand()</p>
+<p>Figure 4.4.3: Sequence diagram for SortCommand executeUndoableCommand()</p>
 </div>
 </div>
 <div class="sect3">
@@ -981,18 +981,21 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 <strong>Pros:</strong> This gives users freedom to select how they want their list to be sorted<br>
 <strong>Cons:</strong> Forgetful users may not be able to find their contact if they forget to sort by name when they add a new contact<br></p>
 </div>
-<h3 id="since-v1-2" class="discrete">Since v1.2</h3>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhanced-find"><a class="link" href="#enhanced-find">4.6. Enhanced find</a></h3>
+<h3 id="since-v1-2"><a class="link" href="#since-v1-2">4.6. Since v1.2</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="enhanced-find"><a class="link" href="#enhanced-find">4.7. Enhanced find</a></h3>
 <div class="paragraph">
 <p>The enhanced find feature is implemented by comparing every <code>Person</code> 's <code>Name</code>, <code>Phone</code>, <code>Email</code>,
 <code>Address</code>, and <code>Tag</code> with the keyword provided by the user. The user need not have to type the keywords
 in full and partial keywords will still be able to find the person (e.g find jos will return Josephine).</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.6.1. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.7.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the find command will be<br>
 <strong>Alternative 1 (current choice):</strong> The person will be found if their names, phone, email or tags start with the
@@ -1012,7 +1015,7 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="alias-unalias"><a class="link" href="#alias-unalias">4.7. Alias / Unalias</a></h3>
+<h3 id="alias-unalias"><a class="link" href="#alias-unalias">4.8. Alias / Unalias</a></h3>
 <div class="paragraph">
 <p>The alias and unalias features are implemented by comparing creating a new AliasToken model which contains all created aliases,
 this model is checked against user input in the parser and converts any alias keywords to their representations before other
@@ -1021,7 +1024,7 @@ be used for both commands or shortcuts. For example : alias k/disappear s/hide ,
 to work with AliasToken keyword disappear. Unaliasing the AliasToken keyword token simply removes the AliasToken.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.7.1. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.8.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the alias command will be<br>
 <strong>Alternative 1 (current choice):</strong> Aliases are parsed based on their keywords which are stored in a UniqueAliasTokenList.
@@ -1038,7 +1041,7 @@ to choose any word to alias if they desire to do so.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">4.8. Enhanced Delete</a></h3>
+<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">4.9. Enhanced Delete</a></h3>
 <div class="paragraph">
 <p>The enhanced delete feature allows for multiple indices to be accepted by the parser. This is done by splitting the inputs into multiple string tokens,
 each containing the index of the person to be deleted. A list is then used to store all the indices of the personsToDelete.
@@ -1046,7 +1049,7 @@ This enhancement is then achieved by iterating through the list and deleting the
 The enhanced delete also allows for the user to input a range of indices of persons to be deleted.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.9.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the delete command will be<br>
 <strong>Alternative 1 (current choice):</strong> Indices are parsed into a list containing all the index of persons to be deleted.<br>
@@ -1060,7 +1063,7 @@ A loop is then used to iterate through the list to delete the persons requested 
 </div>
 </div>
 <div class="sect2">
-<h3 id="hide"><a class="link" href="#hide">4.9. Hide</a></h3>
+<h3 id="hide"><a class="link" href="#hide">4.10. Hide</a></h3>
 <div class="paragraph">
 <p>The hide feature allows for multiple indices to be accepted by the parser. This is done similar to the enhanced delete
 feature, where inputs are split into multiple string tokens, each containing the index of the person to be hidden.
@@ -1068,7 +1071,7 @@ A list, listhidden, is then used to store all the indices of the person(s) to be
 the previously hidden indices from the list storing all hidden persons.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.9.1. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.10.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect</strong>: Defining how accurate the hide command will be<br>
 <strong> Alternative 1 (current choice):</strong> Indicse are parsed into a list containing all the index of person to be deleted.<br>
@@ -1078,6 +1081,140 @@ the previously hidden indices from the list storing all hidden persons.</p>
 <strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
 <strong>Cons:</strong> User has to repeatedly type the command multiple times, and application has to display the result repeatedly
 after every person is hidden successfully.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-3"><a class="link" href="#since-v1-3">4.11. Since v1.3</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="pin-unpin"><a class="link" href="#pin-unpin">4.12. Pin / Unpin</a></h3>
+<div class="paragraph">
+<p>The pin and unpin command allows the user to pin and unpin important <code>Person</code> for easy access. The <code>Person</code> class has
+a boolean variable called <code>isPinned</code> that is set to <code>false</code> by default. Only when the <code>pin</code> command is executed will the
+variable change to <code>true</code>. Similarly, the variable can be changed from <code>true</code> to <code>false</code> when <code>unpin</code> command is executed.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.12.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: How pinned person will be displayed on the UI<br>
+<strong> Alternative 1 (current choice):</strong> A pinned person will have a star symbol next to their name if they are pinned<br>
+<strong>Pros:</strong> It is easy to see and the Ui is clean<br>
+<strong>Cons:</strong> It is harder to implement as a new <code>ObjectProperty</code> has to be added to the <code>PersonCard</code> to update the UI of it<br>
+<strong>Alternative 2</strong>: The pinned person will just have a <code>Tag</code> that says <code>pinned</code><br>
+<strong>Pros:</strong> It is easier to implement because a new <code>Tag</code> called <code>pinned</code> can just be added to the <code>Person</code><br>
+<strong>Cons:</strong> It may not be noticeable if the person already has many <code>Tag</code> on them.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-4"><a class="link" href="#since-v1-4">4.13. Since v1.4</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="first-time-tutorial"><a class="link" href="#first-time-tutorial">4.14. First time tutorial</a></h3>
+<div class="paragraph">
+<p>The first time tutorial will be launched when users start the Bluebird app for the very first time. To
+detect that Bluebird is launched for the first time, a boolean variable <code>firstTimeOpen</code> in <code>MainApp</code> is used.
+It is set to <code>false</code> by default and will only be set to <code>true</code> when Bluebird detects that <code>addressbook.xml</code> is not found.
+When <code>firstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the browser place holder
+instead of <code>BrowserPanel</code>. <code>TutorialPanel</code> will be removed and <code>BrowserPanel</code> will be added back at the end of the tutorial.
+Figure 4.10.1 shows the sequence of events that happens.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FinalTutSD.png" alt="FinalTutSD" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.1: Sequence diagram for first time tutorial</p>
+</div>
+<div class="paragraph">
+<p>In the reference frame "carry out tutorial", the tutorial will be looped until the end of tutorial. Users can choose
+to click next, back or skip tutorial at any point of the tutorial. The sequence of events that happens in
+"carry out tutorial" is shown in figure 4.10.2 below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sdCarryOutTut.png" alt="sdCarryOutTut" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.2: Sequence diagram for refrence frame "carry out tutorial"</p>
+</div>
+<div class="paragraph">
+<p>At the end of the tutorial, there will be a <code>SwitchToBrowserEvent</code> raised by <code>TutorialPanel</code>
+which will be posted to <code>EventsCenter</code> and handled by <code>MainWindow</code>. Figure 4.10.3 below shows the sequence of event.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tutorialEventCenter.png" alt="tutorialEventCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.3: Sequence diagram for event handling of SwitchToBrowserEvent</p>
+</div>
+<div class="paragraph">
+<p>The code snippet below shows how <code>TutorialPanel</code> is added in place of <code>BrowserPanel</code> in the
+<code>MainWindow</code> when Bluebird is launched for the first time. A <code>SwitchToBrowserEvent</code> will be raised
+by <code>TutorialPanel</code> at the end of the tutorial and handled in <code>MainWindow</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainWindow</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
+    ...
+    void fillInnerParts() {
+    ...
+    browserPanel = <span class="keyword">new</span> BrowserPanel();
+        <span class="keyword">if</span> (MainApp.isFirstTimeOpen()) {
+            TutorialPanel tutorialPanel =
+             <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, browserPlaceholder);
+            browserPlaceholder.getChildren().add(tutorialPanel.getRoot());
+        } <span class="keyword">else</span> {
+            switchToBrowser();
+        }
+    ...
+}
+
+<span class="annotation">@Subscribe</span>
+<span class="directive">private</span> <span class="type">void</span> handleSwitchToBrowserEvent(SwitchToBrowserEvent event) {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    switchToBrowser();
+}
+
+<span class="directive">private</span> <span class="type">void</span> switchToBrowser() {
+    browserPlaceholder.getChildren().add(browserPanel.getRoot());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code snippet below shows how <code>TutorialPanel</code> is removed and <code>BrowserPanel</code> is added after
+the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>MainWindow</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">TutorialPanel</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
+    <span class="directive">private</span> <span class="type">void</span> endTutorial() {
+        mainWindow.unhighlightAll();
+        browserPlaceHolder.getChildren().remove(<span class="local-variable">this</span>.getRoot());
+        raise(<span class="keyword">new</span> SwitchToBrowserEvent());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.14.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: What to include in the tutorial<br>
+<strong> Alternative 1 (current choice):</strong> Introduce the different UI panels in Bluebird and to give a brief
+ overview of the features Bluebird has. Allow user to explore and try out the different commands by themselves<br>
+<strong>Pros:</strong> Users will decide which feature to try out by themselves and learn how Bluebird works<br>
+<strong>Cons:</strong> By being brief and letting users try it out for themselves, users will not know the expected outcome of
+ different commands<br>
+<strong>Alternative 2</strong>: By spoon-feeding users and introduce each features one by one<br>
+<strong>Pros:</strong> This is the most comprehensive way to teach users of all the features Bluebird has to offer<br>
+<strong>Cons:</strong> The tutorial will be lengthy and users may just skip it without learning of different features</p>
 </div>
 </div>
 </div>
@@ -2957,7 +3094,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-29 08:47:30 +00:00
+Last updated 2017-10-29 14:53:39 +00:00
 </div>
 </div>
 </body>

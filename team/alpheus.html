@@ -101,7 +101,7 @@ shown in Figure 3.4.1 below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.4.1: Logic of SortCommand</p>
+<p>Figure 4.4.1: Logic of SortCommand</p>
 </div>
 <div class="paragraph">
 <p>There will be a <code>SortCommandParser</code> as well to parse out the <code>KEYWORD</code> which is either name, phone, email
@@ -120,7 +120,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.4.2: Sequence diagram for sorting by name</p>
+<p>Figure 4.4.2: Sequence diagram for sorting by name</p>
 </div>
 <div class="paragraph">
 <p>When <code>SortCommand</code> executes,</p>
@@ -147,7 +147,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.4.3: Sequence diagram for SortCommand executeUndoableCommand()</p>
+<p>Figure 4.4.3: Sequence diagram for SortCommand executeUndoableCommand()</p>
 </div>
 </div>
 <div class="sect3">
@@ -177,9 +177,133 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-enhanced-find"><a class="link" href="#enhancement-added-enhanced-find">Enhancement Added: Enhanced Find</a></h3>
+<h3 id="enhancement-added-first-time-tutorial"><a class="link" href="#enhancement-added-first-time-tutorial">Enhancement Added: First time tutorial</a></h3>
 <div class="sect3">
 <h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Currently when new users launch Bluebird for the first time, they will be lost as to what Bluebird has to offer and also what different UI panels mean.
+Therefore, there is a need to provide first time users of Bluebird a step-by-step tutorial on how Bluebird works.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="first-time-tutorial"><a class="link" href="#first-time-tutorial">First time tutorial</a></h3>
+<div class="paragraph">
+<p>The first time tutorial will be launched when users start the Bluebird app for the very first time. To
+detect that Bluebird is launched for the first time, a boolean variable <code>firstTimeOpen</code> in <code>MainApp</code> is used.
+It is set to <code>false</code> by default and will only be set to <code>true</code> when Bluebird detects that <code>addressbook.xml</code> is not found.
+When <code>firstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the browser place holder
+instead of <code>BrowserPanel</code>. <code>TutorialPanel</code> will be removed and <code>BrowserPanel</code> will be added back at the end of the tutorial.
+Figure 4.10.1 shows the sequence of events that happens.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FinalTutSD.png" alt="FinalTutSD" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.1: Sequence diagram for first time tutorial</p>
+</div>
+<div class="paragraph">
+<p>In the reference frame "carry out tutorial", the tutorial will be looped until the end of tutorial. Users can choose
+to click next, back or skip tutorial at any point of the tutorial. The sequence of events that happens in
+"carry out tutorial" is shown in figure 4.10.2 below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/sdCarryOutTut.png" alt="sdCarryOutTut" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.2: Sequence diagram for refrence frame "carry out tutorial"</p>
+</div>
+<div class="paragraph">
+<p>At the end of the tutorial, there will be a <code>SwitchToBrowserEvent</code> raised by <code>TutorialPanel</code>
+which will be posted to <code>EventsCenter</code> and handled by <code>MainWindow</code>. Figure 4.10.3 below shows the sequence of event.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/tutorialEventCenter.png" alt="tutorialEventCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.3: Sequence diagram for event handling of SwitchToBrowserEvent</p>
+</div>
+<div class="paragraph">
+<p>The code snippet below shows how <code>TutorialPanel</code> is added in place of <code>BrowserPanel</code> in the
+<code>MainWindow</code> when Bluebird is launched for the first time. A <code>SwitchToBrowserEvent</code> will be raised
+by <code>TutorialPanel</code> at the end of the tutorial and handled in <code>MainWindow</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainWindow</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
+    ...
+    void fillInnerParts() {
+    ...
+    browserPanel = <span class="keyword">new</span> BrowserPanel();
+        <span class="keyword">if</span> (MainApp.isFirstTimeOpen()) {
+            TutorialPanel tutorialPanel =
+             <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, browserPlaceholder);
+            browserPlaceholder.getChildren().add(tutorialPanel.getRoot());
+        } <span class="keyword">else</span> {
+            switchToBrowser();
+        }
+    ...
+}
+
+<span class="annotation">@Subscribe</span>
+<span class="directive">private</span> <span class="type">void</span> handleSwitchToBrowserEvent(SwitchToBrowserEvent event) {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    switchToBrowser();
+}
+
+<span class="directive">private</span> <span class="type">void</span> switchToBrowser() {
+    browserPlaceholder.getChildren().add(browserPanel.getRoot());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The code snippet below shows how <code>TutorialPanel</code> is removed and <code>BrowserPanel</code> is added after
+the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>MainWindow</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">TutorialPanel</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
+    <span class="directive">private</span> <span class="type">void</span> endTutorial() {
+        mainWindow.unhighlightAll();
+        browserPlaceHolder.getChildren().remove(<span class="local-variable">this</span>.getRoot());
+        raise(<span class="keyword">new</span> SwitchToBrowserEvent());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-enhanced-find"><a class="link" href="#enhancement-added-enhanced-find">Enhancement Added: Enhanced Find</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: User Guide]</mark></p>
@@ -240,7 +364,7 @@ Returns any person having the tag <code>friend</code>.</p>
 </div>
 <hr>
 <div class="sect3">
-<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
 <p>Users may want to search for the contact not just by their names, but also by their phone number, email
 , address and also their tags as well. This enhancement gives users the choice to decide how they would want
@@ -248,7 +372,7 @@ to search for the contact they want.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
@@ -287,7 +411,107 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-a-quickstart-tutorial-for-first-time-users-of-the-application"><a class="link" href="#enhancement-proposed-a-quickstart-tutorial-for-first-time-users-of-the-application">Enhancement Proposed: A quickstart tutorial for first time users of the application</a></h3>
+<h3 id="enhancement-added-pin-unpin-contact"><a class="link" href="#enhancement-added-pin-unpin-contact">Enhancement Added: Pin/Unpin contact</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pin-a-person-code-pin-code"><a class="link" href="#pin-a-person-code-pin-code">Pin a person : <code>pin</code></a></h3>
+<div class="paragraph">
+<p>Pins a person to a pin panel for easy access.<br>
+Format: <code>pin</code> <code>INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Pins the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unpin-a-person-code-unpin-code"><a class="link" href="#unpin-a-person-code-unpin-code">Unpin a person: <code>unpin</code></a></h3>
+<div class="paragraph">
+<p>Unpins a person from the list<br>
+Format: <code>unpin</code> <code>INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Unpins the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>Users may have some important contacts that they need to have quick access to at all times. Hence,
+this feature will solve the problem for them.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pin-unpin"><a class="link" href="#pin-unpin">Pin / Unpin</a></h3>
+<div class="paragraph">
+<p>The pin and unpin command allows the user to pin and unpin important <code>Person</code> for easy access. The <code>Person</code> class has
+a boolean variable called <code>isPinned</code> that is set to <code>false</code> by default. Only when the <code>pin</code> command is executed will the
+variable change to <code>true</code>. Similarly, the variable can be changed from <code>true</code> to <code>false</code> when <code>unpin</code> command is executed.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: How pinned person will be displayed on the UI<br>
+<strong> Alternative 1 (current choice):</strong> A pinned person will have a star symbol next to their name if they are pinned<br>
+<strong>Pros:</strong> It is easy to see and the Ui is clean<br>
+<strong>Cons:</strong> It is harder to implement as a new <code>ObjectProperty</code> has to be added to the <code>PersonCard</code> to update the UI of it<br>
+<strong>Alternative 2</strong>: The pinned person will just have a <code>Tag</code> that says <code>pinned</code><br>
+<strong>Pros:</strong> It is easier to implement because a new <code>Tag</code> called <code>pinned</code> can just be added to the <code>Person</code><br>
+<strong>Cons:</strong> It may not be noticeable if the person already has many <code>Tag</code> on them.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed"><a class="link" href="#enhancement-proposed">Enhancement Proposed:</a></h3>
 <div class="paragraph">
 <p>{Explain similar to the Undo/Redo feature above.}</p>
 </div>
@@ -297,10 +521,11 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Updated the UI of Bluebird (Pull requests <a href="https://github.com">#14</a>, <a href="https://github.com">#58</a>, <a href="https://github.com">#73</a>, <a href="https://github.com">#118</a>
+, <a href="https://github.com">#134</a>, <a href="https://github.com">#143</a>, <a href="https://github.com">#144</a>, <a href="https://github.com">#205</a>, <a href="https://github.com">#208</a>)</p>
 </li>
 <li>
-<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Updated a help overlay for Bluebird (Pull requests <a href="https://github.com">#189</a>, <a href="https://github.com">#208</a>)</p>
 </li>
 </ul>
 </div>
@@ -310,7 +535,7 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-29 08:47:30 +00:00
+Last updated 2017-10-29 14:53:39 +00:00
 </div>
 </div>
 </body>
