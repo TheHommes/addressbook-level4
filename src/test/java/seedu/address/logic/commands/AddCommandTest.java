@@ -116,10 +116,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void unhidePerson(ReadOnlyPerson target) throws PersonNotFoundException {
-            fail("This method should not be called.");
-        }
-        @Override
         public void sortList(String toSort) {
             fail("This method should not be called.");
         }
@@ -131,6 +127,11 @@ public class AddCommandTest {
 
         @Override
         public void hidePerson(ReadOnlyPerson target) throws PersonNotFoundException {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public void unhidePerson(ReadOnlyPerson target) throws PersonNotFoundException {
             fail("This method should not be called.");
         }
 
