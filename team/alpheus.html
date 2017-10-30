@@ -287,11 +287,13 @@ the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>M
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">TutorialPanel</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
-    <span class="directive">private</span> <span class="type">void</span> endTutorial() {
+    ...
+    private <span class="type">void</span> endTutorial() {
         mainWindow.unhighlightAll();
         browserPlaceHolder.getChildren().remove(<span class="local-variable">this</span>.getRoot());
         raise(<span class="keyword">new</span> SwitchToBrowserEvent());
     }
+    ...
 }</code></pre>
 </div>
 </div>
@@ -539,7 +541,7 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-29 22:41:57 +00:00
+Last updated 2017-10-30 12:26:16 +00:00
 </div>
 </div>
 </body>

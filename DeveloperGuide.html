@@ -604,11 +604,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="sect3">
 <h4 id="open-closed-principle-ocp"><a class="link" href="#open-closed-principle-ocp">3.7.2. Open-Closed Principle (OCP)</a></h4>
-<div class="sidebarblock">
+<div class="literalblock">
 <div class="content">
-<div class="paragraph">
-<p>Open-Closed Principle (OCP): A module should be open for extension but closed for modification. That is, modules should be written so that they can be extended, without requiring them to be modified.</p>
-</div>
+<pre>Open-Closed Principle (OCP): A module should be open for extension but closed for modification.
+That is, modules should be written so that they can be extended, without requiring them to be modified.</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1195,11 +1194,13 @@ the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>M
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">TutorialPanel</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
-    <span class="directive">private</span> <span class="type">void</span> endTutorial() {
+    ...
+    private <span class="type">void</span> endTutorial() {
         mainWindow.unhighlightAll();
         browserPlaceHolder.getChildren().remove(<span class="local-variable">this</span>.getRoot());
         raise(<span class="keyword">new</span> SwitchToBrowserEvent());
     }
+    ...
 }</code></pre>
 </div>
 </div>
@@ -3094,7 +3095,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-29 22:41:57 +00:00
+Last updated 2017-10-30 12:26:16 +00:00
 </div>
 </div>
 </body>
