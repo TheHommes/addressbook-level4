@@ -107,6 +107,12 @@ public class ModelManager extends ComponentManager implements Model {
 
     //@@author Alim95
     @Override
+    public synchronized void unhidePerson(ReadOnlyPerson target) throws PersonNotFoundException {
+        addressBook.unhidePerson(target);
+        indicateAddressBookChanged();
+    }
+
+    @Override
     public synchronized void pinPerson(ReadOnlyPerson target) throws PersonNotFoundException {
         addressBook.pinPerson(target);
         indicateAddressBookChanged();

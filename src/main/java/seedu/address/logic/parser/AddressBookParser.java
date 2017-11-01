@@ -16,8 +16,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ListHiddenCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnhideCommand;
 import seedu.address.logic.commands.alias.AliasCommand;
 import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.person.AddCommand;
@@ -45,6 +47,7 @@ import seedu.address.logic.parser.person.PinCommandParser;
 import seedu.address.logic.parser.person.RemarkCommandParser;
 import seedu.address.logic.parser.person.SelectCommandParser;
 import seedu.address.logic.parser.person.SortCommandParser;
+import seedu.address.logic.parser.person.UnhideCommandParser;
 import seedu.address.logic.parser.person.UnpinCommandParser;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
 import seedu.address.model.alias.ReadOnlyAliasToken;
@@ -120,6 +123,9 @@ public class AddressBookParser {
         case HideCommand.COMMAND_WORD:
             return new HideCommandParser().parse(checkedArguments);
 
+        case UnhideCommand.COMMAND_WORD:
+            return new UnhideCommandParser().parse(arguments);
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(checkedArguments);
 
@@ -128,6 +134,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListHiddenCommand.COMMAND_WORD:
+            return new ListHiddenCommand();
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(checkedArguments);
@@ -281,6 +290,7 @@ public class AddressBookParser {
         commandMap.put("listpin", null);
         commandMap.put("redo", null);
         commandMap.put("undo", null);
+        commandMap.put("listhidden", null);
     }
 
     public boolean isCommandRegistered(String header) {

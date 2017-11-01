@@ -104,6 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     // ================ Person-level operations ==============================
 
     //@@author Alim95
+
     /**
      * Sorts the list.
      */
@@ -112,6 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //@@author
+
     /**
      * Adds a person to the address book.
      * Also checks the new person's tags and updates {@link #tags} with any new tags found,
@@ -207,6 +209,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //@@author Alim95
+
+    /**
+     * Unhides (@code toUnhide) from this {@code AddressBook}.
+     *
+     * @throws PersonNotFoundException if the {@code toUnhide} is not in this {@code AddressBook}.
+     */
+    public boolean unhidePerson(ReadOnlyPerson toUnhide) throws PersonNotFoundException {
+        if (persons.unhide(toUnhide)) {
+            return true;
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+
     /**
      * Pins (@code toPin) in this {@code AddressBook}.
      *
