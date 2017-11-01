@@ -12,9 +12,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
+import seedu.address.commons.events.ui.InvalidResultDisplayEvent;
 import seedu.address.commons.events.ui.NewResultAvailableEvent;
+import seedu.address.commons.events.ui.ValidResultDisplayEvent;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -25,6 +27,9 @@ public class ResultDisplay extends UiPart<Region> {
     private static final String FXML = "ResultDisplay.fxml";
 
     private final StringProperty displayed = new SimpleStringProperty("");
+
+    @FXML
+    private StackPane placeHolder;
 
     @FXML
     private TextArea resultDisplay;
@@ -41,15 +46,27 @@ public class ResultDisplay extends UiPart<Region> {
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        if (event.message.equals(Messages.MESSAGE_UNKNOWN_COMMAND)
-                || event.message.contains(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ""))
-                || event.message.contains(Messages.MESSAGE_PERSON_ALREADY_PINNED)
-                || event.message.contains(Messages.MESSAGE_PERSON_ALREADY_UNPINNED)
-                || event.message.contains(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX)) {
-            imageDisplay.setImage(new Image("/images/error.png"));
-        } else {
-            imageDisplay.setImage(new Image("/images/success.png"));
-        }
         Platform.runLater(() -> displayed.setValue(event.message));
+    }
+
+    //@@author Alim95
+    @Subscribe
+    private void handleValidResultDisplayEvent(ValidResultDisplayEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        imageDisplay.setImage(new Image("/images/success.png"));
+    }
+
+    @Subscribe
+    private void handleInvalidResultDisplayEvent(InvalidResultDisplayEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        imageDisplay.setImage(new Image("/images/error.png"));
+    }
+
+    public void highlight() {
+        this.resultDisplay.setStyle("-fx-border-color: lightgreen; -fx-border-width: 2");
+    }
+
+    public void unhighlight() {
+        this.resultDisplay.setStyle("");
     }
 }

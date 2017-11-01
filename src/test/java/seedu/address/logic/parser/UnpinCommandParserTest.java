@@ -7,8 +7,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.UnpinCommand;
-
+import seedu.address.logic.commands.person.UnpinCommand;
+import seedu.address.logic.parser.person.UnpinCommandParser;
+//@@author Alim95
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the UnpinCommand code. For example, inputs "1" and "1 abc" take the

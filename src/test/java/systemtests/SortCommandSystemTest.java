@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.person.SortCommand;
 import seedu.address.model.Model;
 
-
+//@@author Alim95
 public class SortCommandSystemTest extends AddressBookSystemTest {
 
     private static final String MESSAGE_INVALID_SORT_COMMAND_FORMAT =

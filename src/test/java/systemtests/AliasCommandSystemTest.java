@@ -7,9 +7,9 @@ import static seedu.address.testutil.TypicalAliasTokens.MON;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.alias.AliasCommand;
 import seedu.address.model.Model;
 import seedu.address.model.alias.ReadOnlyAliasToken;
 import seedu.address.model.alias.exceptions.DuplicateTokenKeywordException;
@@ -45,6 +45,15 @@ public class AliasCommandSystemTest extends AddressBookSystemTest {
         /*Case : invalid representation -> rejected */
         assertCommandFailure("alias k/lol laugh out loud",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
+
+        /*Case : registered command word chosen as alias keyword -> rejected*/
+        assertCommandFailure("alias k/add s/plus", AliasCommand.MESSAGE_INVALID_KEYWORD);
+
+        /*Case : duplicate alias keyword -> rejected*/
+        command = "   " + AliasCommand.COMMAND_WORD + "  " + ALIAS_KEYWORD_DESC_MONDAY
+                + "  " + ALIAS_REPRESENTATION_DESC_MONDAY + " ";
+        assertCommandFailure(command,
+                AliasCommand.MESSAGE_DUPLICATE_ALIAS);
     }
 
     /**

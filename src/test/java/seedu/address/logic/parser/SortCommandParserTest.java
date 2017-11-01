@@ -6,8 +6,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.SortCommand;
-
+import seedu.address.logic.commands.person.SortCommand;
+import seedu.address.logic.parser.person.SortCommandParser;
+//@@author Alim95
 public class SortCommandParserTest {
 
     private SortCommandParser parser = new SortCommandParser();
