@@ -60,6 +60,7 @@
 <li><a href="#pin-unpin">4.12. Pin / Unpin</a></li>
 <li><a href="#since-v1-4">4.13. Since v1.4</a></li>
 <li><a href="#first-time-tutorial">4.14. First time tutorial</a></li>
+<li><a href="#enhanced-add">4.15. Enhanced Add</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1216,6 +1217,52 @@ the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>M
 <strong>Alternative 2</strong>: By spoon-feeding users and introduce each features one by one<br>
 <strong>Pros:</strong> This is the most comprehensive way to teach users of all the features Bluebird has to offer<br>
 <strong>Cons:</strong> The tutorial will be lengthy and users may just skip it without learning of different features</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhanced-add"><a class="link" href="#enhanced-add">4.15. Enhanced Add</a></h3>
+<div class="paragraph">
+<p>The enhanced add feature no longer requires the user to fill in every field as it now only requires the <code>n/NAME</code> field
+to be filled. This feature is done by using a constructor to initialize the default field as empty. This is implemented
+using an additional parameter in the ParserUtil class to determine whether the default constructor for an empty field
+should be called.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/addSD.png" alt="addSD" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>An extract of the code from ParserUtil class shows how this is being implemented. The command parameter determines
+whether or not a field is required in the parser. If the parser is called from the add command, it will call a
+default constructor where the parsed field is empty.<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> Optional&lt;<span class="predefined-type">Name</span>&gt; parseName(Optional&lt;<span class="predefined-type">String</span>&gt; name, <span class="predefined-type">String</span> command) <span class="directive">throws</span> IllegalValueException {
+        requireNonNull(name);
+        <span class="keyword">if</span> (command.equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">add</span><span class="delimiter">&quot;</span></span>)) {
+            <span class="keyword">return</span> name.isPresent() ? Optional.of(<span class="keyword">new</span> <span class="predefined-type">Name</span>(name.get())) : Optional.of(<span class="keyword">new</span> <span class="predefined-type">Name</span>(<span class="integer">0</span>));
+        } <span class="keyword">else</span> {
+            <span class="keyword">return</span> name.isPresent() ? Optional.of(<span class="keyword">new</span> <span class="predefined-type">Name</span>(name.get())) : Optional.empty();
+        }
+    }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.15.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: Implementing an option to accept and create the empty fields<br>
+<strong> Alternative 1 (current choice):</strong> By using a command parameter in the ParserUtil class<br>
+<strong>Pros:</strong> This will allow felxibility in implementing, or calling the necessary constructors in the respective person
+  field classes<br>
+<strong>Cons:</strong> There will be a need for overloading of constructors in the classes for the person fields<br>
+<strong>Alternative 2</strong>: By having a new class to initialise empty fields for person added, similar to the EditPersonDescriptor
+ class in the Edit command<br>
+<strong>Pros:</strong> This is the most comprehensive way to initialise fields without the need of new constructors in the classes for
+ the respective fields<br>
+<strong>Cons:</strong> The code will be unnecessarily lengthy and may cause features to break<br></p>
 </div>
 </div>
 </div>
@@ -3113,7 +3160,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-01 14:21:22 +00:00
+Last updated 2017-11-01 18:56:58 +00:00
 </div>
 </div>
 </body>
