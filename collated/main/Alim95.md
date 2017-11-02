@@ -17,18 +17,19 @@ public class TutorialMessages {
     public static final String INTRO_FOUR = "This is the sort menu, where you can select how to sort the list.";
     public static final String INTRO_FIVE = "This is the search box, where "
             + "you are able to search for the person you want.";
-    public static final String INTRO_SIX = "This is the person list panel, where you will see your list of contacts";
+    public static final String INTRO_SIX = "This is the person and task list panel, "
+            + "where you will see your list of contacts and tasks";
     public static final String INTRO_END = "Features of Bluebird:\n"
-            + "1. Add a contact\n"
-            + "2. Delete a contact\n"
-            + "3. Edit a contact\n"
+            + "1. Add a contact and task\n"
+            + "2. Delete a contact and task\n"
+            + "3. Edit a contact and task\n"
             + "4. Find a contact\n"
             + "5. Select a contact\n"
             + "6. Pin a contact\n"
             + "7. Unpin a contact\n"
             + "8. Hide a contact\n"
-            + "9. Clear all contacts\n"
-            + "10. List all contacts\n"
+            + "9. Clear all contacts and tasks\n"
+            + "10. List all contacts and tasks\n"
             + "11. Sort list of contacts\n"
             + "12. Help window\n"
             + "13. History of command inputs\n"
@@ -138,7 +139,9 @@ public class ToggleSortByLabelEvent extends BaseEvent {
     }
 }
 ```
+
 ###### /java/seedu/address/commons/events/ui/ToggleToPersonViewEvent.java
+
 ``` java
 
 /**
@@ -154,6 +157,7 @@ public class ToggleToPersonViewEvent extends BaseEvent {
 }
 ```
 ###### /java/seedu/address/commons/events/ui/ToggleToTaskViewEvent.java
+
 ``` java
 
 /**
@@ -169,6 +173,7 @@ public class ToggleToTaskViewEvent extends BaseEvent {
 }
 ```
 ###### /java/seedu/address/commons/events/ui/ValidResultDisplayEvent.java
+
 ``` java
 
 /**
@@ -706,6 +711,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
 ```
 ###### /java/seedu/address/ui/MainWindow.java
 ``` java
+
     /**
      * Opens the help overlay
      */
@@ -743,6 +749,30 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
             logic.execute("listpin");
         } catch (CommandException | ParseException e) {
             logger.warning("Failed to list pinned using label");
+        }
+    }
+
+    /**
+     * Toggles to task view.
+     */
+    @FXML
+    private void handleTaskViewClicked() {
+        try {
+            logic.execute("task");
+        } catch (CommandException | ParseException e) {
+            logger.warning("Failed to toggle to task view using label");
+        }
+    }
+
+    /**
+     * Toggles to person view.
+     */
+    @FXML
+    private void handlePersonViewClicked() {
+        try {
+            logic.execute("person");
+        } catch (CommandException | ParseException e) {
+            logger.warning("Failed to toggle to person view using label");
         }
     }
 ```
@@ -794,6 +824,8 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
         organizerLabel.setText("Sorted By:");
         personViewLabel.setStyle("-fx-text-fill: white");
         taskViewLabel.setStyle("-fx-text-fill: #555555");
+
+        sortedByLabel.setText(lastSorted);
     }
 
     /**
@@ -807,6 +839,8 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
         organizerLabel.setText("Showing:");
         personViewLabel.setStyle("-fx-text-fill: #555555");
         taskViewLabel.setStyle("-fx-text-fill: white");
+        lastSorted = sortedByLabel.getText();
+        sortedByLabel.setText("All");
     }
 
     private void switchToBrowser() {
@@ -1350,7 +1384,7 @@ public class TutorialPanel extends UiPart<Region> {
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField alignment="CENTER" editable="false" text="add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/tag]" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField alignment="CENTER" editable="false" text="add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [r/REMARK] [t/tag]" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
