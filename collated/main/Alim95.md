@@ -1,5 +1,5 @@
 # Alim95
-###### \java\seedu\address\commons\core\TutorialMessages.java
+###### /java/seedu/address/commons/core/TutorialMessages.java
 ``` java
 
 /**
@@ -59,7 +59,7 @@ public class TutorialMessages {
     };
 }
 ```
-###### \java\seedu\address\commons\events\ui\InvalidResultDisplayEvent.java
+###### /java/seedu/address/commons/events/ui/InvalidResultDisplayEvent.java
 ``` java
 
 /**
@@ -74,7 +74,7 @@ public class InvalidResultDisplayEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\SwitchToBrowserEvent.java
+###### /java/seedu/address/commons/events/ui/SwitchToBrowserEvent.java
 ``` java
 
 /**
@@ -89,7 +89,7 @@ public class SwitchToBrowserEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\ToggleListAllStyleEvent.java
+###### /java/seedu/address/commons/events/ui/ToggleListAllStyleEvent.java
 ``` java
 
 /**
@@ -104,7 +104,7 @@ public class ToggleListAllStyleEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\ToggleListPinStyleEvent.java
+###### /java/seedu/address/commons/events/ui/ToggleListPinStyleEvent.java
 ``` java
 
 /**
@@ -119,7 +119,7 @@ public class ToggleListPinStyleEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\ToggleSortByLabelEvent.java
+###### /java/seedu/address/commons/events/ui/ToggleSortByLabelEvent.java
 ``` java
 
 /**
@@ -139,7 +139,9 @@ public class ToggleSortByLabelEvent extends BaseEvent {
     }
 }
 ```
-###### \java\seedu\address\commons\events\ui\ToggleToPersonViewEvent.java
+
+###### /java/seedu/address/commons/events/ui/ToggleToPersonViewEvent.java
+
 ``` java
 
 /**
@@ -154,7 +156,8 @@ public class ToggleToPersonViewEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\ToggleToTaskViewEvent.java
+###### /java/seedu/address/commons/events/ui/ToggleToTaskViewEvent.java
+
 ``` java
 
 /**
@@ -169,7 +172,8 @@ public class ToggleToTaskViewEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\commons\events\ui\ValidResultDisplayEvent.java
+###### /java/seedu/address/commons/events/ui/ValidResultDisplayEvent.java
+
 ``` java
 
 /**
@@ -184,7 +188,7 @@ public class ValidResultDisplayEvent extends BaseEvent {
 
 }
 ```
-###### \java\seedu\address\logic\commands\person\ListPinCommand.java
+###### /java/seedu/address/logic/commands/person/ListPinCommand.java
 ``` java
 
 /**
@@ -204,7 +208,7 @@ public class ListPinCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\person\PinCommand.java
+###### /java/seedu/address/logic/commands/person/PinCommand.java
 ``` java
 
 /**
@@ -259,7 +263,7 @@ public class PinCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\person\SortCommand.java
+###### /java/seedu/address/logic/commands/person/SortCommand.java
 ``` java
 
 /**
@@ -297,7 +301,7 @@ public class SortCommand extends UndoableCommand {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\person\UnpinCommand.java
+###### /java/seedu/address/logic/commands/person/UnpinCommand.java
 ``` java
 
 /**
@@ -352,7 +356,7 @@ public class UnpinCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\person\PinCommandParser.java
+###### /java/seedu/address/logic/parser/person/PinCommandParser.java
 ``` java
 
 /**
@@ -382,7 +386,7 @@ public class PinCommandParser implements Parser<PinCommand> {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\person\SortCommandParser.java
+###### /java/seedu/address/logic/parser/person/SortCommandParser.java
 ``` java
 
 /**
@@ -412,7 +416,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\person\UnpinCommandParser.java
+###### /java/seedu/address/logic/parser/person/UnpinCommandParser.java
 ``` java
 
 /**
@@ -442,7 +446,7 @@ public class UnpinCommandParser implements Parser<UnpinCommand> {
     }
 }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Sorts the list.
@@ -452,7 +456,7 @@ public class UnpinCommandParser implements Parser<UnpinCommand> {
     }
 
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Pins (@code toPin) in this {@code AddressBook}.
@@ -480,11 +484,11 @@ public class UnpinCommandParser implements Parser<UnpinCommand> {
         }
     }
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     Predicate<ReadOnlyPerson> PREDICATE_SHOW_ONLY_PINNED = person -> person.isPinned();
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /**
      * Pins the given person.
@@ -497,14 +501,14 @@ public class UnpinCommandParser implements Parser<UnpinCommand> {
     void unpinPerson(ReadOnlyPerson target) throws PersonNotFoundException;
 
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /**
      * Sorts the AddressBook.
      */
     void sortList(String toSort);
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public void sortList(String toSort) {
@@ -513,7 +517,7 @@ public class UnpinCommandParser implements Parser<UnpinCommand> {
     }
 
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public synchronized void pinPerson(ReadOnlyPerson target) throws PersonNotFoundException {
@@ -528,7 +532,7 @@ public class UnpinCommandParser implements Parser<UnpinCommand> {
     }
 
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     @Override
     public ObjectProperty<Boolean> pinProperty() {
@@ -544,7 +548,7 @@ public class UnpinCommandParser implements Parser<UnpinCommand> {
         return true;
     }
 ```
-###### \java\seedu\address\model\person\PersonHasKeywordsPredicate.java
+###### /java/seedu/address/model/person/PersonHasKeywordsPredicate.java
 ``` java
 /**
  * Tests that a {@code ReadOnlyPerson}'s details matches any of the keywords given.
@@ -611,7 +615,7 @@ public class PersonHasKeywordsPredicate implements Predicate<ReadOnlyPerson> {
 
 }
 ```
-###### \java\seedu\address\model\person\PersonIsPinnedPredicate.java
+###### /java/seedu/address/model/person/PersonIsPinnedPredicate.java
 ``` java
 /**
  * Tests that a {@code ReadOnlyPerson} is pinned.
@@ -630,13 +634,13 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 }
 ```
-###### \java\seedu\address\model\person\ReadOnlyPerson.java
+###### /java/seedu/address/model/person/ReadOnlyPerson.java
 ``` java
     ObjectProperty<Boolean> pinProperty();
 
     boolean isPinned();
 ```
-###### \java\seedu\address\model\person\UniquePersonList.java
+###### /java/seedu/address/model/person/UniquePersonList.java
 ``` java
     /**
      * Sorts the list in order.
@@ -661,7 +665,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 
 ```
-###### \java\seedu\address\model\person\UniquePersonList.java
+###### /java/seedu/address/model/person/UniquePersonList.java
 ``` java
     /**
      * Pins the equivalent person in the list.
@@ -694,7 +698,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 
 ```
-###### \java\seedu\address\ui\CommandBox.java
+###### /java/seedu/address/ui/CommandBox.java
 ``` java
     public void highlight() {
         this.commandTextField.setStyle("-fx-border-color: lightgreen; -fx-border-width: 2");
@@ -705,7 +709,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 }
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
 
     /**
@@ -772,7 +776,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
         }
     }
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
     @Subscribe
     private void handleSwitchToBrowserEvent(SwitchToBrowserEvent event) {
@@ -820,6 +824,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
         organizerLabel.setText("Sorted By:");
         personViewLabel.setStyle("-fx-text-fill: white");
         taskViewLabel.setStyle("-fx-text-fill: #555555");
+
         sortedByLabel.setText(lastSorted);
     }
 
@@ -883,7 +888,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 }
 ```
-###### \java\seedu\address\ui\PersonCard.java
+###### /java/seedu/address/ui/PersonCard.java
 ``` java
 
     /**
@@ -898,7 +903,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 
 ```
-###### \java\seedu\address\ui\PersonListPanel.java
+###### /java/seedu/address/ui/PersonListPanel.java
 ``` java
     public void highlight() {
         this.personListView.setStyle("-fx-border-color: lightgreen; -fx-border-width: 2");
@@ -909,7 +914,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 }
 ```
-###### \java\seedu\address\ui\ResultDisplay.java
+###### /java/seedu/address/ui/ResultDisplay.java
 ``` java
     @Subscribe
     private void handleValidResultDisplayEvent(ValidResultDisplayEvent event) {
@@ -932,7 +937,7 @@ public class PersonIsPinnedPredicate implements Predicate<ReadOnlyPerson> {
     }
 }
 ```
-###### \java\seedu\address\ui\SortFindPanel.java
+###### /java/seedu/address/ui/SortFindPanel.java
 ``` java
 
 /**
@@ -1094,7 +1099,7 @@ public class SortFindPanel extends UiPart<Region> {
     }
 }
 ```
-###### \java\seedu\address\ui\Tutorial.java
+###### /java/seedu/address/ui/Tutorial.java
 ``` java
 
 /**
@@ -1184,7 +1189,7 @@ class TutSteps {
     }
 }
 ```
-###### \java\seedu\address\ui\TutorialPanel.java
+###### /java/seedu/address/ui/TutorialPanel.java
 ``` java
 /**
  * The panel for tutorial of the App.
@@ -1275,7 +1280,7 @@ public class TutorialPanel extends UiPart<Region> {
     }
 }
 ```
-###### \resources\view\MainWindow.fxml
+###### /resources/view/MainWindow.fxml
 ``` fxml
                         <GridPane minWidth="-Infinity" prefWidth="340.0">
                           <columnConstraints>
@@ -1322,7 +1327,7 @@ public class TutorialPanel extends UiPart<Region> {
                            </children>
                         </GridPane>
 ```
-###### \resources\view\MainWindow.fxml
+###### /resources/view/MainWindow.fxml
 ``` fxml
       <ScrollPane fx:id="helpOverlay" fitToHeight="true" fitToWidth="true" opacity="0.9" prefHeight="200.0" prefWidth="200.0" visible="false" StackPane.alignment="TOP_CENTER">
          <content>
@@ -1419,7 +1424,7 @@ public class TutorialPanel extends UiPart<Region> {
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField alignment="CENTER" editable="false" text="edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] …​" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField alignment="CENTER" editable="false" text="edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] ??????" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -1560,7 +1565,7 @@ public class TutorialPanel extends UiPart<Region> {
          </StackPane.margin>
       </ScrollPane>
 ```
-###### \resources\view\SortFindPanel.fxml
+###### /resources/view/SortFindPanel.fxml
 ``` fxml
 
 <?import javafx.geometry.Insets?>
@@ -1585,7 +1590,7 @@ public class TutorialPanel extends UiPart<Region> {
    </padding>
 </HBox>
 ```
-###### \resources\view\TutorialPanel.fxml
+###### /resources/view/TutorialPanel.fxml
 ``` fxml
 
 <?import javafx.geometry.Insets?>
