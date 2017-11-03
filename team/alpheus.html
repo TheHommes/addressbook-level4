@@ -332,7 +332,11 @@ Format: <code>find</code> <code>KEYWORD</code> <code>[MORE_KEYWORDS]</code> <cod
 <p>The person&#8217;s name, phone, email, address and tags will be searched.</p>
 </li>
 <li>
-<p>Partial words will be matched e.g. <code>Ha</code> will match <code>Hans</code>.</p>
+<p>Partial starting words for name, phone, email and tags will be matched e.g. <code>Ha</code> will match <code>Hans</code> <code>an</code> will NOT
+match <code>Hans</code></p>
+</li>
+<li>
+<p>Address will be searched if the address contains any of the keywords. <code>eyla</code> will match <code>Geylang</code></p>
 </li>
 <li>
 <p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>,
@@ -358,6 +362,10 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 <li>
 <p><code>find</code> <code>friend</code><br>
 Returns any person having the tag <code>friend</code>.</p>
+</li>
+<li>
+<p><code>find</code> <code>98291</code><br>
+Returns any person whose phone starts with <code>98291</code></p>
 </li>
 </ul>
 </div>
@@ -469,6 +477,13 @@ Format: <code>unpin</code> <code>INDEX</code></p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="lists-all-pinned-person-code-listpin-code"><a class="link" href="#lists-all-pinned-person-code-listpin-code">Lists all pinned person: <code>listpin</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all person who are pinned in Bluebird<br>
+Format: <code>listpin</code></p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -541,7 +556,7 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-02 11:07:55 +00:00
+Last updated 2017-11-03 14:27:22 +00:00
 </div>
 </div>
 </body>
