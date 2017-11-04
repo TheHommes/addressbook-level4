@@ -245,7 +245,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //@@author deep4k
     // ================ Alias-level operations ==============================
-
+  
     /**
      * Adds an alias token
      *
