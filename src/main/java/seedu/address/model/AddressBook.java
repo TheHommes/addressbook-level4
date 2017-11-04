@@ -104,6 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     // ================ Person-level operations ==============================
 
     //@@author Alim95
+
     /**
      * Sorts the list.
      */
@@ -112,6 +113,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //@@author
+
     /**
      * Adds a person to the address book.
      * Also checks the new person's tags and updates {@link #tags} with any new tags found,
@@ -207,6 +209,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //@@author Alim95
+
     /**
      * Pins (@code toPin) in this {@code AddressBook}.
      *
@@ -242,6 +245,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //@@author deep4k
     // ================ Alias-level operations ==============================
+  
     /**
      * Adds an alias token
      *
