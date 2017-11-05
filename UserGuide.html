@@ -50,13 +50,13 @@
 <li><a href="#unpin-a-person-code-unpin-code">4.12. Unpin a person: <code>unpin</code></a></li>
 <li><a href="#lists-all-pinned-person-code-listpin-code">4.13. Lists all pinned person: <code>listpin</code></a></li>
 <li><a href="#delete-person-s-code-delete-code">4.14. Delete person(s) : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">4.15. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">4.16. Listing entered commands : <code>history</code></a></li>
+<li><a href="#select-a-person-code-select-code">4.15. Select a person : <code>select</code></a></li>
+<li><a href="#view-previously-entered-commands-code-history-code">4.16. View previously entered commands : <code>history</code></a></li>
 <li><a href="#undo-previous-command-code-undo-code">4.17. Undo previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">4.18. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">4.19. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">4.20. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">4.21. Saving the data</a></li>
+<li><a href="#redo-the-previously-undone-command-code-redo-code">4.18. Redo the previously undone command : <code>redo</code></a></li>
+<li><a href="#clear-all-entries-code-clear-code">4.19. Clear all entries : <code>clear</code></a></li>
+<li><a href="#exit-the-bluebird-program-code-exit-code">4.20. Exit the Bluebird program : <code>exit</code></a></li>
+<li><a href="#save-data">4.21. Save data</a></li>
 </ul>
 </li>
 <li><a href="#command-summary">5. Command Summary</a></li>
@@ -783,7 +783,7 @@ Deletes 2nd to 5th person (<strong>both inclusive</strong>) in Bluebird&#8217;s 
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.15. Selecting a person : <code>select</code></a></h3>
+<h3 id="select-a-person-code-select-code"><a class="link" href="#select-a-person-code-select-code">4.15. Select a person : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the last person listing.<br>
 Format: <code>select</code> <code>INDEX</code></p>
@@ -824,9 +824,9 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.16. Listing entered commands : <code>history</code></a></h3>
+<h3 id="view-previously-entered-commands-code-history-code"><a class="link" href="#view-previously-entered-commands-code-history-code">4.16. View previously entered commands : <code>history</code></a></h3>
 <div class="paragraph">
-<p>Lists all the commands that the user has entered in reverse chronological order.<br>
+<p>Lists all the commands that the user has entered in reverse chronological order, helping you view your past command log.<br>
 Format: <code>history</code></p>
 </div>
 <div class="admonitionblock note">
@@ -892,9 +892,9 @@ The <code>undo</code> command here fails as there are no undoable commands execu
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.18. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redo-the-previously-undone-command-code-redo-code"><a class="link" href="#redo-the-previously-undone-command-code-redo-code">4.18. Redo the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
+<p>Reverses the most recent <code>undo</code> command, in case you realise it was done well the first time round!<br>
 Format: <code>redo</code></p>
 </div>
 <div class="paragraph">
@@ -924,24 +924,24 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.19. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clear-all-entries-code-clear-code"><a class="link" href="#clear-all-entries-code-clear-code">4.19. Clear all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from Bluebird&#8217;s address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.20. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exit-the-bluebird-program-code-exit-code"><a class="link" href="#exit-the-bluebird-program-code-exit-code">4.20. Exit the Bluebird program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the Bluebird application, we&#8217;ll see you soon!<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.21. Saving the data</a></h3>
+<h3 id="save-data"><a class="link" href="#save-data">4.21. Save data</a></h3>
 <div class="paragraph">
 <p>All data in Bluebird&#8217;s address book is automatically saved in the hard disk, after any data modifying command.<br>
-There is no need to save manually. Yay!</p>
+There is no need for you to save manually. Yay!</p>
 </div>
 </div>
 </div>
@@ -1109,7 +1109,7 @@ data of your previous Address Book folder.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-05 10:34:52 +00:00
+Last updated 2017-11-05 11:05:28 +00:00
 </div>
 </div>
 </body>
