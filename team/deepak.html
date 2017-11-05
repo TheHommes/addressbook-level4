@@ -37,22 +37,8 @@
 <div class="sect2">
 <h3 id="creates-an-alias-for-command-or-shortcut-code-alias-code"><a class="link" href="#creates-an-alias-for-command-or-shortcut-code-alias-code">Creates an alias for command or shortcut : <code>alias</code></a></h3>
 <div class="paragraph">
-<p>Creates an alias based on given keyword and representation<br>
+<p>Creates an alias based on given keyword and representation.<br>
 Format: <code>alias</code> <code>k/KEYWORD</code> <code>s/REPRESENTATION</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Adds an alias with the keyword as as a substitute for the respective representation.</p>
-</li>
-<li>
-<p>The keyword is case-insensitive.</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -68,6 +54,24 @@ Creates an alias command 'disappear' that is understood as the 'hide' command wo
 Creates an alias shortcut that translates ph into Public Holiday every time it is entered by user.</p>
 </li>
 </ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds an alias with the keyword as a substitute for the respective representation.</p>
+</li>
+<li>
+<p>The keyword is case-insensitive.</p>
+</li>
+<li>
+<p>This allows the user to create personalised commands for the existing default Bluebird commands for a more user-friendly
+experience.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -129,9 +133,10 @@ to choose any word to alias if they desire to do so.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undo-previous-command-code-undo-code"><a class="link" href="#undo-previous-command-code-undo-code">Undo previous command : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
+<p>Restores the address book to the state before the previous <em>undoable</em> command was executed in case the user wants to revert
+when a contact was unintentionally modified in Bluebird.<br>
 Format: <code>undo</code></p>
 </div>
 <div class="admonitionblock note">
@@ -142,7 +147,7 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify Bluebird&#8217;s address book content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -156,19 +161,20 @@ Format: <code>undo</code></p>
 <li>
 <p><code>delete</code> <code>1</code><br>
 <code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<code>undo</code><br>
+The <code>undo</code> command here reverses the <code>delete</code> <code>1</code> command.</p>
 </li>
 <li>
 <p><code>select</code> <code>1</code><br>
 <code>list</code><br>
 <code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+The <code>undo</code> command here fails as there are no undoable commands executed previously.</p>
 </li>
 <li>
 <p><code>delete</code> <code>1</code><br>
 <code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete</code> <code>1</code> command)<br></p>
+<code>undo</code> (reverts the <code>clear</code> command)<br>
+<code>undo</code> (reverts the <code>delete</code> <code>1</code> command)<br></p>
 </li>
 </ul>
 </div>
@@ -454,7 +460,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-04 17:14:26 +00:00
+Last updated 2017-11-05 09:25:14 +00:00
 </div>
 </div>
 </body>
