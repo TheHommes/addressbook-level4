@@ -41,22 +41,23 @@
 <li><a href="#lists-all-persons-code-list-code">4.3. Lists all persons : <code>list</code></a></li>
 <li><a href="#sorts-the-list-code-sort-code">4.4. Sorts the list : <code>sort</code></a></li>
 <li><a href="#edit-a-person-code-edit-code">4.5. Edit a person: <code>edit</code></a></li>
-<li><a href="#locate-persons-by-the-person-s-details-code-find-code">4.6. Locate persons by the person&#8217;s details: <code>find</code></a></li>
+<li><a href="#search-for-contact-code-find-code">4.6. Search for contact: <code>find</code></a></li>
 <li><a href="#hide-a-person-code-hide-code">4.7. Hide a person: <code>hide</code></a></li>
 <li><a href="#undo-hide-action-code-unhide-code">4.8. Undo hide action: <code>unhide</code></a></li>
-<li><a href="#creates-an-alias-for-command-or-shortcut-code-alias-code">4.9. Creates an alias for command or shortcut : <code>alias</code></a></li>
-<li><a href="#removes-an-alias-for-command-or-shortcut-code-unalias-code">4.10. Removes an alias for command or shortcut : <code>unalias</code></a></li>
-<li><a href="#pin-a-person-code-pin-code">4.11. Pin a person : <code>pin</code></a></li>
-<li><a href="#unpin-a-person-code-unpin-code">4.12. Unpin a person: <code>unpin</code></a></li>
-<li><a href="#lists-all-pinned-person-code-listpin-code">4.13. Lists all pinned person: <code>listpin</code></a></li>
-<li><a href="#delete-person-s-code-delete-code">4.14. Delete person(s) : <code>delete</code></a></li>
-<li><a href="#select-a-person-code-select-code">4.15. Select a person : <code>select</code></a></li>
-<li><a href="#view-previously-entered-commands-code-history-code">4.16. View previously entered commands : <code>history</code></a></li>
-<li><a href="#undo-previous-command-code-undo-code">4.17. Undo previous command : <code>undo</code></a></li>
-<li><a href="#redo-the-previously-undone-command-code-redo-code">4.18. Redo the previously undone command : <code>redo</code></a></li>
-<li><a href="#clear-all-entries-code-clear-code">4.19. Clear all entries : <code>clear</code></a></li>
-<li><a href="#exit-the-bluebird-program-code-exit-code">4.20. Exit the Bluebird program : <code>exit</code></a></li>
-<li><a href="#save-data">4.21. Save data</a></li>
+<li><a href="#set-bluebird-to-parent-mode-code-parent-code">4.9. Set Bluebird to parent mode : <code>parent</code></a></li>
+<li><a href="#creates-an-alias-for-command-or-shortcut-code-alias-code">4.10. Creates an alias for command or shortcut : <code>alias</code></a></li>
+<li><a href="#removes-an-alias-for-command-or-shortcut-code-unalias-code">4.11. Removes an alias for command or shortcut : <code>unalias</code></a></li>
+<li><a href="#pin-a-person-code-pin-code">4.12. Pin a person : <code>pin</code></a></li>
+<li><a href="#unpin-a-person-code-unpin-code">4.13. Unpin a person: <code>unpin</code></a></li>
+<li><a href="#lists-all-pinned-person-code-listpin-code">4.14. Lists all pinned person: <code>listpin</code></a></li>
+<li><a href="#delete-person-s-code-delete-code">4.15. Delete person(s) : <code>delete</code></a></li>
+<li><a href="#select-a-person-code-select-code">4.16. Select a person : <code>select</code></a></li>
+<li><a href="#view-previously-entered-commands-code-history-code">4.17. View previously entered commands : <code>history</code></a></li>
+<li><a href="#undo-previous-command-code-undo-code">4.18. Undo previous command : <code>undo</code></a></li>
+<li><a href="#redo-the-previously-undone-command-code-redo-code">4.19. Redo the previously undone command : <code>redo</code></a></li>
+<li><a href="#clear-all-entries-code-clear-code">4.20. Clear all entries : <code>clear</code></a></li>
+<li><a href="#exit-the-bluebird-program-code-exit-code">4.21. Exit the Bluebird program : <code>exit</code></a></li>
+<li><a href="#save-data">4.22. Save data</a></li>
 </ul>
 </li>
 <li><a href="#command-summary">5. Command Summary</a></li>
@@ -419,9 +420,9 @@ The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="locate-persons-by-the-person-s-details-code-find-code"><a class="link" href="#locate-persons-by-the-person-s-details-code-find-code">4.6. Locate persons by the person&#8217;s details: <code>find</code></a></h3>
+<h3 id="search-for-contact-code-find-code"><a class="link" href="#search-for-contact-code-find-code">4.6. Search for contact: <code>find</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose details contain any of the given keywords input by the user.<br>
+<p>Trying to find one of your contacts? You can do so easily with the <code>find</code> command!<br>
 Format: <code>find</code> <code>KEYWORD</code> <code>[MORE_KEYWORDS]</code> <code>&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
@@ -461,7 +462,7 @@ Returns any person whose phone starts with <code>98291</code></p>
 <p>The person&#8217;s name, phone, email, address and tags will be searched.</p>
 </li>
 <li>
-<p>Partial starting words for name, phone, email and tags will be matched e.g. <code>Ha</code> will match <code>Hans</code> <code>an</code> will NOT
+<p>Partial starting words for name, phone, email and tags will be matched e.g. <code>Ha</code> will match <code>Hans</code>, <code>an</code> will NOT
 match <code>Hans</code></p>
 </li>
 <li>
@@ -560,7 +561,25 @@ Shows the updated list of hidden contacts.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="creates-an-alias-for-command-or-shortcut-code-alias-code"><a class="link" href="#creates-an-alias-for-command-or-shortcut-code-alias-code">4.9. Creates an alias for command or shortcut : <code>alias</code></a></h3>
+<h3 id="set-bluebird-to-parent-mode-code-parent-code"><a class="link" href="#set-bluebird-to-parent-mode-code-parent-code">4.9. Set Bluebird to parent mode : <code>parent</code></a></h3>
+<div class="paragraph">
+<p>Sets Bluebird to parent mode which will enable all commands for you.
+Format: <code>parent</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Want to set a different keyword for parent mode? Check out the alias command below!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creates-an-alias-for-command-or-shortcut-code-alias-code"><a class="link" href="#creates-an-alias-for-command-or-shortcut-code-alias-code">4.10. Creates an alias for command or shortcut : <code>alias</code></a></h3>
 <div class="paragraph">
 <p>Creates an alias based on given keyword and representation.<br>
 Format: <code>alias</code> <code>k/KEYWORD</code> <code>s/REPRESENTATION</code></p>
@@ -600,7 +619,7 @@ experience.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="removes-an-alias-for-command-or-shortcut-code-unalias-code"><a class="link" href="#removes-an-alias-for-command-or-shortcut-code-unalias-code">4.10. Removes an alias for command or shortcut : <code>unalias</code></a></h3>
+<h3 id="removes-an-alias-for-command-or-shortcut-code-unalias-code"><a class="link" href="#removes-an-alias-for-command-or-shortcut-code-unalias-code">4.11. Removes an alias for command or shortcut : <code>unalias</code></a></h3>
 <div class="paragraph">
 <p>Removes an existing alias based on given keyword and representation that the user has previously assigned.<br>
 Format: <code>unalias</code> <code>k/KEYWORD</code></p>
@@ -636,7 +655,7 @@ Removes the alias shortcut 'ph'. Next instances of ph will no longer translate t
 </div>
 </div>
 <div class="sect2">
-<h3 id="pin-a-person-code-pin-code"><a class="link" href="#pin-a-person-code-pin-code">4.11. Pin a person : <code>pin</code></a></h3>
+<h3 id="pin-a-person-code-pin-code"><a class="link" href="#pin-a-person-code-pin-code">4.12. Pin a person : <code>pin</code></a></h3>
 <div class="paragraph">
 <p>Pins a person to a pin panel for easy access.<br>
 Format: <code>pin</code> <code>INDEX</code></p>
@@ -677,7 +696,7 @@ Pins the person at index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="unpin-a-person-code-unpin-code"><a class="link" href="#unpin-a-person-code-unpin-code">4.12. Unpin a person: <code>unpin</code></a></h3>
+<h3 id="unpin-a-person-code-unpin-code"><a class="link" href="#unpin-a-person-code-unpin-code">4.13. Unpin a person: <code>unpin</code></a></h3>
 <div class="paragraph">
 <p>Unpins a person from the list<br>
 Format: <code>unpin</code> <code>INDEX</code></p>
@@ -718,14 +737,14 @@ Unpins the person at index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="lists-all-pinned-person-code-listpin-code"><a class="link" href="#lists-all-pinned-person-code-listpin-code">4.13. Lists all pinned person: <code>listpin</code></a></h3>
+<h3 id="lists-all-pinned-person-code-listpin-code"><a class="link" href="#lists-all-pinned-person-code-listpin-code">4.14. Lists all pinned person: <code>listpin</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all person who are pinned in Bluebird<br>
 Format: <code>listpin</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-person-s-code-delete-code"><a class="link" href="#delete-person-s-code-delete-code">4.14. Delete person(s) : <code>delete</code></a></h3>
+<h3 id="delete-person-s-code-delete-code"><a class="link" href="#delete-person-s-code-delete-code">4.15. Delete person(s) : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified person(s) from Bluebird&#8217;s address book.<br>
 Format: <code>delete</code> <code>EXAMPLEINDEX1</code> <code>EXAMPLEINDEX2</code> <code>INDEX RANGE</code></p>
@@ -783,7 +802,7 @@ Deletes 2nd to 5th person (<strong>both inclusive</strong>) in Bluebird&#8217;s 
 </div>
 </div>
 <div class="sect2">
-<h3 id="select-a-person-code-select-code"><a class="link" href="#select-a-person-code-select-code">4.15. Select a person : <code>select</code></a></h3>
+<h3 id="select-a-person-code-select-code"><a class="link" href="#select-a-person-code-select-code">4.16. Select a person : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the last person listing.<br>
 Format: <code>select</code> <code>INDEX</code></p>
@@ -824,7 +843,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="view-previously-entered-commands-code-history-code"><a class="link" href="#view-previously-entered-commands-code-history-code">4.16. View previously entered commands : <code>history</code></a></h3>
+<h3 id="view-previously-entered-commands-code-history-code"><a class="link" href="#view-previously-entered-commands-code-history-code">4.17. View previously entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that the user has entered in reverse chronological order, helping you view your past command log.<br>
 Format: <code>history</code></p>
@@ -845,7 +864,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-previous-command-code-undo-code"><a class="link" href="#undo-previous-command-code-undo-code">4.17. Undo previous command : <code>undo</code></a></h3>
+<h3 id="undo-previous-command-code-undo-code"><a class="link" href="#undo-previous-command-code-undo-code">4.18. Undo previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed in case the user wants to revert
 when a contact was unintentionally modified in Bluebird.<br>
@@ -892,7 +911,7 @@ The <code>undo</code> command here fails as there are no undoable commands execu
 </div>
 </div>
 <div class="sect2">
-<h3 id="redo-the-previously-undone-command-code-redo-code"><a class="link" href="#redo-the-previously-undone-command-code-redo-code">4.18. Redo the previously undone command : <code>redo</code></a></h3>
+<h3 id="redo-the-previously-undone-command-code-redo-code"><a class="link" href="#redo-the-previously-undone-command-code-redo-code">4.19. Redo the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command, in case you realise it was done well the first time round!<br>
 Format: <code>redo</code></p>
@@ -924,21 +943,21 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clear-all-entries-code-clear-code"><a class="link" href="#clear-all-entries-code-clear-code">4.19. Clear all entries : <code>clear</code></a></h3>
+<h3 id="clear-all-entries-code-clear-code"><a class="link" href="#clear-all-entries-code-clear-code">4.20. Clear all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from Bluebird&#8217;s address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exit-the-bluebird-program-code-exit-code"><a class="link" href="#exit-the-bluebird-program-code-exit-code">4.20. Exit the Bluebird program : <code>exit</code></a></h3>
+<h3 id="exit-the-bluebird-program-code-exit-code"><a class="link" href="#exit-the-bluebird-program-code-exit-code">4.21. Exit the Bluebird program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the Bluebird application, we&#8217;ll see you soon!<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-data"><a class="link" href="#save-data">4.21. Save data</a></h3>
+<h3 id="save-data"><a class="link" href="#save-data">4.22. Save data</a></h3>
 <div class="paragraph">
 <p>All data in Bluebird&#8217;s address book is automatically saved in the hard disk, after any data modifying command.<br>
 There is no need for you to save manually. Yay!</p>
@@ -1109,7 +1128,7 @@ data of your previous Address Book folder.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 05:38:32 +00:00
+Last updated 2017-11-08 08:15:21 +00:00
 </div>
 </div>
 </body>

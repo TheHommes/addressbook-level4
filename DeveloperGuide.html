@@ -61,6 +61,8 @@
 <li><a href="#since-v1-4">4.13. Since v1.4</a></li>
 <li><a href="#first-time-tutorial">4.14. First time tutorial</a></li>
 <li><a href="#enhanced-add">4.15. Enhanced Add</a></li>
+<li><a href="#since-v1-5">4.16. Since v1.5</a></li>
+<li><a href="#parent-mode">4.17. Parent Mode</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -904,7 +906,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="paragraph">
 <p>The sort command sorts the <code>People</code> in <code>AddressBook</code> based on their <code>Name</code>, <code>Phone</code>, <code>Email</code> or <code>Address</code>. The sort command is also an <code>UndoableCommand</code> and users can undo the sort if they wish to.
 <code>SortCommand</code> inherits from <code>UndoableCommand</code> which inherits from <code>Command</code> and the logic is
-shown in Figure 3.4.1 below.</p>
+shown in Figure 4.4.1 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -923,7 +925,7 @@ or address. This will ensure that users type in the right <code>KEYWORD</code> t
 <div class="paragraph">
 <p>Suppose a user wants to sort by name, the user will type <code>sort name</code> into the command box. This will then be processed by <code>LogicManager</code> which executes the command and <code>AddressBookParser</code> will
 parse the command accordingly. A <code>SortCommand</code> will be returned to the <code>LogicManager</code> which will then execute it. Finally, the result of the execution will be returned and displayed
-on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this scenario is shown in Figure 3.4.2 below.</p>
+on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this scenario is shown in Figure 4.4.2 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -950,7 +952,41 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </ol>
 </div>
 <div class="paragraph">
-<p>The sequence diagram for executeUndoableCommand() is given in Figure 3.4.3 below.</p>
+<p>The code snippet below shows how <code>SortCommand</code> calls the different methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SortCommand</span> <span class="directive">extends</span> UndoableCommand {
+    ...
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult executeUndoableCommand() {
+        model.sortList(toSort);
+        ...
+    }
+    ...
+}
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ModelManager</span> <span class="directive">extends</span> ComponentManager <span class="directive">implements</span> Model {
+    ...
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> sortList(<span class="predefined-type">String</span> toSort) {
+        addressBook.sortList(toSort);
+        ...
+    }
+    ...
+}
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">AddressBook</span> <span class="directive">implements</span> ReadOnlyAddressBook {
+    ...
+    public <span class="type">void</span> sortList(<span class="predefined-type">String</span> toSort) {
+        persons.sort(toSort);
+    }
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The sequence diagram for executeUndoableCommand() is given in Figure 4.4.3 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1264,6 +1300,30 @@ default constructor where the parsed field is empty.<br></p>
  the respective fields<br>
 <strong>Cons:</strong> The code will be unnecessarily lengthy and may cause features to break<br></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="since-v1-5"><a class="link" href="#since-v1-5">4.16. Since v1.5</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="parent-mode"><a class="link" href="#parent-mode">4.17. Parent Mode</a></h3>
+<div class="paragraph">
+<p>When Bluebird is launched, it will be set to ChildMode by default and the number of commands
+available will be limited. The <code>ParentModeCommand</code> will enable all commands for the parent to use.</p>
+</div>
+<div class="paragraph">
+<p>4.9.1. Design Considerations</p>
+</div>
+<div class="paragraph">
+<p>Aspect: Which commands will be unavailable for the child to use<br>
+Alternative 1 (current choice): All commands that modifies Bluebird&#8217;s contact list or task list will be unavailable<br>
+Pros: This provides maximum safety for the parents<br>
+Cons: If the child adds contacts or tasks wrongly, he has to add a new command and will not be able to
+delete or edit the previous one<br>
+Alternative 2: Only prevent commands that deletes Bluebird&#8217;s contact list or task list<br>
+Pros: This allows child to edit the contacts or tasks if they were to add wrongly<br>
+Cons: There is a possibility that the child may edit important contacts or tasks.</p>
 </div>
 </div>
 </div>
@@ -3160,7 +3220,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 05:38:32 +00:00
+Last updated 2017-11-08 08:15:21 +00:00
 </div>
 </div>
 </body>

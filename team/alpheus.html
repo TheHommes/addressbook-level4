@@ -93,7 +93,7 @@ Some users find the contact they want by scrolling through the list as opposed t
 <div class="paragraph">
 <p>The sort command sorts the <code>People</code> in <code>AddressBook</code> based on their <code>Name</code>, <code>Phone</code>, <code>Email</code> or <code>Address</code>. The sort command is also an <code>UndoableCommand</code> and users can undo the sort if they wish to.
 <code>SortCommand</code> inherits from <code>UndoableCommand</code> which inherits from <code>Command</code> and the logic is
-shown in Figure 3.4.1 below.</p>
+shown in Figure 4.4.1 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -112,7 +112,7 @@ or address. This will ensure that users type in the right <code>KEYWORD</code> t
 <div class="paragraph">
 <p>Suppose a user wants to sort by name, the user will type <code>sort name</code> into the command box. This will then be processed by <code>LogicManager</code> which executes the command and <code>AddressBookParser</code> will
 parse the command accordingly. A <code>SortCommand</code> will be returned to the <code>LogicManager</code> which will then execute it. Finally, the result of the execution will be returned and displayed
-on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this scenario is shown in Figure 3.4.2 below.</p>
+on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this scenario is shown in Figure 4.4.2 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -139,7 +139,41 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </ol>
 </div>
 <div class="paragraph">
-<p>The sequence diagram for executeUndoableCommand() is given in Figure 3.4.3 below.</p>
+<p>The code snippet below shows how <code>SortCommand</code> calls the different methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SortCommand</span> <span class="directive">extends</span> UndoableCommand {
+    ...
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> CommandResult executeUndoableCommand() {
+        model.sortList(toSort);
+        ...
+    }
+    ...
+}
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ModelManager</span> <span class="directive">extends</span> ComponentManager <span class="directive">implements</span> Model {
+    ...
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> sortList(<span class="predefined-type">String</span> toSort) {
+        addressBook.sortList(toSort);
+        ...
+    }
+    ...
+}
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">AddressBook</span> <span class="directive">implements</span> ReadOnlyAddressBook {
+    ...
+    public <span class="type">void</span> sortList(<span class="predefined-type">String</span> toSort) {
+        persons.sort(toSort);
+    }
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The sequence diagram for executeUndoableCommand() is given in Figure 4.4.3 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -297,10 +331,24 @@ the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>M
 }</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: What to include in the tutorial<br>
+<strong> Alternative 1 (current choice):</strong> Introduce the different UI panels in Bluebird and to give a brief
+ overview of the features Bluebird has. Allow user to explore and try out the different commands by themselves<br>
+<strong>Pros:</strong> Users will decide which feature to try out by themselves and learn how Bluebird works<br>
+<strong>Cons:</strong> By being brief and letting users try it out for themselves, users will not know the expected outcome of
+ different commands<br>
+<strong>Alternative 2</strong>: By spoon-feeding users and introduce each features one by one<br>
+<strong>Pros:</strong> This is the most comprehensive way to teach users of all the features Bluebird has to offer<br>
+<strong>Cons:</strong> The tutorial will be lengthy and users may just skip it without learning of different features</p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
+</div>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-enhanced-find"><a class="link" href="#enhancement-added-enhanced-find">Enhancement Added: Enhanced Find</a></h3>
@@ -313,9 +361,9 @@ the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>M
 </div>
 </div>
 <div class="sect2">
-<h3 id="locate-persons-by-the-person-s-details-code-find-code"><a class="link" href="#locate-persons-by-the-person-s-details-code-find-code">Locate persons by the person&#8217;s details: <code>find</code></a></h3>
+<h3 id="search-for-contact-code-find-code"><a class="link" href="#search-for-contact-code-find-code">Search for contact: <code>find</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose details contain any of the given keywords input by the user.<br>
+<p>Trying to find one of your contacts? You can do so easily with the <code>find</code> command!<br>
 Format: <code>find</code> <code>KEYWORD</code> <code>[MORE_KEYWORDS]</code> <code>&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
@@ -355,7 +403,7 @@ Returns any person whose phone starts with <code>98291</code></p>
 <p>The person&#8217;s name, phone, email, address and tags will be searched.</p>
 </li>
 <li>
-<p>Partial starting words for name, phone, email and tags will be matched e.g. <code>Ha</code> will match <code>Hans</code> <code>an</code> will NOT
+<p>Partial starting words for name, phone, email and tags will be matched e.g. <code>Ha</code> will match <code>Hans</code>, <code>an</code> will NOT
 match <code>Hans</code></p>
 </li>
 <li>
@@ -397,7 +445,7 @@ to search for the contact they want.</p>
 in full and partial keywords will still be able to find the person (e.g find jos will return Josephine).</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the find command will be<br>
 <strong>Alternative 1 (current choice):</strong> The person will be found if their names, phone, email or tags start with the
@@ -545,7 +593,7 @@ a boolean variable called <code>isPinned</code> that is set to <code>false</code
 variable change to <code>true</code>. Similarly, the variable can be changed from <code>true</code> to <code>false</code> when <code>unpin</code> command is executed.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect</strong>: How pinned person will be displayed on the UI<br>
 <strong> Alternative 1 (current choice):</strong> A pinned person will have a star symbol next to their name if they are pinned<br>
@@ -560,6 +608,76 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 </div>
 <hr>
 </div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-parent-mode-command"><a class="link" href="#enhancement-added-parent-mode-command">Enhancement Added: Parent Mode Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-5"><a class="link" href="#external-behavior-5">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="set-bluebird-to-parent-mode-code-parent-code"><a class="link" href="#set-bluebird-to-parent-mode-code-parent-code">Set Bluebird to parent mode : <code>parent</code></a></h3>
+<div class="paragraph">
+<p>Sets Bluebird to parent mode which will enable all commands for you.
+Format: <code>parent</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Want to set a different keyword for parent mode? Check out the alias command below!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-5"><a class="link" href="#justification-5">Justification</a></h4>
+<div class="paragraph">
+<p>Parents may be worried that their child will delete or alter any of their important contacts/tasks. Therefore, there
+is a need to limit the number of available commands that the child is able to sue.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-5"><a class="link" href="#implementation-5">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="parent-mode"><a class="link" href="#parent-mode">Parent Mode</a></h3>
+<div class="paragraph">
+<p>When Bluebird is launched, it will be set to ChildMode by default and the number of commands
+available will be limited. The <code>ParentModeCommand</code> will enable all commands for the parent to use.</p>
+</div>
+<div class="paragraph">
+<p>4.9.1. Design Considerations</p>
+</div>
+<div class="paragraph">
+<p>Aspect: Which commands will be unavailable for the child to use<br>
+Alternative 1 (current choice): All commands that modifies Bluebird&#8217;s contact list or task list will be unavailable<br>
+Pros: This provides maximum safety for the parents<br>
+Cons: If the child adds contacts or tasks wrongly, he has to add a new command and will not be able to
+delete or edit the previous one<br>
+Alternative 2: Only prevent commands that deletes Bluebird&#8217;s contact list or task list<br>
+Pros: This allows child to edit the contacts or tasks if they were to add wrongly<br>
+Cons: There is a possibility that the child may edit important contacts or tasks.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="enhancement-proposed"><a class="link" href="#enhancement-proposed">Enhancement Proposed:</a></h3>
@@ -577,10 +695,14 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/73">#73</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/118">#118</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/134">#134</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/143">#143</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/144">#144</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/205">#205</a>,
-<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>)</p>
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/245">#245</a>)</p>
 </li>
 <li>
 <p>Updated a help overlay for Bluebird (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/189">#189</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>)</p>
+</li>
+<li>
+<p>Added Bluebird result image when inputting commands (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/143">#142</a>,
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/245">#245</a>)</p>
 </li>
 </ul>
 </div>
@@ -590,7 +712,7 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 05:38:32 +00:00
+Last updated 2017-11-08 08:15:21 +00:00
 </div>
 </div>
 </body>
