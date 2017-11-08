@@ -16,10 +16,15 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">Project: AddressBook - Level 4</a></h2>
+<h2 id="project-bluebird"><a class="link" href="#project-bluebird">Project: Bluebird</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+<p>Written in Java language, Bluebird is a desktop based organisational tool for the working parent on the go. Bluebird is suitable
+for a variety of day-to-day management tasks, including managing appointments for both yourself and your
+child, and also organising the contact information from your Address Book.<br></p>
+</div>
+<div class="paragraph">
+<p>Included in this portfolio are all the enhancements, features and tests that Alpheus Lim Wei Xiang has contributed to the project.</p>
 </div>
 <div class="paragraph">
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T15-B4/main/blob/master/collated/main/Alim95.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-T15-B4/main/blob/master/collated/test/Alim95.md">Test code</a>]</p>
@@ -213,17 +218,6 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 <div class="sect2">
 <h3 id="enhancement-added-first-time-tutorial"><a class="link" href="#enhancement-added-first-time-tutorial">Enhancement Added: First time tutorial</a></h3>
 <div class="sect3">
-<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
-<hr>
-<div class="paragraph">
-<p><mark>Start of Extract [from: User Guide]</mark></p>
-</div>
-<div class="paragraph">
-<p><mark>End of Extract</mark></p>
-</div>
-<hr>
-</div>
-<div class="sect3">
 <h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
 <div class="paragraph">
 <p>Currently when new users launch Bluebird for the first time, they will be lost as to what Bluebird has to offer and also what different UI panels mean.
@@ -353,7 +347,7 @@ the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>M
 <div class="sect2">
 <h3 id="enhancement-added-enhanced-find"><a class="link" href="#enhancement-added-enhanced-find">Enhancement Added: Enhanced Find</a></h3>
 <div class="sect3">
-<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: User Guide]</mark></p>
@@ -471,7 +465,7 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 <div class="sect2">
 <h3 id="enhancement-added-pin-unpin-contact"><a class="link" href="#enhancement-added-pin-unpin-contact">Enhancement Added: Pin/Unpin contact</a></h3>
 <div class="sect3">
-<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: User Guide]</mark></p>
@@ -612,7 +606,7 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 <div class="sect2">
 <h3 id="enhancement-added-parent-mode-command"><a class="link" href="#enhancement-added-parent-mode-command">Enhancement Added: Parent Mode Command</a></h3>
 <div class="sect3">
-<h4 id="external-behavior-5"><a class="link" href="#external-behavior-5">External behavior</a></h4>
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: User Guide]</mark></p>
@@ -644,7 +638,7 @@ Format: <code>parent</code></p>
 <h4 id="justification-5"><a class="link" href="#justification-5">Justification</a></h4>
 <div class="paragraph">
 <p>Parents may be worried that their child will delete or alter any of their important contacts/tasks. Therefore, there
-is a need to limit the number of available commands that the child is able to sue.</p>
+is a need to limit the number of available commands that the child is able to use.</p>
 </div>
 </div>
 <div class="sect3">
@@ -658,7 +652,7 @@ is a need to limit the number of available commands that the child is able to su
 <div class="sect2">
 <h3 id="parent-mode"><a class="link" href="#parent-mode">Parent Mode</a></h3>
 <div class="paragraph">
-<p>When Bluebird is launched, it will be set to ChildMode by default and the number of commands
+<p>When Bluebird is launched, Parent Mode will be off by default and the number of commands
 available will be limited. The <code>ParentModeCommand</code> will enable all commands for the parent to use.</p>
 </div>
 <div class="paragraph">
@@ -680,12 +674,6 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 <hr>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed"><a class="link" href="#enhancement-proposed">Enhancement Proposed:</a></h3>
-<div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
 <div class="ulist">
 <ul>
@@ -701,8 +689,12 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 <p>Updated a help overlay for Bluebird (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/189">#189</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>)</p>
 </li>
 <li>
-<p>Added Bluebird result image when inputting commands (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/143">#142</a>,
+<p>Added Bluebird result image feedback when inputting commands (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/143">#142</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/245">#245</a>)</p>
+</li>
+<li>
+<p>Added toggling of Ui between Person, Task, Pinned, and All lists (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/205">#205</a>,
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/216">#216</a>)</p>
 </li>
 </ul>
 </div>
@@ -712,7 +704,7 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 11:54:34 +00:00
+Last updated 2017-11-08 13:04:36 +00:00
 </div>
 </div>
 </body>
