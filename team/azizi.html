@@ -16,16 +16,19 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">Project: AddressBook - Level 4</a></h2>
+<h2 id="project-bluebird"><a class="link" href="#project-bluebird">Project: Bluebird</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+<p>Bluebird is a desktop based organisational tool for the working parent on the go. Bluebird is suitable for a variety of
+day-to-day management tasks, including managing appointments for both yourself and your child, and also organising the
+contact information from your Address Book.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T15-B4/main/blob/master/collated/main/aziziazfar.md">Functional code</a>]
+ [<a href="https://github.com/CS2103AUG2017-T15-B4/main/blob/master/collated/test/aziziazfar.md">Test code</a>]</p>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-undo-redo"><a class="link" href="#enhancement-added-undo-redo">Enhancement Added: Undo/Redo</a></h3>
+<h3 id="enhancement-added-multiple-delete"><a class="link" href="#enhancement-added-multiple-delete">Enhancement Added: Multiple Delete</a></h3>
 <div class="sect3">
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
 <hr>
@@ -35,25 +38,10 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-previous-command-code-undo-code"><a class="link" href="#undo-previous-command-code-undo-code">Undo previous command : <code>undo</code></a></h3>
+<h3 id="delete-person-s-code-delete-code"><a class="link" href="#delete-person-s-code-delete-code">Delete person(s) : <code>delete</code></a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed in case the user wants to revert
-when a contact was unintentionally modified in Bluebird.<br>
-Format: <code>undo</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify Bluebird&#8217;s address book content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Deletes the specified person(s) from Bluebird&#8217;s address book.<br>
+Format: <code>delete</code> <code>EXAMPLEINDEX1</code> <code>EXAMPLEINDEX2</code> <code>INDEX RANGE</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -61,56 +49,50 @@ Format: <code>undo</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete</code> <code>1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command here reverses the <code>delete</code> <code>1</code> command.</p>
+<p><code>delete</code> <code>2</code> <code>3</code> <code>4~7</code><br>
+Deletes the 2nd, 3rd and the 4th to 7th (<strong>both inclusive</strong>) person in Bluebird&#8217;s address book.</p>
 </li>
 <li>
-<p><code>select</code> <code>1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command here fails as there are no undoable commands executed previously.</p>
+<p><code>find</code> <code>Betsy</code><br>
+<code>delete</code> <code>1</code><br>
+Deletes the 1st person in the results of the <code>find</code> command.</p>
 </li>
 <li>
-<p><code>delete</code> <code>1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverts the <code>clear</code> command)<br>
-<code>undo</code> (reverts the <code>delete</code> <code>1</code> command)<br></p>
+<p><code>list</code><br>
+<code>delete</code> <code>2~5</code><br>
+Deletes 2nd to 5th person (<strong>both inclusive</strong>) in Bluebird&#8217;s address book.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="redo-the-previously-undone-command-code-redo-code"><a class="link" href="#redo-the-previously-undone-command-code-redo-code">Redo the previously undone command : <code>redo</code></a></h3>
-<div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command, in case you realise it was done well the first time round!<br>
-Format: <code>redo</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete</code> <code>1</code><br>
-<code>undo</code> (reverses the <code>delete</code> <code>1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete</code> <code>1</code> command)<br></p>
+<p>Deletes the person at the specified <code>INDEX</code> or the specified <code>INDEX RANGE</code>.</p>
 </li>
 <li>
-<p><code>delete</code> <code>1</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
+<p>The index refers to the index number shown in the most recent listing.</p>
 </li>
 <li>
-<p><code>delete</code> <code>1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete</code> <code>1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete</code> <code>1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+<p>Acceptable inputs:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The input <strong>can be a single positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The input <strong>can be multiple positive integers with a space in between</strong> 1 2 3 &#8230;&#8203;</p>
+</li>
+<li>
+<p>The input <strong>can be a range of positive integers, denoted by a "~" in between the minimum and maximum index (both inclusive)</strong> 1~4, 2~7, &#8230;&#8203;</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -119,7 +101,8 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
 <div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+<p>Users may need to delete multiple contacts from the Bluebird application and thus, this feature will make it convenient
+for the users to do so.</p>
 </div>
 </div>
 <div class="sect3">
@@ -131,198 +114,24 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">Undo/Redo mechanism</a></h3>
+<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">Enhanced Delete</a></h3>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
-</div>
-<div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the address book before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
-</div>
-<div class="paragraph">
-<p>Commands that are not undoable are implemented this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ListCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... list logic ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With the extra layer, the commands that are undoable are implemented this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">UndoableCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... undo logic ...</span>
-
-        executeUndoableCommand();
-    }
-}
-
-<span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteCommand</span> <span class="directive">extends</span> UndoableCommand {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult executeUndoableCommand() {
-        <span class="comment">// ... delete logic ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
-</div>
-<div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the address book. The current state of the address book is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new person.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not be pushed to the <code>UndoRedoStack</code> at all.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The user now decides that adding the person was a mistake, and decides to undo that action using <code>undo</code>.</p>
-</div>
-<div class="paragraph">
-<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the address book to the state before the <code>add</code> command executed.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>undoStack</code> is empty, then there are no other commands left to be undone, and an <code>Exception</code> will be thrown when popping the <code>undoStack</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the address book to the state after the command is executed).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>redoStack</code> is empty, then there are no other commands left to be redone, and an <code>Exception</code> will be thrown when popping the <code>redoStack</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>. This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarize what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="200">
-</div>
+<p>The enhanced delete feature allows for multiple indices to be accepted by the parser. This is done by splitting the inputs into multiple string tokens,
+each containing the index of the person to be deleted. A list is then used to store all the indices of the personsToDelete.
+This enhancement is then achieved by iterating through the list and deleting the desired persons using the ModelManager.
+The enhanced delete also allows for the user to input a range of indices of persons to be deleted.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
-<strong>Pros:</strong> We will not lose any undone/redone functionality as it is now part of the default behaviour. Classes that deal with <code>Command</code> do not have to know that <code>executeUndoableCommand()</code> exist.<br>
-<strong>Cons:</strong> Hard for new developers to understand the template pattern.<br>
-<strong>Alternative 2:</strong> Just override <code>execute()</code><br>
-<strong>Pros:</strong> Does not involve the template pattern, easier for new developers to understand.<br>
-<strong>Cons:</strong> Classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to undo/redo.</p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> How undo &amp; redo executes<br>
-<strong>Alternative 1 (current choice):</strong> Saves the entire address book.<br>
-<strong>Pros:</strong> Easy to implement.<br>
-<strong>Cons:</strong> May have performance issues in terms of memory usage.<br>
-<strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.<br>
-<strong>Pros:</strong> Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).<br>
-<strong>Cons:</strong> We must ensure that the implementation of each individual command are correct.</p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> Type of commands that can be undone/redone<br>
-<strong>Alternative 1 (current choice):</strong> Only include commands that modifies the address book (<code>add</code>, <code>clear</code>, <code>edit</code>).<br>
-<strong>Pros:</strong> We only revert changes that are hard to change back (the view can easily be re-modified as no data are lost).<br>
-<strong>Cons:</strong> User might think that undo also applies when the list is modified (undoing filtering for example), only to realize that it does not do that, after executing <code>undo</code>.<br>
-<strong>Alternative 2:</strong> Include all commands.<br>
-<strong>Pros:</strong> Might be more intuitive for the user.<br>
-<strong>Cons:</strong> User have no way of skipping such commands if he or she just want to reset the state of the address book and not the view.<br>
-<strong>Additional Info:</strong> See our discussion  <a href="https://github.com/se-edu/addressbook-level4/issues/390#issuecomment-298936672">here</a>.</p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> Data structure to support the undo/redo commands<br>
-<strong>Alternative 1 (current choice):</strong> Use separate stack for undo and redo<br>
-<strong>Pros:</strong> Easy to understand for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.<br>
-<strong>Cons:</strong> Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>UndoRedoStack</code>.<br>
-<strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo<br>
-<strong>Pros:</strong> We do not need to maintain a separate stack, and just reuse what is already in the codebase.<br>
-<strong>Cons:</strong> Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.<br></p>
+<p><strong>Aspect:</strong> Defining how accurate the delete command will be<br>
+<strong>Alternative 1 (current choice):</strong> Indices are parsed into a list containing all the index of persons to be deleted.<br>
+A loop is then used to iterate through the list to delete the persons requested by the user.<br>
+<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong>Cons:</strong> The use of a loop will increase the time for the code to run.<br>
+<strong>Alternative 2:</strong> The indices are deleted one by one, without using a list.<br>
+<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong>Cons:</strong> It has to display the result repeatedly after every every person is deleted successfully.<br></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -331,9 +140,124 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<h3 id="enhancement-added-add-fields-individually"><a class="link" href="#enhancement-added-add-fields-individually">Enhancement Added: Add fields individually</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
 <div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adds-a-person-code-add-code"><a class="link" href="#adds-a-person-code-add-code">Adds a person: <code>add</code></a></h3>
+<div class="paragraph">
+<p>Adds a person&#8217;s contact information to Bluebird&#8217;s address book based on the fields declared by the user.<br>
+Format: <code>add n/NAME</code> <code>[p/PHONE_NUMBER]</code> <code>[e/EMAIL]</code> <code>[a/ADDRESS]</code> <code>[t/TAG]</code> <code>&#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add</code> <code>n/John Doe</code> <code>p/98765432</code> <code>e/johnd@example.com</code> <code>a/John street, block 123, #01-01</code></p>
+</li>
+<li>
+<p><code>add</code> <code>n/Johnny Dow</code></p>
+</li>
+<li>
+<p><code>add</code> <code>n/Carl Green</code> <code>p/91234765</code></p>
+</li>
+<li>
+<p><code>add</code> <code>n/Betsy Crowe</code> <code>t/friend</code> <code>e/betsycrowe@example.com</code> <code>a/Newgate Prison</code> <code>p/1234567</code> <code>t/criminal</code></p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>A person can have any number of tags (including 0).<br></p>
+</li>
+<li>
+<p>Only <code>n/NAME</code> field has to be added, the rest are optional.<br></p>
+</li>
+<li>
+<p>Fields can be updated in the future using the <code>EDIT</code> command.<br></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Users may only intend to add the name and phone number field in Bluebird. Thus, with the enhanced functionality of the
+add command, users can do so without any difficulty.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhanced-add"><a class="link" href="#enhanced-add">Enhanced Add</a></h3>
+<div class="paragraph">
+<p>The enhanced add feature no longer requires the user to fill in every field as it now only requires the <code>n/NAME</code> field
+to be filled. This feature is done by using a constructor to initialize the default field as empty. This is implemented
+using an additional parameter in the ParserUtil class to determine whether the default constructor for an empty field
+should be called.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addSD.png" alt="addSD" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>An extract of the code from ParserUtil class shows how this is being implemented. The command parameter determines
+whether or not a field is required in the parser. If the parser is called from the add command, it will call a
+default constructor where the parsed field is empty.<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> Optional&lt;<span class="predefined-type">Name</span>&gt; parseName(Optional&lt;<span class="predefined-type">String</span>&gt; name, <span class="predefined-type">String</span> command) <span class="directive">throws</span> IllegalValueException {
+        requireNonNull(name);
+        <span class="keyword">if</span> (command.equals(<span class="string"><span class="delimiter">&quot;</span><span class="content">add</span><span class="delimiter">&quot;</span></span>)) {
+            <span class="keyword">return</span> name.isPresent() ? Optional.of(<span class="keyword">new</span> <span class="predefined-type">Name</span>(name.get())) : Optional.of(<span class="keyword">new</span> <span class="predefined-type">Name</span>(<span class="integer">0</span>));
+        } <span class="keyword">else</span> {
+            <span class="keyword">return</span> name.isPresent() ? Optional.of(<span class="keyword">new</span> <span class="predefined-type">Name</span>(name.get())) : Optional.empty();
+        }
+    }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: Implementing an option to accept and create the empty fields<br>
+<strong> Alternative 1 (current choice):</strong> By using a command parameter in the ParserUtil class<br>
+<strong>Pros:</strong> This will allow flexibility in implementing, or calling the necessary constructors in the respective person
+  field classes<br>
+<strong>Cons:</strong> There will be a need for overloading of constructors in the classes for the person fields<br>
+<strong>Alternative 2</strong>: By having a new class to initialise empty fields for person added, similar to the EditPersonDescriptor
+ class in the Edit command<br>
+<strong>Pros:</strong> This is the most comprehensive way to initialise fields without the need of new constructors in the classes for
+ the respective fields<br>
+<strong>Cons:</strong> The code will be unnecessarily lengthy and may cause features to break<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect2">
@@ -341,10 +265,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Added colors for persons' tags (Pull request <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/184">#184</a>)</p>
 </li>
 </ul>
 </div>
@@ -352,17 +273,15 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">Project: PowerPointLabs</a></h2>
+<h2 id="project-external"><a class="link" href="#project-external">Project: External</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
-</div>
+
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 17:49:50 +00:00
+Last updated 2017-11-08 18:39:07 +00:00
 </div>
 </div>
 </body>
