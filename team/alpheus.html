@@ -42,7 +42,8 @@ child, and also organising the contact information from your Address Book.<br></
 <div class="sect2">
 <h3 id="sorts-the-list-code-sort-code"><a class="link" href="#sorts-the-list-code-sort-code">Sorts the list : <code>sort</code></a></h3>
 <div class="paragraph">
-<p>Sorts the contact person list in Bluebird based on the keyword input by the user.<br>
+<p>Want to sort your contact list based on name, phone, email or address?
+Use the <code>sort</code> command!<br>
 Format: <code>sort</code> <code>KEYWORD</code></p>
 </div>
 <div class="paragraph">
@@ -475,7 +476,7 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 <div class="sect2">
 <h3 id="pin-a-person-code-pin-code"><a class="link" href="#pin-a-person-code-pin-code">Pin a person : <code>pin</code></a></h3>
 <div class="paragraph">
-<p>Pins a person to a pin panel for easy access.<br>
+<p>Have an important contact that you need for easy access? Use the <code>pin</code> command!<br>
 Format: <code>pin</code> <code>INDEX</code></p>
 </div>
 <div class="paragraph">
@@ -516,7 +517,7 @@ Pins the person at index 1.</p>
 <div class="sect2">
 <h3 id="unpin-a-person-code-unpin-code"><a class="link" href="#unpin-a-person-code-unpin-code">Unpin a person: <code>unpin</code></a></h3>
 <div class="paragraph">
-<p>Unpins a person from the list<br>
+<p>Pinned the wrong contact or you want to unpin that contact? Use the <code>unpin</code> command!<br>
 Format: <code>unpin</code> <code>INDEX</code></p>
 </div>
 <div class="paragraph">
@@ -616,7 +617,7 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 <div class="sect2">
 <h3 id="set-bluebird-to-parent-mode-code-parent-code"><a class="link" href="#set-bluebird-to-parent-mode-code-parent-code">Set Bluebird to parent mode : <code>parent</code></a></h3>
 <div class="paragraph">
-<p>Sets Bluebird to parent mode which will enable all commands for you.
+<p>Sets Bluebird to parent mode which will enable all commands for you.<br>
 Format: <code>parent</code></p>
 </div>
 <div class="sidebarblock">
@@ -655,9 +656,8 @@ is a need to limit the number of available commands that the child is able to us
 <p>When Bluebird is launched, Parent Mode will be off by default and the number of commands
 available will be limited. The <code>ParentModeCommand</code> will enable all commands for the parent to use.</p>
 </div>
-<div class="paragraph">
-<p>4.9.1. Design Considerations</p>
-</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h4>
 <div class="paragraph">
 <p>Aspect: Which commands will be unavailable for the child to use<br>
 Alternative 1 (current choice): All commands that modifies Bluebird&#8217;s contact list or task list will be unavailable<br>
@@ -672,6 +672,7 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
+</div>
 </div>
 <div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
@@ -704,7 +705,7 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 13:04:36 +00:00
+Last updated 2017-11-08 15:45:41 +00:00
 </div>
 </div>
 </body>
