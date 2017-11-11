@@ -1152,11 +1152,10 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 <h3 id="first-time-tutorial"><a class="link" href="#first-time-tutorial">4.14. First time tutorial</a></h3>
 <div class="paragraph">
 <p>The first time tutorial will be launched when users start the Bluebird app for the very first time. To
-detect that Bluebird is launched for the first time, a boolean variable <code>firstTimeOpen</code> in <code>MainApp</code> is used.
+detect that Bluebird is launched for the first time, a boolean variable <code>isFirstTimeOpen</code> in <code>MainApp</code> is used.
 It is set to <code>false</code> by default and will only be set to <code>true</code> when Bluebird detects that <code>addressbook.xml</code> is not found.
-When <code>firstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the browser place holder
-instead of <code>BrowserPanel</code>. <code>TutorialPanel</code> will be removed and <code>BrowserPanel</code> will be added back at the end of the tutorial.
-Figure 4.10.1 shows the sequence of events that happens.</p>
+When <code>isFirstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the tutorial place holder.
+ <code>TutorialPanel</code> will be removed at the end of the tutorial. Figure 4.10.1 shows the sequence of events that happens.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1180,53 +1179,26 @@ to click next, back or skip tutorial at any point of the tutorial. The sequence 
 <p>Figure 4.10.2: Sequence diagram for refrence frame "carry out tutorial"</p>
 </div>
 <div class="paragraph">
-<p>At the end of the tutorial, there will be a <code>SwitchToBrowserEvent</code> raised by <code>TutorialPanel</code>
-which will be posted to <code>EventsCenter</code> and handled by <code>MainWindow</code>. Figure 4.10.3 below shows the sequence of event.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/tutorialEventCenter.png" alt="tutorialEventCenter" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Figure 4.10.3: Sequence diagram for event handling of SwitchToBrowserEvent</p>
-</div>
-<div class="paragraph">
-<p>The code snippet below shows how <code>TutorialPanel</code> is added in place of <code>BrowserPanel</code> in the
-<code>MainWindow</code> when Bluebird is launched for the first time. A <code>SwitchToBrowserEvent</code> will be raised
-by <code>TutorialPanel</code> at the end of the tutorial and handled in <code>MainWindow</code>.</p>
+<p>The code snippet below shows how <code>TutorialPanel</code> is added in the
+<code>MainWindow</code> when Bluebird is launched for the first time.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainWindow</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
     ...
     void fillInnerParts() {
-    ...
-    browserPanel = <span class="keyword">new</span> BrowserPanel();
-        <span class="keyword">if</span> (MainApp.isFirstTimeOpen()) {
-            TutorialPanel tutorialPanel =
-             <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, browserPlaceholder);
-            browserPlaceholder.getChildren().add(tutorialPanel.getRoot());
-        } <span class="keyword">else</span> {
-            switchToBrowser();
+        ...
+        if (MainApp.isFirstTimeOpen()) {
+            TutorialPanel tutorialPanel = <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, browserPlaceholder);
+            tutorialPlaceholder.getChildren().add(tutorialPanel.getRoot());
         }
-    ...
-}
-
-<span class="annotation">@Subscribe</span>
-<span class="directive">private</span> <span class="type">void</span> handleSwitchToBrowserEvent(SwitchToBrowserEvent event) {
-    logger.info(LogsCenter.getEventHandlingLogMessage(event));
-    switchToBrowser();
-}
-
-<span class="directive">private</span> <span class="type">void</span> switchToBrowser() {
-    browserPlaceholder.getChildren().add(browserPanel.getRoot());
+        ...
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The code snippet below shows how <code>TutorialPanel</code> is removed and <code>BrowserPanel</code> is added after
-the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>MainWindow</code>.</p>
+<p>The code snippet below shows how <code>TutorialPanel</code> is removed after
+the end of tutorial.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1234,8 +1206,7 @@ the end of tutorial. The <code>SwitchToBrowserEvent</code> is handled in <code>M
     ...
     private <span class="type">void</span> endTutorial() {
         mainWindow.unhighlightAll();
-        browserPlaceHolder.getChildren().remove(<span class="local-variable">this</span>.getRoot());
-        raise(<span class="keyword">new</span> SwitchToBrowserEvent());
+        tutorialPlaceholder.getChildren().remove(<span class="local-variable">this</span>.getRoot());
     }
     ...
 }</code></pre>
@@ -3220,7 +3191,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-11 16:06:06 +00:00
+Last updated 2017-11-11 16:58:48 +00:00
 </div>
 </div>
 </body>
