@@ -458,7 +458,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T15-B4/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-T15-B4/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-T15-B4/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -1154,8 +1154,48 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 <p>The first time tutorial will be launched when users start the Bluebird app for the very first time. To
 detect that Bluebird is launched for the first time, a boolean variable <code>isFirstTimeOpen</code> in <code>MainApp</code> is used.
 It is set to <code>false</code> by default and will only be set to <code>true</code> when Bluebird detects that <code>addressbook.xml</code> is not found.
-When <code>isFirstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the tutorial place holder.
- <code>TutorialPanel</code> will be removed at the end of the tutorial. Figure 4.10.1 shows the sequence of events that happens.</p>
+The code snippet below shows how <code>isFirstTimeOpen</code> is set to true.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainApp</span> <span class="directive">extends</span> Application {
+    ...
+    private Model initModelManager(Storage storage, UserPrefs userPrefs) {
+        ...
+        try {
+            addressBookOptional = storage.readAddressBook();
+            <span class="keyword">if</span> (!addressBookOptional.isPresent()) {
+                logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Data file not found. Will be starting with a sample AddressBook</span><span class="delimiter">&quot;</span></span>);
+                isFirstTimeOpen = <span class="predefined-constant">true</span>;
+            }
+            ...
+        }
+        ...
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>isFirstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the tutorial place holder.
+ <code>TutorialPanel</code> will be removed at the end of the tutorial.
+The code snippet below shows how <code>TutorialPanel</code> is added in the
+<code>MainWindow</code> when Bluebird is launched for the first time.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainWindow</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
+    ...
+    void fillInnerParts() {
+        ...
+        if (MainApp.isFirstTimeOpen()) {
+            TutorialPanel tutorialPanel = <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, tutorialPlaceholder);
+            tutorialPlaceholder.getChildren().add(tutorialPanel.getRoot());
+        }
+        ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.1 shows the sequence of events that happens.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1177,24 +1217,6 @@ to click next, back or skip tutorial at any point of the tutorial. The sequence 
 </div>
 <div class="paragraph">
 <p>Figure 4.10.2: Sequence diagram for refrence frame "carry out tutorial"</p>
-</div>
-<div class="paragraph">
-<p>The code snippet below shows how <code>TutorialPanel</code> is added in the
-<code>MainWindow</code> when Bluebird is launched for the first time.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainWindow</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
-    ...
-    void fillInnerParts() {
-        ...
-        if (MainApp.isFirstTimeOpen()) {
-            TutorialPanel tutorialPanel = <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, browserPlaceholder);
-            tutorialPlaceholder.getChildren().add(tutorialPanel.getRoot());
-        }
-        ...
-}</code></pre>
-</div>
 </div>
 <div class="paragraph">
 <p>The code snippet below shows how <code>TutorialPanel</code> is removed after
@@ -3191,7 +3213,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 08:49:52 +00:00
+Last updated 2017-11-12 09:19:32 +00:00
 </div>
 </div>
 </body>

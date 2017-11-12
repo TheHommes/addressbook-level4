@@ -266,8 +266,48 @@ Therefore, there is a need to provide first time users of Bluebird a step-by-ste
 <p>The first time tutorial will be launched when users start the Bluebird app for the very first time. To
 detect that Bluebird is launched for the first time, a boolean variable <code>isFirstTimeOpen</code> in <code>MainApp</code> is used.
 It is set to <code>false</code> by default and will only be set to <code>true</code> when Bluebird detects that <code>addressbook.xml</code> is not found.
-When <code>isFirstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the tutorial place holder.
- <code>TutorialPanel</code> will be removed at the end of the tutorial. Figure 4.10.1 shows the sequence of events that happens.</p>
+The code snippet below shows how <code>isFirstTimeOpen</code> is set to true.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainApp</span> <span class="directive">extends</span> Application {
+    ...
+    private Model initModelManager(Storage storage, UserPrefs userPrefs) {
+        ...
+        try {
+            addressBookOptional = storage.readAddressBook();
+            <span class="keyword">if</span> (!addressBookOptional.isPresent()) {
+                logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Data file not found. Will be starting with a sample AddressBook</span><span class="delimiter">&quot;</span></span>);
+                isFirstTimeOpen = <span class="predefined-constant">true</span>;
+            }
+            ...
+        }
+        ...
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When <code>isFirstTimeOpen</code> is detected as <code>true</code> by the <code>MainWindow</code>, <code>TutorialPanel</code> will be added into the tutorial place holder.
+ <code>TutorialPanel</code> will be removed at the end of the tutorial.
+The code snippet below shows how <code>TutorialPanel</code> is added in the
+<code>MainWindow</code> when Bluebird is launched for the first time.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainWindow</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
+    ...
+    void fillInnerParts() {
+        ...
+        if (MainApp.isFirstTimeOpen()) {
+            TutorialPanel tutorialPanel = <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, tutorialPlaceholder);
+            tutorialPlaceholder.getChildren().add(tutorialPanel.getRoot());
+        }
+        ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.10.1 shows the sequence of events that happens.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -289,24 +329,6 @@ to click next, back or skip tutorial at any point of the tutorial. The sequence 
 </div>
 <div class="paragraph">
 <p>Figure 4.10.2: Sequence diagram for refrence frame "carry out tutorial"</p>
-</div>
-<div class="paragraph">
-<p>The code snippet below shows how <code>TutorialPanel</code> is added in the
-<code>MainWindow</code> when Bluebird is launched for the first time.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">MainWindow</span> <span class="directive">extends</span> UiPart&lt;<span class="predefined-type">Region</span>&gt; {
-    ...
-    void fillInnerParts() {
-        ...
-        if (MainApp.isFirstTimeOpen()) {
-            TutorialPanel tutorialPanel = <span class="keyword">new</span> TutorialPanel(<span class="local-variable">this</span>, browserPlaceholder);
-            tutorialPlaceholder.getChildren().add(tutorialPanel.getRoot());
-        }
-        ...
-}</code></pre>
-</div>
 </div>
 <div class="paragraph">
 <p>The code snippet below shows how <code>TutorialPanel</code> is removed after
@@ -681,7 +703,8 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/14">#14</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/58">#58</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/73">#73</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/118">#118</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/134">#134</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/143">#143</a>,
-<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/144">#144</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/205">#205</a>,
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/144">#144</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/165">#165</a>,
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/205">#205</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/245">#245</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/257">#257</a>)</p>
 </li>
@@ -705,7 +728,7 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 08:49:52 +00:00
+Last updated 2017-11-12 09:19:32 +00:00
 </div>
 </div>
 </body>
