@@ -439,7 +439,9 @@ match <code>Hans</code></p>
 <div class="sect3">
 <h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
-<p>Users may want to search for the contact not just by their names, but also by their phone number, email
+<p>The old find feature is only capable of finding the target <code>Person</code> using his/her name. Furthermore,
+users have to type out the full name in order to be able to find the <code>Person</code>.
+Users may want to search for the contact not just by their names, but also by their phone number, email
 , address and tags as well. This enhancement gives users the choice to decide how they would want
 to search for the contact they want.</p>
 </div>
@@ -455,9 +457,46 @@ to search for the contact they want.</p>
 <div class="sect2">
 <h3 id="enhanced-find"><a class="link" href="#enhanced-find">Enhanced find</a></h3>
 <div class="paragraph">
-<p>The enhanced find feature is implemented by comparing every <code>Person</code> 's <code>Name</code>, <code>Phone</code>, <code>Email</code>,
-<code>Address</code>, and <code>Tag</code> with the keyword provided by the user. The user need not have to type the keywords
-in full and partial keywords will still be able to find the person (e.g find jos will return Josephine).</p>
+<p>The old find feature is only capable of finding the target <code>Person</code> using his/her name. Furthermore,
+the user has to type out the full name in order to be able to find the <code>Person</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>The enhanced find feature allows users to find the <code>Person</code> you want using their name, phone, email, address or tag. Keywords need not be typed in full and partial keywords will still be able to find the <code>Person</code>
+(e.g find jos will return Josephine).</p>
+</div>
+<div class="paragraph">
+<p>This is implemented by further refining the <code>PersonHasKeywordsPredicate</code> that was originally used.
+<code>PersonHasKeywordsPredicate</code> is used to compare the <code>Person</code> 's details with the keyword provided. If
+there is a match, the <code>Person</code> will be shown on Bluebird as found.
+The code snippet below shows how the refinement was made.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">PersonHasKeywordsPredicate</span> <span class="directive">implements</span> <span class="predefined-type">Predicate</span>&lt;ReadOnlyPerson&gt; {
+    ...
+    private <span class="type">boolean</span> isPersonMatch(ReadOnlyPerson person, <span class="predefined-type">String</span><span class="type">[]</span> nameParts, <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">String</span>&gt; tagParts) {
+        <span class="keyword">for</span> (<span class="predefined-type">String</span> tag : tagParts) {
+            <span class="keyword">if</span> (keywords.stream().anyMatch(keyword -&gt; tag.startsWith(keyword.toLowerCase()))) {
+                <span class="keyword">return</span> !isFindPinned || person.isPinned();
+            }
+        }
+        <span class="keyword">for</span> (<span class="predefined-type">String</span> name : nameParts) {
+            <span class="keyword">if</span> (keywords.stream().anyMatch(keyword -&gt; name.toLowerCase().startsWith(keyword.toLowerCase()))) {
+                <span class="keyword">return</span> !isFindPinned || person.isPinned();
+            }
+        }
+        <span class="keyword">if</span> (keywords.size() != <span class="integer">0</span> &amp;&amp; person.getAddress().toString().toLowerCase().contains(fullWord)) {
+            <span class="keyword">return</span> !isFindPinned || person.isPinned();
+        }
+        <span class="keyword">if</span> (keywords.stream().anyMatch(keyword -&gt; person.getEmail().toString().toLowerCase()
+                .startsWith(keyword.toLowerCase()))) {
+            <span class="keyword">return</span> !isFindPinned || person.isPinned();
+        }
+        <span class="keyword">return</span> keywords.stream().anyMatch(keyword -&gt; person.getPhone()
+                .toString().startsWith(keyword.toLowerCase())) &amp;&amp; (!isFindPinned || person.isPinned());
+    }
+}</code></pre>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
@@ -615,7 +654,7 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 <strong>Pros:</strong> It is easy to see and the Ui is clean<br>
 <strong>Cons:</strong> It is harder to implement as a new <code>ObjectProperty</code> has to be added to the <code>PersonCard</code> to update the UI of it<br>
 <strong>Alternative 2</strong>: The pinned person will just have a <code>Tag</code> that says <code>pinned</code><br>
-<strong>Pros:</strong> It is easier to implement because a new <code>Tag</code> called <code>pinned</code> can just be added to the <code>Person</code><br>
+<strong>Pros:</strong> It is easier to implement because <code>Tag</code> has already been implemented. A new <code>Tag</code> called <code>pinned</code> can just be added to the <code>Person</code><br>
 <strong>Cons:</strong> It may not be noticeable if the person already has many <code>Tag</code> on them.</p>
 </div>
 <div class="paragraph">
@@ -673,8 +712,35 @@ is a need to limit the number of available commands that the child is able to us
 <div class="sect2">
 <h3 id="parent-mode"><a class="link" href="#parent-mode">Parent Mode</a></h3>
 <div class="paragraph">
-<p>When Bluebird is launched, Parent Mode will be off by default and the number of commands
+<p>When Bluebird is launched, the boolean variable <code>isParentEnabled</code> in <code>AddressBookParser</code> is set to <code>false</code>
+by default. This means that Parent Mode will be off by default and the number of commands
 available will be limited. The <code>ParentModeCommand</code> will enable all commands for the parent to use.</p>
+</div>
+<div class="paragraph">
+<p>The code snippet below shows how <code>AddressBookParser</code> prevents certain commands such as <code>DeleteCommand</code> from
+executing when <code>isParentEnabled</code> is <code>false</code>. A <code>ParseException</code> will be thrown which will display
+"Unknown Command" to the user.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">AddressBookParser</span> {
+    ...
+    public AddressBookParser() {
+        ...
+        this.isParentEnabled = <span class="predefined-constant">false</span>;
+    }
+    ...
+    public Command parseCommand(<span class="predefined-type">String</span> userInput) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+    ...
+        case DeleteCommand.COMMAND_WORD:
+            <span class="keyword">if</span> (!isParentEnabled) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(MESSAGE_UNKNOWN_CHILD_COMMAND);
+            }
+    ...
+    }
+
+}</code></pre>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h4>
@@ -695,21 +761,48 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 </div>
 </div>
 <div class="sect2">
+<h3 id="enhancement-proposed-import-export-google-contacts"><a class="link" href="#enhancement-proposed-import-export-google-contacts">Enhancement Proposed: Import/Export Google contacts</a></h3>
+<div class="paragraph">
+<p>This allows for easy transfer of contacts from the user&#8217;s phone when they first use Bluebird.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-cloud-storage"><a class="link" href="#enhancement-proposed-cloud-storage">Enhancement Proposed: Cloud Storage</a></h3>
+<div class="paragraph">
+<p>Bluebird will prompt user to select if they would like to upload and save their data to a cloud storage
+every time they exit the application. This ensures that users need not worry about losing important
+contacts/tasks should anything happen to their computer.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="paragraph">
+<p>Acceptance Testing for other applications</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Found a bug for switch theme (Issue <a href="https://github.com/CS2103AUG2017-T09-B3/main/issues/194">#194</a>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Contribution to Bluebird</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
 <p>Updated the UI of Bluebird
 (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/14">#14</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/58">#58</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/73">#73</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/118">#118</a>,
-<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/134">#134</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/143">#143</a>,
 <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/144">#144</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/165">#165</a>,
-<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/205">#205</a>,
-<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/245">#245</a>,
-<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/257">#257</a>)</p>
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/205">#205</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>,
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/245">#245</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/257">#257</a>,
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/267">#267</a>)</p>
 </li>
 <li>
-<p>Updated a help overlay for Bluebird (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/189">#189</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>)</p>
+<p>Updated a help overlay for Bluebird (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/189">#189</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/208">#208</a>,
+<a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/262">#262</a>, <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/267">#267</a>)</p>
 </li>
 <li>
 <p>Added Bluebird result image feedback when inputting commands (Pull requests <a href="https://github.com/CS2103AUG2017-T15-B4/main/pull/143">#142</a>,
@@ -728,7 +821,7 @@ Cons: There is a possibility that the child may edit important contacts or tasks
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 09:19:32 +00:00
+Last updated 2017-11-12 14:11:53 +00:00
 </div>
 </div>
 </body>
