@@ -641,7 +641,9 @@ An example of this can be seen below:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>UndoableCommand</code> class follows the Liskov Substitution Principle.</p>
+<p>The <code>UndoableCommand</code> class follows the Liskov Substitution Principle because it fulfills <code>Command</code> 's
+expectation of <code>UndoableCommand</code> objects. Substituting <code>DeleteCommand</code> 's objects for <code>UndoableCommand</code> 's objects
+will not break the <code>Command</code> class functionality.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3285,7 +3287,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 10:29:11 +00:00
+Last updated 2017-11-13 11:56:01 +00:00
 </div>
 </div>
 </body>
