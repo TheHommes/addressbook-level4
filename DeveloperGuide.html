@@ -1341,12 +1341,14 @@ default constructor where the parsed field is empty.<br></p>
 <div class="paragraph">
 <p>When Bluebird is launched, the boolean variable <code>isParentEnabled</code> in <code>AddressBookParser</code> is set to <code>false</code>
 by default. This means that Parent Mode will be off by default and the number of commands
-available will be limited. The <code>ParentModeCommand</code> will enable all commands for the parent to use.</p>
+available will be limited. The <code>ParentModeCommand</code> will enable all commands for the parent to use by setting
+<code>isParentEnabled</code> to <code>true</code>.</p>
 </div>
 <div class="paragraph">
 <p>The code snippet below shows how <code>AddressBookParser</code> prevents certain commands such as <code>DeleteCommand</code> from
 executing when <code>isParentEnabled</code> is <code>false</code>. A <code>ParseException</code> will be thrown which will display
-"Unknown Command" to the user.</p>
+"Unknown Command" to the user. If <code>isParentEnabled</code> is <code>true</code> the <code>DeleteCommand</code> will be accepted and
+executed accordingly.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1362,6 +1364,12 @@ executing when <code>isParentEnabled</code> is <code>false</code>. A <code>Parse
         case DeleteCommand.COMMAND_WORD:
             <span class="keyword">if</span> (!isParentEnabled) {
                 <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">ParseException</span>(MESSAGE_UNKNOWN_CHILD_COMMAND);
+            }
+            ...
+            if (isPersonEnabled &amp;&amp; !isTaskEnabled) {
+                <span class="keyword">return</span> <span class="keyword">new</span> DeleteCommandParser().parse(checkedArguments);
+            } <span class="keyword">else</span> {
+                <span class="keyword">return</span> <span class="keyword">new</span> DeleteTaskCommandParser().parse(checkedArguments);
             }
     ...
     }
@@ -3277,7 +3285,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 14:11:53 +00:00
+Last updated 2017-11-13 05:19:23 +00:00
 </div>
 </div>
 </body>
