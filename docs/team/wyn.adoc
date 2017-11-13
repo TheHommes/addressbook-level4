@@ -46,18 +46,76 @@ include::../DeveloperGuide.adoc[tag=unhide]
 
 ---
 
+=== Enhancement Added: Birthday Field
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=add]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+Added a birthday field as an attribute so that users can now add birthday information to existing contacts' information
+in their Bluebird address book.
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=add]
+
+#End of Extract#
+
+---
+
+=== Enhancement Added: Show Birthdays
+
+==== External behavior
+
+---
+#Start of Extract [from: User Guide]#
+
+include::../UserGuide.adoc[tag=showbirthdays]
+
+#End of Extract#
+
+---
+
+==== Justification
+
+Allows the user to see the birthdays of contacts in his Bluebird address book that are on the current day. 
+
+==== Implementation
+
+---
+#Start of Extract [from: Developer Guide]#
+
+include::../DeveloperGuide.adoc[tag=showbirthdays]
+
+#End of Extract#
+
+---
+
 === Enhancement Proposed: Hide/Unhide tasks
 
 Similar to having hide/unhide for person contacts, having hide/unhide for tasks would allow parent users to conceal
 tasks that they wouldn't want their child to see. For example, doctor appointments or other sensitive tasks.
 
-=== Enhancement Proposal:
+=== Enhancement Proposal: Show Birthday
+
+To further upgrade the `showbirthdays` command, create a setting for `showbirthdays` such that the user can set the upper
+and lower bounds for the birthdays to be shown. For example, the user could set `showbirthdays` command to show the
+upcoming birthdays of contact(s) in Bluebird's address book for current day, 2 days, week, or month, subject to
+their preference.
 
 === Other contributions
 
-* Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-* Wrote additional tests to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-
-== Project: PowerPointLabs
-
-{Optionally (not graded), you may include other projects in your portfolio.}
+* Continually updated User Guide formatting, language and content throughout the course of the project (Pull requests https://github.com/CS2103AUG2017-T15-B4/main/pull/286, https://github.com/CS2103AUG2017-T15-B4/main/pull/185, https://github.com/CS2103AUG2017-T15-B4/main/pull/145, https://github.com/CS2103AUG2017-T15-B4/main/pull/106)
+* Continually updated Developer Guide formatting, language and content throughout the course of the project. (Pull requests https://github.com/CS2103AUG2017-T15-B4/main/pull/90, https://github.com/CS2103AUG2017-T15-B4/main/pull/177, https://github.com/CS2103AUG2017-T15-B4/main/pull/183, https://github.com/CS2103AUG2017-T15-B4/main/pull/278)
