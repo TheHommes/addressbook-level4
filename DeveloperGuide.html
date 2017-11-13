@@ -49,20 +49,17 @@
 <li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
 <li><a href="#logging">4.2. Logging</a></li>
 <li><a href="#configuration">4.3. Configuration</a></li>
-<li><a href="#since-v1-1">4.4. Since v1.1</a></li>
-<li><a href="#sorting-of-contacts">4.5. Sorting of contacts</a></li>
-<li><a href="#since-v1-2">4.6. Since v1.2</a></li>
-<li><a href="#enhanced-find">4.7. Enhanced find</a></li>
-<li><a href="#alias-unalias">4.8. Alias / Unalias</a></li>
-<li><a href="#enhanced-delete">4.9. Enhanced Delete</a></li>
-<li><a href="#hide">4.10. Hide</a></li>
-<li><a href="#since-v1-3">4.11. Since v1.3</a></li>
-<li><a href="#pin-unpin">4.12. Pin / Unpin</a></li>
-<li><a href="#since-v1-4">4.13. Since v1.4</a></li>
-<li><a href="#first-time-tutorial">4.14. First time tutorial</a></li>
-<li><a href="#enhanced-add">4.15. Enhanced Add</a></li>
-<li><a href="#since-v1-5">4.16. Since v1.5</a></li>
-<li><a href="#parent-mode">4.17. Parent Mode</a></li>
+<li><a href="#sorting-of-contacts">4.4. Sorting of contacts</a></li>
+<li><a href="#enhanced-find">4.5. Enhanced find</a></li>
+<li><a href="#alias-unalias">4.6. Alias / Unalias</a></li>
+<li><a href="#enhanced-delete">4.7. Enhanced Delete</a></li>
+<li><a href="#hide-unhide">4.8. Hide / Unhide</a></li>
+<li><a href="#pin-unpin">4.9. Pin / Unpin</a></li>
+<li><a href="#first-time-tutorial">4.10. First time tutorial</a></li>
+<li><a href="#enhanced-add">4.11. Enhanced Add</a></li>
+<li><a href="#parent-mode">4.12. Parent Mode</a></li>
+<li><a href="#birthday-field">4.13. Birthday Field</a></li>
+<li><a href="#show-birthdays">4.14. Show Birthdays</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -900,11 +897,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="since-v1-1"><a class="link" href="#since-v1-1">4.4. Since v1.1</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="sorting-of-contacts"><a class="link" href="#sorting-of-contacts">4.5. Sorting of contacts</a></h3>
+<h3 id="sorting-of-contacts"><a class="link" href="#sorting-of-contacts">4.4. Sorting of contacts</a></h3>
 <div class="paragraph">
 <p>The sort command sorts the <code>People</code> in <code>AddressBook</code> based on their <code>Name</code>, <code>Phone</code>, <code>Email</code> or <code>Address</code>. The sort command is also an <code>UndoableCommand</code> and users can undo the sort if they wish to.
 <code>SortCommand</code> inherits from <code>UndoableCommand</code> which inherits from <code>Command</code> and the logic is
@@ -923,7 +916,7 @@ shown in Figure 4.4.1 below.</p>
 or address. This will ensure that users type in the right <code>KEYWORD</code> to sort the list however they want.</p>
 </div>
 <div class="sect3">
-<h4 id="sorting-by-name"><a class="link" href="#sorting-by-name">4.5.1. Sorting by name</a></h4>
+<h4 id="sorting-by-name"><a class="link" href="#sorting-by-name">4.4.1. Sorting by name</a></h4>
 <div class="paragraph">
 <p>Suppose a user wants to sort by name, the user will type <code>sort name</code> into the command box. This will then be processed by <code>LogicManager</code> which executes the command and <code>AddressBookParser</code> will
 parse the command accordingly. A <code>SortCommand</code> will be returned to the <code>LogicManager</code> which will then execute it. Finally, the result of the execution will be returned and displayed
@@ -1000,7 +993,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.4.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Which details to sort<br>
 <strong>Alternative 1 (current choice):</strong> List of contacts will be able to be sorted by name, phone, email or address<br>
@@ -1022,11 +1015,7 @@ on the <code>ResultDisplay</code> Ui for the user. The sequence diagram for this
 </div>
 </div>
 <div class="sect2">
-<h3 id="since-v1-2"><a class="link" href="#since-v1-2">4.6. Since v1.2</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="enhanced-find"><a class="link" href="#enhanced-find">4.7. Enhanced find</a></h3>
+<h3 id="enhanced-find"><a class="link" href="#enhanced-find">4.5. Enhanced find</a></h3>
 <div class="paragraph">
 <p>The old find feature is only capable of finding the target <code>Person</code> using his/her name. Furthermore,
 the user has to type out the full name in order to be able to find the <code>Person</code>.<br></p>
@@ -1070,7 +1059,7 @@ The code snippet below shows how the refinement was made.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.7.1. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the find command will be<br>
 <strong>Alternative 1 (current choice):</strong> The person will be found if their names, phone, email or tags start with the
@@ -1090,7 +1079,7 @@ find Josephine, or find Blk 231, Sembawang Close 221 #02-232, S750231).<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="alias-unalias"><a class="link" href="#alias-unalias">4.8. Alias / Unalias</a></h3>
+<h3 id="alias-unalias"><a class="link" href="#alias-unalias">4.6. Alias / Unalias</a></h3>
 <div class="paragraph">
 <p>The alias and unalias features are implemented by comparing creating a new AliasToken model which contains all created aliases,
 this model is checked against user input in the parser and converts any alias keywords to their representations before other
@@ -1099,7 +1088,7 @@ be used for both commands or shortcuts. For example : alias k/disappear s/hide ,
 to work with AliasToken keyword disappear. Unaliasing the AliasToken keyword token simply removes the AliasToken.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.8.1. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.6.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the alias command will be<br>
 <strong>Alternative 1 (current choice):</strong> Aliases are parsed based on their keywords which are stored in a UniqueAliasTokenList.
@@ -1116,7 +1105,7 @@ to choose any word to alias if they desire to do so.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">4.9. Enhanced Delete</a></h3>
+<h3 id="enhanced-delete"><a class="link" href="#enhanced-delete">4.7. Enhanced Delete</a></h3>
 <div class="paragraph">
 <p>The enhanced delete feature allows for multiple indices to be accepted by the parser. This is done by splitting the inputs into multiple string tokens,
 each containing the index of the person to be deleted. A list is then used to store all the indices of the personsToDelete.
@@ -1124,7 +1113,7 @@ This enhancement is then achieved by iterating through the list and deleting the
 The enhanced delete also allows for the user to input a range of indices of persons to be deleted.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.9.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Defining how accurate the delete command will be<br>
 <strong>Alternative 1 (current choice):</strong> Indices are parsed into a list containing all the index of persons to be deleted.<br>
@@ -1138,40 +1127,39 @@ A loop is then used to iterate through the list to delete the persons requested 
 </div>
 </div>
 <div class="sect2">
-<h3 id="hide"><a class="link" href="#hide">4.10. Hide</a></h3>
+<h3 id="hide-unhide"><a class="link" href="#hide-unhide">4.8. Hide / Unhide</a></h3>
 <div class="paragraph">
 <p>The hide feature allows for multiple indices to be accepted by the parser. This is done similar to the enhanced delete
-feature, where inputs are split into multiple string tokens, each containing the index of the person to be hidden.
+feature, where inputs are split into multiple string tokens, each containing the index of the person to be hidden. The
+<code>Person</code> class has a boolean variable called <code>isPrivate</code> that is set to false by default. Only when the <code>hide</code> command
+is executed will the variable change to true, and conceal the person contact from the main list of contacts.
 A list, listhidden, is then used to store all the indices of the person(s) to be hidden. Unhide is then done to revert
-the previously hidden indices from the list storing all hidden persons.</p>
+the previously hidden indices from the list storing all hidden persons by reverting the <code>isPrivate</code> boolean variable to
+false.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.10.1. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect</strong>: Defining how accurate the hide command will be<br>
-<strong> Alternative 1 (current choice):</strong> Indicse are parsed into a list containing all the index of person to be deleted.<br>
-<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong> Alternative 1 (current choice):</strong> Indices are parsed into a list containing all the index of person to be deleted.<br>
+<strong>Pros:</strong> If the index is valid (within range), the user can hide as many persons as they choose.<br>
 <strong>Cons:</strong> The use of a loop will increase the time for the code to run.<br>
-<strong>Alternative 2</strong>: The indices are deleted one by one, without using a list.<br>
-<strong>Pros:</strong> If the index is valid (within range), the user can delete as many persons as they choose.<br>
+<strong>Alternative 2</strong>: The indices are hidden one by one, without using a list.<br>
+<strong>Pros:</strong> If the index is valid (within range), the user can hide as many persons as they choose.<br>
 <strong>Cons:</strong> User has to repeatedly type the command multiple times, and application has to display the result repeatedly
 after every person is hidden successfully.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="since-v1-3"><a class="link" href="#since-v1-3">4.11. Since v1.3</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="pin-unpin"><a class="link" href="#pin-unpin">4.12. Pin / Unpin</a></h3>
+<h3 id="pin-unpin"><a class="link" href="#pin-unpin">4.9. Pin / Unpin</a></h3>
 <div class="paragraph">
 <p>The pin and unpin command allows the user to pin and unpin important <code>Person</code> for easy access. The <code>Person</code> class has
 a boolean variable called <code>isPinned</code> that is set to <code>false</code> by default. Only when the <code>pin</code> command is executed will the
 variable change to <code>true</code>. Similarly, the variable can be changed from <code>true</code> to <code>false</code> when <code>unpin</code> command is executed.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.12.1. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.9.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect</strong>: How pinned person will be displayed on the UI<br>
 <strong> Alternative 1 (current choice):</strong> A pinned person will have a star symbol next to their name if they are pinned<br>
@@ -1184,11 +1172,7 @@ variable change to <code>true</code>. Similarly, the variable can be changed fro
 </div>
 </div>
 <div class="sect2">
-<h3 id="since-v1-4"><a class="link" href="#since-v1-4">4.13. Since v1.4</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="first-time-tutorial"><a class="link" href="#first-time-tutorial">4.14. First time tutorial</a></h3>
+<h3 id="first-time-tutorial"><a class="link" href="#first-time-tutorial">4.10. First time tutorial</a></h3>
 <div class="paragraph">
 <p>The first time tutorial will be launched when users start the Bluebird app for the very first time. To
 detect that Bluebird is launched for the first time, a boolean variable <code>isFirstTimeOpen</code> in <code>MainApp</code> is used.
@@ -1274,7 +1258,7 @@ the end of tutorial.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.14.1. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.10.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect</strong>: What to include in the tutorial<br>
 <strong> Alternative 1 (current choice):</strong> Introduce the different UI panels in Bluebird and to give a brief
@@ -1289,7 +1273,7 @@ the end of tutorial.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhanced-add"><a class="link" href="#enhanced-add">4.15. Enhanced Add</a></h3>
+<h3 id="enhanced-add"><a class="link" href="#enhanced-add">4.11. Enhanced Add</a></h3>
 <div class="paragraph">
 <p>The enhanced add feature no longer requires the user to fill in every field as it now only requires the <code>n/NAME</code> field
 to be filled. This feature is done by using a constructor to initialize the default field as empty. This is implemented
@@ -1319,7 +1303,7 @@ default constructor where the parsed field is empty.<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.15.1. Design Considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.11.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect</strong>: Implementing an option to accept and create the empty fields<br>
 <strong> Alternative 1 (current choice):</strong> By using a command parameter in the ParserUtil class<br>
@@ -1335,11 +1319,7 @@ default constructor where the parsed field is empty.<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="since-v1-5"><a class="link" href="#since-v1-5">4.16. Since v1.5</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="parent-mode"><a class="link" href="#parent-mode">4.17. Parent Mode</a></h3>
+<h3 id="parent-mode"><a class="link" href="#parent-mode">4.12. Parent Mode</a></h3>
 <div class="paragraph">
 <p>When Bluebird is launched, the boolean variable <code>isParentEnabled</code> in <code>AddressBookParser</code> is set to <code>false</code>
 by default. This means that Parent Mode will be off by default and the number of commands
@@ -1380,7 +1360,7 @@ executed accordingly.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.17.1. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.12.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p>Aspect: Which commands will be unavailable for the child to use<br>
 Alternative 1 (current choice): All commands that modifies Bluebird&#8217;s contact list or task list will be unavailable<br>
@@ -1391,6 +1371,26 @@ Alternative 2: Only prevent commands that deletes Bluebird&#8217;s contact list 
 Pros: This allows child to edit the contacts or tasks if they were to add wrongly<br>
 Cons: There is a possibility that the child may edit important contacts or tasks.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="birthday-field"><a class="link" href="#birthday-field">4.13. Birthday Field</a></h3>
+<div class="paragraph">
+<p>The Birthday field is an additional attribute to the person class for contacts in Bluebird. Since the addition of
+feature 4.11 Enhanced Add, not all fields are compulsory, except for the name field. Therefore the birthday field can be
+added individually in addition to the name field when adding a new contact. Alternatively, an existing person&#8217;s contact
+card in Bluebird can be edited to add the birth date. There are 2 valid formats for adding birth dates to the birthday
+field, which are <code>DD/MM/YYYY</code> or <code>DD/MM/YY</code>, where only digits are permitted. Months in the form of alphabets are not
+permitted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="show-birthdays"><a class="link" href="#show-birthdays">4.14. Show Birthdays</a></h3>
+<div class="paragraph">
+<p>The <code>showbirthdays</code> command scans through the list of person contacts in Bluebird and displays the person(s) whose
+birthdays fall on the same date as the current day with respect to the user. The <code>showbirthdays</code> command is made possible
+with the <code>CheckBirthdays</code> class. The CheckBirthdays class determines if a contact&#8217;s birthday falls on the current day
+by checking if the day and month of the contact&#8217;s birthday is equal to the current day and month date.</p>
 </div>
 </div>
 </div>
@@ -3287,7 +3287,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 11:56:01 +00:00
+Last updated 2017-11-13 12:43:24 +00:00
 </div>
 </div>
 </body>
