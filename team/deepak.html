@@ -99,18 +99,88 @@ add shortcuts to words that they regularly.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="alias-unalias"><a class="link" href="#alias-unalias">Alias / Unalias</a></h3>
+<h3 id="alias-unalias-mechanism"><a class="link" href="#alias-unalias-mechanism">Alias / Unalias mechanism</a></h3>
 <div class="paragraph">
-<p>The alias and unalias features are implemented by comparing creating a new AliasToken model which contains all created aliases,
+<p>The alias and unalias features are implemented by comparing and creating a new AliasToken model which contains all created aliases,
 this model is checked against user input in the parser and converts any alias keywords to their representations before other
 commands are parsed. Each AliasToken consists of a keyword (the main alias) and representation (what it means) and they can
-be used for both commands or shortcuts. For example : alias k/disappear s/hide , this makes the hide command
-to work with AliasToken keyword disappear. Unaliasing the AliasToken keyword token simply removes the AliasToken.</p>
+be used for both commands or shortcuts. For example, by entering the input: <em>' alias k/disappear s/hide '</em> , the hide command is made
+to work with the AliasToken keyword <em>'disappear'</em> . Unaliasing the AliasToken keyword token simply removes the AliasToken and this done
+by entering the input; <em>'unalias disappear'</em>.</p>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.6</em> shows the sequence diagram for a new AliasCommand.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AliasSD2.png" alt="AliasSD2" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.6 : AliasCommand Sequence Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>Every time a new input is given by the user, the Addressbook parser always
+checks the command word and the following arguments given by the user against
+a HashMap that contains all the AliasTokens and the registered commands in the model.
+This can be seen in <em>Code segment 4.6.1</em>. This primary
+check system ensures no duplicate aliases are made or no AliasToken keyword will
+clash with any existing commands.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, the arguments are also checked for aliases as can be seen in and <em>Code segment 4.6.2</em>.
+This check allows the keywords to be entered by the user and parsed into their respective
+representations before the AddressBookParser executes the user&#8217;s input.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">private</span> <span class="predefined-type">String</span> commandWordCheck(<span class="predefined-type">String</span> commandWord) {
+        <span class="predefined-type">String</span> checkedCommandWord = commandWord;
+
+        ReadOnlyAliasToken token = aliasMap.get(commandWord);
+        <span class="keyword">if</span> (token != <span class="predefined-constant">null</span>) {
+            checkedCommandWord = token.getRepresentation().representation;
+        }
+        <span class="keyword">return</span> checkedCommandWord;
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Code segment 4.6.1 : commandWordCheck</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">private</span> <span class="predefined-type">String</span> argumentsCheck(<span class="predefined-type">String</span> checkedCommandWord, <span class="predefined-type">String</span> arguments) {
+
+        <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">alias</span><span class="delimiter">&quot;</span></span>.equals(checkedCommandWord) || (<span class="string"><span class="delimiter">&quot;</span><span class="content">unalias</span><span class="delimiter">&quot;</span></span>.equals(checkedCommandWord))) {
+            <span class="keyword">return</span> arguments;
+        }
+        <span class="predefined-type">StringBuilder</span> builder = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
+        builder.append(<span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>);
+        <span class="predefined-type">Matcher</span> matcher = KEYWORD_PATTERN.matcher(arguments);
+
+        <span class="keyword">while</span> (matcher.find()) {
+            <span class="predefined-type">String</span> keyword = matcher.group(<span class="integer">1</span>);
+            <span class="predefined-type">String</span> spaces = matcher.group(<span class="integer">2</span>); <span class="comment">// The amount of spaces entered is kept the same</span>
+            ReadOnlyAliasToken token = aliasMap.get(keyword);
+            <span class="keyword">if</span> (token != <span class="predefined-constant">null</span>) {
+                keyword = token.getRepresentation().representation;
+            }
+            builder.append(keyword);
+            builder.append(spaces);
+        }
+
+        <span class="keyword">return</span> builder.toString();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Code segment 4.6.2 : argumentsCheck</em></p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Defining how accurate the alias command will be<br>
+<p><strong>Aspect:</strong> The accuracy of alias commands needs to be high<br>
 <strong>Alternative 1 (current choice):</strong> Aliases are parsed based on their keywords which are stored in a UniqueAliasTokenList.
  All user input will parse for aliases first before dispatching to command parser, including parsing of both the command
  word as well as the command arguments.<br>
@@ -466,7 +536,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 15:20:58 +00:00
+Last updated 2017-11-13 15:25:29 +00:00
 </div>
 </div>
 </body>
