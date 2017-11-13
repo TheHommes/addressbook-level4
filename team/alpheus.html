@@ -19,15 +19,10 @@
 <h2 id="project-bluebird"><a class="link" href="#project-bluebird">Project: Bluebird</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Written in Java language, Bluebird is a desktop based organisational tool for the working parent on the go. Bluebird is suitable
+<p>Bluebird is a desktop based organisational tool for the working parent on the go. Bluebird is suitable
 for a variety of day-to-day management tasks, including managing appointments for both yourself and your
-child, and also organising the contact information from your Address Book.<br></p>
+child, and also organising the contact information from your Address Book. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.<br></p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="purpose"><a class="link" href="#purpose">Purpose</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>This project portfolio serves to provide an insight into how Alpheus Lim Wei Xiang has contributed to project Bluebird. Included
 in this portfolio are the enhancements, features, tests and proposed enhancements that Alpheus Lim Wei Xiang has contribued to the project.</p>
@@ -381,10 +376,13 @@ the end of tutorial.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="search-for-contact-code-find-code"><a class="link" href="#search-for-contact-code-find-code">Search for contact: <code>find</code></a></h4>
+<h4 id="search-for-contact-code-find-code-code-findpinned-code"><a class="link" href="#search-for-contact-code-find-code-code-findpinned-code">Search for contact: <code>find</code> / <code>findpinned</code></a></h4>
 <div class="paragraph">
-<p>Trying to find one of your contacts? You can do so easily with the <code>find</code> command!<br>
-Format: <code>find</code> <code>KEYWORD</code> <code>[MORE_KEYWORDS]</code> <code>&#8230;&#8203;</code></p>
+<p>Trying to find one of your contacts? You can do so easily with the <code>find</code> or <code>findpinned</code> command!<br>
+<code>find</code> search through all your contacts whereas <code>findpinned</code> will search through pinned contacts only.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>find</code> <code>KEYWORD</code> <code>[MORE_KEYWORDS]</code> <code>&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -394,6 +392,10 @@ Format: <code>find</code> <code>KEYWORD</code> <code>[MORE_KEYWORDS]</code> <cod
 <li>
 <p><code>find</code> <code>John</code><br>
 Returns <code>john</code> and <code>John Doe</code>.</p>
+</li>
+<li>
+<p><code>findpinned</code> <code>Roy</code><br>
+Returns pinned contact <code>Roy</code></p>
 </li>
 <li>
 <p><code>find</code> <code>Betsy</code> <code>Tim</code> <code>John</code><br>
@@ -775,9 +777,10 @@ delete or edit the previous one<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-import-export-google-contacts"><a class="link" href="#enhancement-proposed-import-export-google-contacts">Enhancement Proposed: Import/Export Google contacts</a></h3>
+<h3 id="enhancement-proposed-pin-unpin-task"><a class="link" href="#enhancement-proposed-pin-unpin-task">Enhancement Proposed: Pin/Unpin Task</a></h3>
 <div class="paragraph">
-<p>This allows for easy transfer of contacts from the user&#8217;s phone when they first use Bluebird.</p>
+<p>Users may have trouble keeping track of important tasks that they have to do. This feature allows them to pin imortant tasks for
+easy access.</p>
 </div>
 </div>
 <div class="sect2">
@@ -838,7 +841,7 @@ contacts/tasks should anything happen to their computer.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:30:39 +00:00
+Last updated 2017-11-13 13:36:24 +00:00
 </div>
 </div>
 </body>
