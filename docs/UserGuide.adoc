@@ -437,6 +437,11 @@ Removes the alias shortcut 'ph'. Next instances of ph will no longer translate t
 ****
 // end::unalias[]
 
+==== List all alias : `listalias`
+
+Want to view you list of alias? Simply just use the `listalias` feature! +
+Format: `listalias`
+
 // tag::pinunpin[]
 ==== Pin a person : `pin`
 
@@ -550,7 +555,8 @@ e.g. `pin` `2`
 * *Unpin* : `unpin` `INDEX` +
 e.g. `pin` `2`
 * *List Pinned* : `listpin` +
-* *Parent Mode* : `parent`
+* *Parent Mode* : `parent` +
+* *List Alias* : `listalias`
 
 == Coming in v2.0
 
