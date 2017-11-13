@@ -1362,14 +1362,14 @@ executed accordingly.</p>
 <div class="sect3">
 <h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.12.1. Design Considerations</a></h4>
 <div class="paragraph">
-<p>Aspect: Which commands will be unavailable for the child to use<br>
-Alternative 1 (current choice): All commands that modifies Bluebird&#8217;s contact list or task list will be unavailable<br>
-Pros: This provides maximum safety for the parents<br>
-Cons: If the child adds contacts or tasks wrongly, he has to add a new command and will not be able to
+<p><strong>Aspect</strong>: Which commands will be unavailable for the child to use<br>
+<strong>Alternative 1 (current choice)</strong>: All commands that modifies Bluebird&#8217;s contact list or task list will be unavailable<br>
+<strong>Pros</strong>: This provides maximum safety for the parents<br>
+<strong>Cons</strong>: If the child adds contacts or tasks wrongly, he has to add a new command and will not be able to
 delete or edit the previous one<br>
-Alternative 2: Only prevent commands that deletes Bluebird&#8217;s contact list or task list<br>
-Pros: This allows child to edit the contacts or tasks if they were to add wrongly<br>
-Cons: There is a possibility that the child may edit important contacts or tasks.</p>
+<strong>Alternative 2</strong>: Only prevent commands that deletes Bluebird&#8217;s contact list or task list<br>
+<strong>Pros</strong>: This allows child to edit the contacts or tasks if they were to add wrongly<br>
+<strong>Cons</strong>: There is a possibility that the child may edit important contacts or tasks.</p>
 </div>
 </div>
 </div>
@@ -1383,6 +1383,21 @@ card in Bluebird can be edited to add the birth date. There are 2 valid formats 
 field, which are <code>DD/MM/YYYY</code> or <code>DD/MM/YY</code>, where only digits are permitted. Months in the form of alphabets are not
 permitted.</p>
 </div>
+<div class="sect3">
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">4.13.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: Format of birth date input<br>
+<strong>Alternative 1 (current choice)</strong>: Input all commands only the format of <code>DD/MM/YYYY</code> and <code>DD/MM/YY</code>.<br>
+<strong>Pros</strong>: This provides standardization of date format where the day comes before the month.<br>
+<strong>Cons</strong>: Not yet able to accommodate date input in short formed words, such as Nov or Dec.<br>
+<strong>Alternative 2</strong>: Allows command format to be in alphabets as well in addition to formats in alternative 1.<br>
+<strong>Pros</strong>: More user friendly as user can enter months in short formed words as well.<br>
+<strong>Cons</strong>: Tougher to implement as will have to account every permutation of dates entered.</p>
+</div>
+<div class="paragraph">
+<p>The implementation of the method is credited to Hyma Tiyyagura.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="show-birthdays"><a class="link" href="#show-birthdays">4.14. Show Birthdays</a></h3>
@@ -1391,6 +1406,21 @@ permitted.</p>
 birthdays fall on the same date as the current day with respect to the user. The <code>showbirthdays</code> command is made possible
 with the <code>CheckBirthdays</code> class. The CheckBirthdays class determines if a contact&#8217;s birthday falls on the current day
 by checking if the day and month of the contact&#8217;s birthday is equal to the current day and month date.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">4.14.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect</strong>: Whether <code>showbirthdays</code> should show birthdays for the day today, or for the week or month.
+<strong>Alternative 1 (current choice)</strong>: <code>showbirthdays</code> command only shows for today&#8217;s birthdays.
+<strong>Pros</strong>: Shows the most relevant and soonest dates.
+<strong>Cons</strong>: User might want to know the upcoming birthdays as well.
+<strong>Alternative 2</strong>: <code>showbirthdays</code> command allows the user to set the time duration of birthdays he would like to view.
+<strong>Pros</strong>: Shows the upcoming birthdays so that user can pre-empt.
+<strong>Cons</strong>: Might vary by days, weeks, month, and will be much tougher to implement.</p>
+</div>
+<div class="paragraph">
+<p>The implementation of the method is credited to Hyma Tiyyagura.</p>
+</div>
 </div>
 </div>
 </div>
@@ -3287,7 +3317,7 @@ distinguishable from the text</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 12:43:24 +00:00
+Last updated 2017-11-13 13:08:32 +00:00
 </div>
 </div>
 </body>
